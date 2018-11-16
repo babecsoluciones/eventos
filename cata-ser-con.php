@@ -27,7 +27,7 @@ function detalles(eCodCliente)
                                     </div>
                                 
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning">
+                                    <table class="table table-borderless table-striped table-earning" id="table">
                                         <thead>
                                             <tr>
 												

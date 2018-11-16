@@ -128,7 +128,7 @@ var dPrecio = document.getElementById("dPrecio");
                                     <div class="card-body card-block">
                                         <!--campos-->
                                         
-           <table width="100%">
+           <table width="100%" id="table">
 		   <thead>
 			   <tr>
 				   <td width="2%"></td>

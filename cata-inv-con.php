@@ -27,7 +27,7 @@ function detalles(eCodCliente)
                                     <input type='search' id='search' placeholder='Búsqueda rápida...'> 
                                     </div>
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning" id="example">
+                                    <table class="table table-borderless table-striped table-earning" id="table">
                                         <thead>
                                             <tr>
 												<th>Tipo</th>
