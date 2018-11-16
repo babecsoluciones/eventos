@@ -23,12 +23,15 @@ function detalles(eCodCliente)
 <div class="row">
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Inventario </h2>
-                                <div style="text-align:right;">
-                                    <input type='search' id='search' placeholder='Búsqueda rápida...'> 
-                                    </div>
+                                
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
                                     <table class="table table-borderless table-striped table-earning" id="table">
                                         <thead>
+                                            <tr>
+                                                 <th colspan="8" align="right">
+                                                     <input type='search' id='search' placeholder='Búsqueda rápida...'> 
+                                                </tdh>
+                                            </tr>
                                             <tr>
 												<th>Tipo</th>
 												<th>Nombre</th>

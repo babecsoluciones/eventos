@@ -227,7 +227,7 @@ if(!$_SESSION['sessionAdmin'])
 
     $(window).load(function(){
       
-var $rows = $('#table tr');
+var $rows = $('#table tbody tr');
 $('#search').keyup(function() {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
     

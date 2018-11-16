@@ -181,8 +181,8 @@ class clSis
         /*Preparacion de variables*/
         
         $eCodCliente = $_POST['eCodCliente'] ? $_POST['eCodCliente'] : false;
-        $tNombre = "'".$_POST['tNombre']."'";
-        $tApellidos = "'".$_POST['tApellidos']."'";
+        $tNombre = "'".utf8_encode($_POST['tNombre'])."'";
+        $tApellidos = "'".utf8_encode($_POST['tApellidos'])."'";
         $tCorreo = "'".$_POST['tCorreo']."'";
         $tTelefonoFijo = "'".$_POST['tTelefonoFijo']."'";
         $tTelefonoMovil = "'".$_POST['tTelefonoMovil']."'";
@@ -223,7 +223,7 @@ class clSis
                             tApellidos= $tApellidos,
                             tCorreo= $tCorreo,
                             tTelefonoFijo= $tTelefonoFijo,
-                            tTelefonoMovil= $tTelefonoMovil,
+                            tTelefonoMovil= $tTelefonoMovil
                             WHERE
                             eCodCliente = ".$eCodCliente;
         }

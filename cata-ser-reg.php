@@ -122,14 +122,14 @@ var dPrecio = document.getElementById("dPrecio");
 		 		<div class="col-lg-12" style="max-height:150px;">
 								<h2 class="title-1 m-b-25"> </h2>
                                 <div class="card col-lg-12">
-                                    <div style="text-align:right;">
-                                    <input type='search' id='search' placeholder='Búsqueda rápida...'> 
-                                    </div>
                                     <div class="card-body card-block">
                                         <!--campos-->
                                         
            <table width="100%" id="table">
 		   <thead>
+               <tr>
+               <td colspan="3" align="right"><input type='search' id='search' placeholder='Búsqueda rápida...'> </td>
+               </tr>
 			   <tr>
 				   <td width="2%"></td>
 			   <td width="95%">Inventario</td>
