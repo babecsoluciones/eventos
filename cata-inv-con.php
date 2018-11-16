@@ -5,7 +5,17 @@ $clSistema = new clSis();
 session_start();
 
 ?>
+<script type="text/javascript" language="javascript" src="ext/media/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="ext/media/css/jquery.dataTables.css">
 <script>
+	$(document).ready(function() {
+	$('#example').DataTable( {
+		"scrollY":        "200px",
+		"scrollCollapse": true,
+		"paging":         false
+	} );
+} );
+	
 function detalles(eCodCliente)
     {
         window.location="?tCodSeccion=cata-inv-det&eCodInventario="+eCodCliente;
@@ -22,7 +32,7 @@ function detalles(eCodCliente)
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Inventario </h2>
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning">
+                                    <table class="table table-borderless table-striped table-earning" id="example">
                                         <thead>
                                             <tr>
 												<th>Tipo</th>
