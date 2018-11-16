@@ -5,6 +5,7 @@ $clSistema = new clSis();
 session_start();
 
 ?>
+ 
 <script>
 function detalles(eCodCliente)
     {
@@ -20,54 +21,11 @@ function detalles(eCodCliente)
 </div>
 <div class="row">
                             <div class="col-lg-12">
-                                <div style="text-align:right;">
-                                    <input type='search' id='txt_searchall' placeholder='Búsqueda rápida...'> 
-						
-						<!-- Script -->
-        <script type='text/javascript'>
-            $(document).ready(function(){
-
-                // Search all columns
-                $('#txt_searchall').keyup(function(){
-                    // Search Text
-                    var search = $(this).val();
-
-                    // Hide all table tbody rows
-                    $('table tbody tr').hide();
-
-                    // Searching text in columns and show match row
-                    $('table tbody tr td:contains("'+search+'")').each(function(){
-                        $(this).closest('tr').show();
-                    });
-                    
-                });
-
-                // Search on name column only
-                $('#txt_name').keyup(function(){
-                    // Search Text
-                    var search = $(this).val();
-
-                    // Hide all table tbody rows
-                    $('table tbody tr').hide();
-
-                    // Searching text in columns and show match row
-                    $('table tbody tr td:nth-child(2):contains("'+search+'")').each(function(){
-                        $(this).closest('tr').show();
-                    });
-                    
-                });
-               
-            });
-
-            // Case-insensitive searching (Note - remove the below script for Case sensitive search )
-            $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-                return function( elem ) {
-                    return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-                };
-            });
-        </script>
-                                    </div>
                                 <h2 class="title-1 m-b-25">Servicios</h2>
+                                <div style="text-align:right;">
+                                    <input type='search' id='search' placeholder='Búsqueda rápida...'> 
+                                    </div>
+                                
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
