@@ -46,7 +46,7 @@ class clSis
 						ss.tTitulo,
 						ss.tIcono
 					FROM SisSecciones ss".
-					($_SESSION['sessionAdmin'][0]['bAll'] ? "" : "INNER JOIN SisSeccionesPerfiles ssp ON ssp.tCodSeccion = ss.tCodSeccion").
+					($_SESSION['sessionAdmin'][0]['bAll'] ? "" : " INNER JOIN SisSeccionesPerfiles ssp ON ssp.tCodSeccion = ss.tCodSeccion").
 					" WHERE
 					ss.eCodEstatus = 3
 					AND
@@ -54,7 +54,7 @@ class clSis
 					($_SESSION['sessionAdmin'][0]['bAll'] ? "" :
 					" AND
 					ssp.eCodPerfil = ".$_SESSION['sessionAdmin'][0]['eCodPerfil']).
-					" ORDER BY ePosicion ASC";
+					" ORDER BY ss.ePosicion ASC";
 
 		$rsMenus = mysql_query($select);;
 		while($rMenu = mysql_fetch_array($rsMenus))

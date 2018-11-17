@@ -170,11 +170,11 @@ if(!$_SESSION['sessionAdmin'])
 						{
 							$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
 						}
-						else
-						{
-						 $clSistema->cerrarSesion();
-						}
-						//echo $tCodSeccion;
+						//else
+						//{
+						// $clSistema->cerrarSesion();
+						//}
+						echo $val;
 						?>
                         
                         
