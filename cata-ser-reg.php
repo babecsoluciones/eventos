@@ -118,26 +118,26 @@ var dPrecio = document.getElementById("dPrecio");
                                     </div>
                                 </div>
                             </div>
-		
-		 		<div class="col-lg-12" style="max-height:150px;">
-								<h2 class="title-1 m-b-25"> </h2>
-                                <div class="card col-lg-12">
-                                    <div class="card-body card-block">
-                                        <!--campos-->
+		<div class="table-data__tool">
+                                    <div class="table-data__tool-left">
                                         
-           <table width="100%" id="table">
-		   <thead>
-               <tr>
-               <td colspan="3" align="right"><input type='search' id='search' placeholder='Búsqueda rápida...'> </td>
-               </tr>
-			   <tr>
-				   <td width="2%"></td>
-			   <td width="95%">Inventario</td>
-				   <td>Piezas</td>
+                                        
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                       <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
+                                    </div>
+                                </div>
+		<div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
+                                    <table class="table table-borderless table-striped table-earning" id="table">
+                                        <thead>
+                                            <tr>
+				   <th width="2%"></th>
+			   <th width="95%">Inventario</th>
+				   <th>Piezas</th>
 			   </tr>
-			   </thead>
-			   <tbody>
-			  <?
+                                        </thead>
+                                        <tbody>
+											<?
 											$select = "	SELECT 
 															cti.tNombre as tipo, 
 															ci.*
@@ -170,13 +170,11 @@ var dPrecio = document.getElementById("dPrecio");
 													$b++;
 											}
 											?>
-			   </tbody>
-										</table>
-           
-                                        <!--campos-->
-                                    </div>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
+		
+		 		
     </form>
     </div>
                         </div>

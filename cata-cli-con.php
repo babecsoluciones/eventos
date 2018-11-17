@@ -21,15 +21,19 @@ function detalles(eCodCliente)
 <div class="row">
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Clientes</h2>
-                                
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        
+                                        
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                       <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
+                                    </div>
+                                </div>
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
                                     <table class="table table-borderless table-striped table-earning" id="table">
                                         <thead>
-                                            <tr>
-                                                 <th colspan="9" align="right">
-                                                     <input type='search' id='search' placeholder='Búsqueda rápida...'> 
-                                                </th>
-                                            </tr>
+                                            
                                             <tr>
 												<th>E</th>
 												<th></th>
