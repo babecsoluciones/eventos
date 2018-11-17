@@ -102,11 +102,11 @@ var dPrecio = document.getElementById("dPrecio");
            </div>
            <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name="tNombre" id="tNombre" placeholder="Nombre" value="<?=($rPublicacion{'tNombre'})?>" >
+              <input type="text" class="form-control" name="tNombre" id="tNombre" placeholder="Nombre" value="<?=utf8_encode($rPublicacion{'tNombre'})?>" >
            </div>
            <div class="form-group">
               <label>Descripci&oacute;n</label>
-              <textarea class="form-control" name="tDescripcion" id="tDescripcion" placeholder="Descripci&oacute;n" rows="5" style="resize:none;"><?=($rPublicacion{'tDescripcion'})?></textarea>
+              <textarea class="form-control" name="tDescripcion" id="tDescripcion" placeholder="Descripci&oacute;n" rows="5" style="resize:none;"><?=utf8_decode($rPublicacion{'tDescripcion'})?></textarea>
            </div>
            <div class="form-group">
               <label>Precio de Venta</label>

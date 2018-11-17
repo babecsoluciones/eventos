@@ -113,23 +113,23 @@ var tTelefonoMovil = document.getElementById("tTelefonoMovil");
            </div>
            <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name="tNombre" id="tNombre" placeholder="Nombre" value="<?=($rPublicacion{'tNombres'})?>" >
+              <input type="text" class="form-control" name="tNombre" id="tNombre" placeholder="Nombre" value="<?=utf8_decode($rPublicacion{'tNombres'})?>" >
            </div>
            <div class="form-group">
               <label>Apellidos</label>
-              <input type="text" class="form-control" name="tApellidos" id="tApellidos" placeholder="Apellidos" value="<?=($rPublicacion{'tApellidos'})?>" >
+              <input type="text" class="form-control" name="tApellidos" id="tApellidos" placeholder="Apellidos" value="<?=utf8_decode($rPublicacion{'tApellidos'})?>" >
            </div>
            <div class="form-group">
               <label>E-mail</label>
-              <input type="email" class="form-control" name="tCorreo" id="tCorreo" placeholder="E-mail" value="<?=($rPublicacion{'tCorreo'})?>" >
+              <input type="email" class="form-control" name="tCorreo" id="tCorreo" placeholder="E-mail" value="<?=utf8_decode($rPublicacion{'tCorreo'})?>" >
            </div>
            <div class="form-group">
               <label>Tel&eacute;fono Fijo</label>
-              <input type="text" class="form-control" name="tTelefonoFijo" id="tTelefonoFijo" placeholder="Tel&eacute;fono Fijo" value="<?=($rPublicacion{'tTelefonoFijo'})?>" >
+              <input type="text" class="form-control" name="tTelefonoFijo" id="tTelefonoFijo" placeholder="Tel&eacute;fono Fijo" value="<?=utf8_decode($rPublicacion{'tTelefonoFijo'})?>" >
            </div>
            <div class="form-group">
               <label>Tel&eacute;fono M&oacute;vil</label>
-              <input type="text" class="form-control" name="tTelefonoMovil" id="tTelefonoMovil" placeholder="Tel&eacute;fono M&oacute;vil" value="<?=($rPublicacion{'tTelefonoMovil'})?>" >
+              <input type="text" class="form-control" name="tTelefonoMovil" id="tTelefonoMovil" placeholder="Tel&eacute;fono M&oacute;vil" value="<?=utf8_decode($rPublicacion{'tTelefonoMovil'})?>" >
            </div>
                                         <!--campos-->
                                     </div>
