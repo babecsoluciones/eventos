@@ -129,6 +129,7 @@ var dPrecio = document.getElementById("dPrecio");
                $tipos[] = array('eCodTipoInventario'=>$rTipo{'eCodTipoInventario'},'tNombre'=>$rTipo{'tNombre'});
            }
     ?>
+        <div class="card">
         <div class="custom-tab">
 
 											<nav>
@@ -137,7 +138,7 @@ var dPrecio = document.getElementById("dPrecio");
                                                     for($i=0;$i<sizeof($tipos);$i++)
                                                     {
                                                         ?>
-                                                    <a class="nav-item nav-link" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
+                                                    <a class="nav-item nav-link <?=($i==0) ? 'active' : ''?>" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
 													 aria-selected="true"><?=$tipos[$i]['tNombre']?></a>
                                                     <?
                                                     }
@@ -234,6 +235,7 @@ $('#search<?=$i?>').keyup(function() {
 											</div>
 
 										</div>
+        </div>
         <!--tabs-->
 		
 		
