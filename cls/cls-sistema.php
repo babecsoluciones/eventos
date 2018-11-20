@@ -272,8 +272,11 @@ class clSis
         }
         
         $rsPublicacion = mysql_query($insert);
+        
+        $select = "SELECT MAX(eCodServicio) eCodServicio FROM CatServicios";
+        $rServicio = mysql_fetch_array(mysql_query($select));
 		
-		$eCodServicio = $eCodServicio ? $eCodServicio : mysql_insert_id($rsPublicacion);
+		$eCodServicio = $eCodServicio ? $eCodServicio : $rServicio{'eCodServicio'};
 		
 		mysql_query("DELETE FROM RelServiciosInventario WHERE eCodServicio = $eCodServicio");
 	foreach($_POST['eCodInventario'] as $key => $eCodInventario)

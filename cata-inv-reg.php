@@ -132,7 +132,7 @@ var ePiezas = document.getElementById("ePiezas");
 <div class="row">
     <div class="col-lg-12">
     <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="eCodServicio" value="<?=$_GET['eCodServicio']?>">
+        <input type="hidden" name="eCodInventario" value="<?=$_GET['eCodInventario']?>">
         <input type="hidden" name="eAccion" id="eAccion">
                             <div class="col-lg-12">
 								<h2 class="title-1 m-b-25"><?=$_GET['eCodServicio'] ? 'Actualizar ' : '+ '?>Inventario</h2>
