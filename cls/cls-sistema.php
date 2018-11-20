@@ -273,7 +273,7 @@ class clSis
         
         $rsPublicacion = mysql_query($insert);
 		
-		$eCodServicio = $eCodServicio ? $eCodServicio : mysql_insert_id();
+		$eCodServicio = $eCodServicio ? $eCodServicio : mysql_insert_id($rsPublicacion);
 		
 		mysql_query("DELETE FROM RelServiciosInventario WHERE eCodServicio = $eCodServicio");
 	foreach($_POST['eCodInventario'] as $key => $eCodInventario)
