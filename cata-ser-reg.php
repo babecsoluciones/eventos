@@ -18,7 +18,7 @@ if($_POST)
     {
         ?>
             <div class="alert alert-success" role="alert">
-                El servicio se guard&oacute; correctamente!
+                El paquete se guard&oacute; correctamente!
             </div>
 <script>
 setTimeout(function(){
@@ -92,7 +92,7 @@ var dPrecio = document.getElementById("dPrecio");
         <input type="hidden" name="eCodServicio" value="<?=$_GET['eCodServicio']?>">
         <input type="hidden" name="eAccion" id="eAccion">
                             <div class="col-lg-12">
-								<h2 class="title-1 m-b-25"><?=$_GET['eCodServicio'] ? 'Actualizar ' : '+ '?>Servicio</h2>
+								<h2 class="title-1 m-b-25"><?=$_GET['eCodServicio'] ? 'Actualizar ' : '+ '?>Paquete</h2>
                                 <div class="card col-lg-12">
                                     
                                     <div class="card-body card-block">
@@ -118,17 +118,72 @@ var dPrecio = document.getElementById("dPrecio");
                                     </div>
                                 </div>
                             </div>
-		<div class="table-data__tool">
+        
+        <!--tabs-->
+        <?
+    $select = "SELECT * FROM CatTiposInventario ORDER BY tNombre DESC";
+           $rsTipos = mysql_query($select);
+           $tipos = array();
+           while($rTipo = mysql_fetch_array($rsTipos))
+           {
+               $tipos[] = array('eCodTipoInventario'=>$rTipo{'eCodTipoInventario'},'tNombre'=>$rTipo{'tNombre'});
+           }
+    ?>
+        <div class="custom-tab">
+
+											<nav>
+												<div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <?
+                                                    for($i=0;$i<sizeof($tipos);$i++)
+                                                    {
+                                                        ?>
+                                                    <a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
+													 aria-selected="true"><?=$tipos[$i]['tNombre']?></a>
+                                                    <?
+                                                    }
+                                                    ?>
+												</div>
+											</nav>
+											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
+                                                <?
+                                                $b=0;
+                                                    for($i=0;$i<sizeof($tipos);$i++)
+                                                    {
+                                                        ?>
+                                                    <div class="tab-pane fade show active" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+													
+                                                        <!--tablas-->
+                                                        <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         
                                         
                                     </div>
                                     <div class="table-data__tool-right">
-                                       <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
+                                       <input class="au-input" id='search<?=$i?>' placeholder='Búsqueda rápida...'> 
+                                        
+                                        <script type="text/javascript">
+
+
+    $(window).load(function(){
+      
+var $rows = $('#table<?=$i?> tbody tr');
+$('#search<?=$i?>').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
+
+    });
+
+</script>
+                                        
                                     </div>
                                 </div>
 		<div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning" id="table">
+                                    <table class="table table-borderless table-striped table-earning" id="table<?=$i?>">
                                         <thead>
                                             <tr>
 				   <th width="2%"></th>
@@ -144,10 +199,10 @@ var dPrecio = document.getElementById("dPrecio");
 														FROM
 															CatInventario ci
 															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario".
-														
+														" WHERE ci.eCodTipoInventrio = ".$tipos[$i]['eCodTipoInventario'].
 														" ORDER BY ci.tNombre ASC";
 											$rsPublicaciones = mysql_query($select);
-		   									$b=0;
+		   									
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												$select = "SELECT * FROM RelServiciosInventario WHERE eCodInventario = ".$rPublicacion{'eCodInventario'}." AND eCodServicio = ".$_GET['eCodServicio'];
@@ -173,6 +228,18 @@ var dPrecio = document.getElementById("dPrecio");
                                         </tbody>
                                     </table>
                                 </div>
+                                                        <!--tablas-->
+                                                        
+												</div>
+                                                    <?
+                                                    }
+                                                    ?>
+												
+											</div>
+
+										</div>
+        <!--tabs-->
+		
 		
 		 		
     </form>

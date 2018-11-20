@@ -16,7 +16,7 @@ $rCliente = mysql_fetch_array($rsCliente);
 </div>
 <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Detalles del Cliente</h2>
+                                <h2 class="title-1 m-b-25">Detalles del Paquete</h2>
                                 
                                     <table class="table">
                                         <tr>
