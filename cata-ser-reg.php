@@ -37,7 +37,7 @@ setTimeout(function(){
     }
 }
 ?>
-
+<script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
 <script>
 function validar()
 {
@@ -137,7 +137,7 @@ var dPrecio = document.getElementById("dPrecio");
                                                     for($i=0;$i<sizeof($tipos);$i++)
                                                     {
                                                         ?>
-                                                    <a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
+                                                    <a class="nav-item nav-link" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
 													 aria-selected="true"><?=$tipos[$i]['tNombre']?></a>
                                                     <?
                                                     }
@@ -150,17 +150,13 @@ var dPrecio = document.getElementById("dPrecio");
                                                     for($i=0;$i<sizeof($tipos);$i++)
                                                     {
                                                         ?>
-                                                    <div class="tab-pane fade show active" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                                                    <div class="tab-pane fade" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
 													
                                                         <!--tablas-->
                                                         <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                        
-                                        
-                                    </div>
+                                    <div class="table-data__tool-left">   </div>
                                     <div class="table-data__tool-right">
                                        <input class="au-input" id='search<?=$i?>' placeholder='Búsqueda rápida...'> 
-                                        
                                         <script type="text/javascript">
 
 
@@ -199,7 +195,7 @@ $('#search<?=$i?>').keyup(function() {
 														FROM
 															CatInventario ci
 															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario".
-														" WHERE ci.eCodTipoInventrio = ".$tipos[$i]['eCodTipoInventario'].
+														" WHERE ci.eCodTipoInventario = ".$tipos[$i]['eCodTipoInventario'].
 														" ORDER BY ci.tNombre ASC";
 											$rsPublicaciones = mysql_query($select);
 		   									
