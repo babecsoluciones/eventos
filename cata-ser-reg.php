@@ -151,7 +151,7 @@ var dPrecio = document.getElementById("dPrecio");
                                                     for($i=0;$i<sizeof($tipos);$i++)
                                                     {
                                                         ?>
-                                                    <div class="tab-pane fade" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                                                    <div class="tab-pane fade <?=($i==0) ? 'show active' : ''?>" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
 													
                                                         <!--tablas-->
                                                         <div class="table-data__tool">
