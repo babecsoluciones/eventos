@@ -36,54 +36,7 @@ $rCliente = mysql_fetch_array($rsCliente);
 	
 							<div class="col-lg-12">
                                 
-                                
-                                    <table width="100%" class="table">
-		   <thead>
-			   <tr>
-				   
-			   <td width="95%">Inventario</td>
-				   <td>Piezas</td>
-			   </tr>
-			   </thead>
-			   <tbody>
-			  <?
-											$select = "	SELECT 
-															cti.tNombre as tipo, 
-															ci.*,
-															rti.ePiezas as unidad
-														FROM
-															CatInventario ci
-															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario
-															INNER JOIN RelServiciosInventario rti ON rti.eCodInventario=ci.eCodInventario
-															WHERE
-																rti.eCodServicio = ".$_GET['eCodServicio']."
-															ORDER BY ci.tNombre ASC";
-
-											$rsPublicaciones = mysql_query($select);
-		   									
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
-											{
-												
-												?>
-											<tr>
-												
-												<td>
-												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=utf8_decode($rPublicacion{'tNombre'})?> | <?=utf8_decode($rPublicacion{'tMarca'})?>
-												</td>
-												<td>
-													<?=$rPublicacion{'unidad'}?>
-												</td>
-                                            </tr>
-											<?
-													
-											}
-											?>
-			   </tbody>
-										</table>
-                                
-                            </div>
-    
-    <!--tabs-->
+                                 <!--tabs-->
         <?
     $select = "SELECT * FROM CatTiposInventario ORDER BY tNombre DESC";
            $rsTipos = mysql_query($select);
@@ -93,7 +46,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                $tipos[] = array('eCodTipoInventario'=>$rTipo{'eCodTipoInventario'},'tNombre'=>$rTipo{'tNombre'});
            }
     ?>
-        <div class="card">
+        
         <div class="custom-tab">
 
 											<nav>
@@ -140,7 +93,7 @@ $rCliente = mysql_fetch_array($rsCliente);
 															INNER JOIN RelServiciosInventario rti ON rti.eCodInventario=ci.eCodInventario
 															WHERE
                                                             ci.eCodTipoInventario = ".$tipos[$i]['eCodTipoInventario'].
-															"	rti.eCodServicio = ".$_GET['eCodServicio']."
+															" AND rti.eCodServicio = ".$_GET['eCodServicio']."
 															ORDER BY ci.tNombre ASC";
 
 											$rsPublicaciones = mysql_query($select);
@@ -175,7 +128,11 @@ $rCliente = mysql_fetch_array($rsCliente);
 											</div>
 
 										</div>
-        </div>
+        
         <!--tabs-->
+                                
+                            </div>
+    
+   
     
                         </div>
