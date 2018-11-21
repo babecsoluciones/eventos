@@ -281,8 +281,8 @@ class clSis
 		mysql_query("DELETE FROM RelServiciosInventario WHERE eCodServicio = $eCodServicio");
 	foreach($_POST['eCodInventario'] as $key => $eCodInventario)
 	{
-		$ePiezas = $_POST['ePiezas'][$key];
-		mysql_query("INSERT INTO relServiciosInventario (eCodServicio, eCodInventario, ePiezas) VALUES ($eCodServicio, $eCodInventario, $ePiezas)");
+		$ePiezas = $_POST['ePiezas'.$key];
+		mysql_query("INSERT INTO RelServiciosInventario (eCodServicio, eCodInventario, ePiezas) VALUES ($eCodServicio, $eCodInventario, $ePiezas)");
 	}
 		
         //return $insert;
