@@ -35,6 +35,10 @@ $rCliente = mysql_fetch_array($rsCliente);
                                             <td>Teléfono Móvil</td>
                                             <td><?=$rCliente{'tTelefonoMovil'}?></td>
                                         </tr>
+                                        <tr>
+                                            <td valign="top">Comentarios</td>
+                                            <td colspan="3"><?=$rCliente{'tComentarios'}?></td>
+                                        </tr>
                                     </table>
                                 
                             </div>

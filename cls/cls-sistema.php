@@ -186,6 +186,7 @@ class clSis
         $tCorreo = "'".$_POST['tCorreo']."'";
         $tTelefonoFijo = "'".$_POST['tTelefonoFijo']."'";
         $tTelefonoMovil = "'".$_POST['tTelefonoMovil']."'";
+        $tComentarios = $_POST['tComentarios'] ? "'".$_POST['tComentarios']."'" : "Sin comentarios";
 		$eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
 		$fhFechaCreacion = "'".date('Y-m-d H:i')."'";
         
@@ -200,7 +201,8 @@ class clSis
             tTelefonoMovil,
             eCodUsuario,
             fhFechaCreacion,
-			eCodEstatus
+			eCodEstatus,
+            tComentarios
 			)
             VALUES
             (
@@ -211,7 +213,8 @@ class clSis
             $tTelefonoMovil,
             $eCodUsuario,
             $fhFechaCreacion,
-			3
+			3,
+            $tComentarios
             )";
         }
         else
@@ -223,7 +226,8 @@ class clSis
                             tApellidos= $tApellidos,
                             tCorreo= $tCorreo,
                             tTelefonoFijo= $tTelefonoFijo,
-                            tTelefonoMovil= $tTelefonoMovil
+                            tTelefonoMovil= $tTelefonoMovil,
+                            tComentarios = $tComentarios
                             WHERE
                             eCodCliente = ".$eCodCliente;
         }
