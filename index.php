@@ -166,7 +166,7 @@ if(!$_SESSION['sessionAdmin'])
                         
 						<?	
 						$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
-						if($val)
+						if($val==$_GET['tCodSeccion'])
 						{
 							$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
 						}
@@ -174,7 +174,7 @@ if(!$_SESSION['sessionAdmin'])
 						{
 						 $clSistema->cerrarSesion();
 						}
-						//echo $val;
+					
 						?>
                         
                         

@@ -76,7 +76,7 @@ class clSis
 		
 		$rsSeccion = mysql_query($select);
 		$rSeccion = mysql_fetch_array($rsSeccion);
-		return $rSeccion{'tCodSeccion'} ? true : false;
+		return $rSeccion{'tCodSeccion'} ? $rSeccion{'tCodSeccion'} : false;
 	}
 	
 	public function validarEnlace($seccion)
