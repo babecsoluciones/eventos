@@ -22,7 +22,7 @@ if($_POST)
             <i class="fa fa-key" ></i></button>
 	<input type="hidden" id="tPasswordVerificador"  style="display:none;" value="<?=base64_decode($_SESSION['sessionAdmin'][0]['tPasswordOperaciones'])?>">
         <input type="password" class="form-control col-md-3" onkeyup="validarUsuario()"  id="tPasswordOperaciones"  style="display:none;" size="8">
-        <button type="button" id="btnGuardar" class="btn btn-primary" disabled onclick="validar()"><i class="fa fa-floppy-o"></i> Guardar</button>
+        <button type="button" id="btnGuardar" class="btn btn-primary" disabled onclick="guardar()"><i class="fa fa-floppy-o"></i> Guardar</button>
 	</div>
 </div>
 <form action="?tCodSeccion=<?=$_GET['tCodSeccion']?>" method="post" id="datos">
