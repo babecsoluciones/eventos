@@ -70,13 +70,13 @@ setTimeout(function(){
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="city" class=" form-control-label">Nombre(s)</label>
-                                                    <input type="text" name="tNombre" placeholder="Nombre(s)" value="<?=$rUsuario{'tNombre'}?>" class="form-control" <?=$_GET['eCodUsuario'] ? 'readonly' : ''?>>
+                                                    <input type="text" name="tNombre" placeholder="Nombre(s)" value="<?=utf8_decode($rUsuario{'tNombre'})?>" class="form-control" <?=$_GET['eCodUsuario'] ? 'readonly' : ''?>>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="postal-code" class=" form-control-label">Apellido(s)</label>
-                                                    <input type="text" name="tApellidos" placeholder="Apellido(s)" value="<?=$rUsuario{'tApellidos'}?>" class="form-control"<?=$_GET['eCodUsuario'] ? 'readonly' : ''?>>
+                                                    <input type="text" name="tApellidos" placeholder="Apellido(s)" value="<?=utf8_decode($rUsuario{'tApellidos'})?>" class="form-control"<?=$_GET['eCodUsuario'] ? 'readonly' : ''?>>
                                                 </div>
                                             </div>
                                         </div>

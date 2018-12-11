@@ -15,13 +15,13 @@ function detalles(eCodCliente)
 <div class="row">
 	<div class="col-lg-12">
         <? if($clSistema->validarEnlace('cata-ser-reg')) { ?>
-	<button type="button" class="btn btn-primary" onclick="window.location='?tCodSeccion=cata-ser-reg'"><i class="fa fa-plus"></i> Nuevo Servicio</button>
+	<button type="button" class="btn btn-primary" onclick="window.location='?tCodSeccion=cata-ser-reg'"><i class="fa fa-plus"></i> Nuevo Paquete</button>
         <? } ?>
 	</div>
 </div>
 <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Servicios</h2>
+                                <h2 class="title-1 m-b-25">Paquetes</h2>
                                 
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">

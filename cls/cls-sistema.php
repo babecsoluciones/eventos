@@ -46,7 +46,7 @@ class clSis
 						ss.tTitulo,
 						ss.tIcono
 					FROM SisSecciones ss".
-					($_SESSION['sessionAdmin'][0]['bAll'] ? "" : "INNER JOIN SisSeccionesPerfiles ssp ON ssp.tCodSeccion = ss.tCodSeccion").
+					($_SESSION['sessionAdmin'][0]['bAll'] ? "" : " INNER JOIN SisSeccionesPerfiles ssp ON ssp.tCodSeccion = ss.tCodSeccion").
 					" WHERE
 					ss.eCodEstatus = 3
 					AND
@@ -54,7 +54,7 @@ class clSis
 					($_SESSION['sessionAdmin'][0]['bAll'] ? "" :
 					" AND
 					ssp.eCodPerfil = ".$_SESSION['sessionAdmin'][0]['eCodPerfil']).
-					" ORDER BY ePosicion ASC";
+					" ORDER BY ss.ePosicion ASC";
 
 		$rsMenus = mysql_query($select);;
 		while($rMenu = mysql_fetch_array($rsMenus))
@@ -76,7 +76,7 @@ class clSis
 		
 		$rsSeccion = mysql_query($select);
 		$rSeccion = mysql_fetch_array($rsSeccion);
-		return $rSeccion{'tCodSeccion'} ? true : false;
+		return $rSeccion{'tCodSeccion'} ? $rSeccion{'tCodSeccion'} : false;
 	}
 	
 	public function validarEnlace($seccion)
@@ -186,6 +186,7 @@ class clSis
         $tCorreo = "'".$_POST['tCorreo']."'";
         $tTelefonoFijo = "'".$_POST['tTelefonoFijo']."'";
         $tTelefonoMovil = "'".$_POST['tTelefonoMovil']."'";
+        $tComentarios = $_POST['tComentarios'] ? "'".$_POST['tComentarios']."'" : "Sin comentarios";
 		$eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
 		$fhFechaCreacion = "'".date('Y-m-d H:i')."'";
         
@@ -200,7 +201,8 @@ class clSis
             tTelefonoMovil,
             eCodUsuario,
             fhFechaCreacion,
-			eCodEstatus
+			eCodEstatus,
+            tComentarios
 			)
             VALUES
             (
@@ -211,7 +213,8 @@ class clSis
             $tTelefonoMovil,
             $eCodUsuario,
             $fhFechaCreacion,
-			3
+			3,
+            $tComentarios
             )";
         }
         else
@@ -223,7 +226,8 @@ class clSis
                             tApellidos= $tApellidos,
                             tCorreo= $tCorreo,
                             tTelefonoFijo= $tTelefonoFijo,
-                            tTelefonoMovil= $tTelefonoMovil
+                            tTelefonoMovil= $tTelefonoMovil,
+                            tComentarios = $tComentarios
                             WHERE
                             eCodCliente = ".$eCodCliente;
         }
@@ -272,14 +276,17 @@ class clSis
         }
         
         $rsPublicacion = mysql_query($insert);
+        
+        $select = "SELECT MAX(eCodServicio) eCodServicio FROM CatServicios";
+        $rServicio = mysql_fetch_array(mysql_query($select));
 		
-		$eCodServicio = $eCodServicio ? $eCodServicio : mysql_insert_id();
+		$eCodServicio = $eCodServicio ? $eCodServicio : $rServicio{'eCodServicio'};
 		
 		mysql_query("DELETE FROM RelServiciosInventario WHERE eCodServicio = $eCodServicio");
 	foreach($_POST['eCodInventario'] as $key => $eCodInventario)
 	{
-		$ePiezas = $_POST['ePiezas'][$key];
-		mysql_query("INSERT INTO relServiciosInventario (eCodServicio, eCodInventario, ePiezas) VALUES ($eCodServicio, $eCodInventario, $ePiezas)");
+		$ePiezas = $_POST['ePiezas'.$key];
+		mysql_query("INSERT INTO RelServiciosInventario (eCodServicio, eCodInventario, ePiezas) VALUES ($eCodServicio, $eCodInventario, $ePiezas)");
 	}
 		
         //return $insert;
@@ -348,6 +355,96 @@ class clSis
         //return $insert;
 		//echo $insert;
         return $rsPublicacion ? true : false;
+    }
+    
+    //Eventos
+    public function registrarEvento()
+    {
+        $eCodEvento = $_POST['eCodEvento'] ? $_POST['eCodEvento'] : false;
+        $eCodCliente = $_POST['eCodCliente'] ? $_POST['eCodCliente'] : "NULL";
+        $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodPerfil'];
+        $fhFechaEvento = $_POST['fhFechaEvento'] ? "'".date('Y-m-d',strtotime($_POST['fhFechaEvento'])).' '.$_POST['tmHoraEvento']."'" : "NULL";
+        $tDireccion = $_POST['tDireccion'] ? "'".base64_encode($_POST['tDireccion'])."'" : "NULL";
+        $tObservaciones = $_POST['tObservaciones'] ? "'".base64_encode($_POST['tObservaciones'])."'" : "NULL";
+        
+        if(!$eCodEvento)
+        {
+            $query = "INSERT INTO BitEventos (
+                            eCodUsuario,
+							eCodEstatus,
+                            eCodCliente,
+                            fhFechaEvento,
+                            tDireccion,
+                            tObservaciones)
+                            VALUES
+                            (
+                            $eCodUsuario,
+							1,
+                            $eCodCliente,
+                            $fhFechaEvento,
+                            $tDireccion,
+                            $tObservaciones)";
+            
+           
+            
+            $rsEvento = mysql_query($query);
+            if($rsEvento)
+            {
+                $buscar = mysql_fetch_array(mysql_query("SELECT TOP 1 eCodEvento FROM BitEventos WHERE eCodCliente = $eCodCliente AND eCodUsuario = $eCodUsuario ORDER BY eCodEvento DESC"));
+                $eCodEvento = $buscar['eCodEvento'];
+                
+                foreach($_POST as $tCampo => $tValor)
+                {
+                    $indice=str_replace("eCodServicio","",$tCampo);
+                    $eCodServicio = $_POST['eCodServicio'.$indice];
+                    $eCantidad = $_POST['eCantidad'.$indice];
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad) VALUES ($eCodEvento, $eCodServicio, $eCantidad)";
+                    mysql_query($insert);
+                    
+                     $pf = fopen("log.txt","w");
+            fwrite($pf,$insert."\n\n");
+            fclose($pf);
+                    
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            $query = "UPDATE BitEventos SET
+                            fhFechaEvento = $fhFechaEvento,
+                            tDireccion = $tDireccion,
+                            tObservaciones = $tObservaciones
+                            WHERE eCodEvento = $eCodEvento";
+            $rsEvento = mysql_query($query);
+            if($rsEvento)
+            {
+                mysql_query("DELETE FROM RelEventosPaquetes WHERE eCodEvento = $eCodEvento");
+                foreach($_POST as $tCampo => $tValor)
+                {
+                    $indice=str_replace("eCodServicio","",$tCampo);
+                    $eCodServicio = $_POST['eCodServicio'.$indice];
+                    $eCantidad = $_POST['eCantidad'.$indice];
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad) VALUES ($eCodEvento, $eCodServicio, $eCantidad)";
+                    mysql_query($insert);
+                    
+                     $pf = fopen("log.txt","w");
+            fwrite($pf,$insert."\n\n");
+            fclose($pf);
+                    
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
     }
 }
 

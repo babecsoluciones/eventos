@@ -43,6 +43,15 @@ if(!$_SESSION['sessionAdmin'])
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
+    <!--Autocomplete-->
+    <link href="dist/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
+	<script src="lib/jquery-1.11.2.min.js"></script>
+	<script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+
+
 
 </head>
 
@@ -165,16 +174,16 @@ if(!$_SESSION['sessionAdmin'])
                     <div class="container-fluid">
                         
 						<?	
-						$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
-						if($val)
-						{
+						//$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
+						//if($val==$_GET['tCodSeccion'])
+						//{
 							$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
-						}
-						else
-						{
-						 $clSistema->cerrarSesion();
-						}
-						//echo $tCodSeccion;
+						//}
+						//else
+						//{
+						// $clSistema->cerrarSesion();
+						//}
+					
 						?>
                         
                         
@@ -223,8 +232,7 @@ if(!$_SESSION['sessionAdmin'])
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
    
   <script type="text/javascript">
-
-
+ 
     $(window).load(function(){
       
 var $rows = $('#table tbody tr');
@@ -240,6 +248,8 @@ $('#search').keyup(function() {
     });
 
 </script>
+    
+    
 
 </body>
 
