@@ -51,8 +51,9 @@ if(!$_SESSION['sessionAdmin'])
 	<script src="lib/jquery-1.11.2.min.js"></script>
 	<script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
 
-
-
+    <!--DatePicker-->
+    <link rel="stylesheet" type="text/css" href="https://rawgithub.com/cletourneau/angular-bootstrap-datepicker/master/dist/angular-bootstrap-datepicker.css">
+    
 </head>
 
 <body class="animsition">
