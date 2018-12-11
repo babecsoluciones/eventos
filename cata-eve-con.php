@@ -60,7 +60,7 @@ while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr>
-                                                <td align="center"><i class="fa <?=$rPublicacion{'tIcono'}?>"></i></td>
+                                                <td align="center"><i class="<?=$rPublicacion{'tIcono'}?>"></i></td>
 												<td><?=utf8_decode($rPublicacion{'nombreCliente'}.' '.$rPublicacion{'apellidosCliente'})?></td>
 												<td><?=date('d/m/Y H:i', strtotime($rPublicacion{'fhFechaEvento'}))?></td>
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
