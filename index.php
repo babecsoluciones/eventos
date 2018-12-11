@@ -175,27 +175,8 @@ if(!$_SESSION['sessionAdmin'])
                         
 						<?	
 
-						//$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
-						//if($val==$_GET['tCodSeccion'])
-						//{
 							$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
-						//}
-						//else
-						//{
-						// $clSistema->cerrarSesion();
-						//}
-
-						//$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
-						//if($val==$_GET['tCodSeccion'])
-						//{
-						//	$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
-						//}
-						//else
-						//{
-						// $clSistema->cerrarSesion();
-						//}
-
-					
+						
 						?>
                         
                         
