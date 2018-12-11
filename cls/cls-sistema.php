@@ -1,5 +1,5 @@
 <?php
-require_once("../cnx/swgc-mysql.php");
+require_once("swgc-mysql.php");
 session_start();
 
 
