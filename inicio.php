@@ -12,7 +12,7 @@ session_start();
 </div>
 <div class="row">
 <!--calendario-->
-    <div class="col-lg-4" id="datepicker"></div>
+    <div class="col-lg-4 au-card au-card--no-shadow au-card--no-pad" id="datepicker"></div>
 <!--calendario-->
 <!--Listado de eventos de ese día-->
 <div class="col-lg-8">
@@ -21,7 +21,7 @@ session_start();
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
                                             <i class="zmdi zmdi-account-calendar"></i>Eventos del d&iacute;a</h3>
-                                        <button class="au-btn-plus">
+                                        <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-eve-reg'" alt="Nuevo Evento">
                                             <i class="zmdi zmdi-plus"></i>
                                         </button>
                                     </div>
@@ -75,9 +75,6 @@ session_start();
                                                     <span class="time">[Fecha evento] [Hora Montaje]</span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="au-task__footer">
-                                            <button class="au-btn au-btn-load js-load-btn">load more</button>
                                         </div>
                                     </div>
                                 </div>
