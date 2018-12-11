@@ -35,7 +35,7 @@ function detalles(codigo)
                                         <thead>
                                             
                                             <tr>
-                                                <th class="text-right">Estatus</th>
+                                                <th class="text-right">E</th>
 												<th class="text-right">Cliente</th>
 												<th class="text-right">Fecha Evento (Hora de montaje)</th>
 												<th class="text-right">Promotor</th>
@@ -60,12 +60,13 @@ while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr>
-												<td align="center"><img src="icons/<?=$rPublicacion{'tIcono'}?>"></td>
+                                                <td align="center"><i class="fa <?=$rPublicacion{'tIcono'}?>"></i></td>
 												<td><?=utf8_decode($rPublicacion{'nombreCliente'}.' '.$rPublicacion{'apellidosCliente'})?></td>
 												<td><?=date('d/m/Y H:i', strtotime($rPublicacion{'fhFechaEvento'}))?></td>
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
                                                 <td class="text-right"> 
 													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-eye"></i></button> 
+                                                    <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-trash-o"></i></button> 
 													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'"><i class="fa fa-pencil-square-o"></i></button>
 												</td>
                                             </tr>

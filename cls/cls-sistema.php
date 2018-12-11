@@ -56,7 +56,7 @@ class clSis
 					ssp.eCodPerfil = ".$_SESSION['sessionAdmin'][0]['eCodPerfil']).
 					" ORDER BY ss.ePosicion ASC";
 
-		$rsMenus = mysql_query($select);;
+		$rsMenus = mysql_query($select);
 		while($rMenu = mysql_fetch_array($rsMenus))
 		{
 			$activo = ($_GET['tCodSeccion']==$rMenu{'tCodSeccion'}) ? 'class="active"' : '';
@@ -366,6 +366,7 @@ class clSis
         $fhFechaEvento = $_POST['fhFechaEvento'] ? "'".date('Y-m-d',strtotime($_POST['fhFechaEvento'])).' '.$_POST['tmHoraEvento']."'" : "NULL";
         $tDireccion = $_POST['tDireccion'] ? "'".base64_encode($_POST['tDireccion'])."'" : "NULL";
         $tObservaciones = $_POST['tObservaciones'] ? "'".base64_encode($_POST['tObservaciones'])."'" : "NULL";
+        $eCodEstatus = 1;
         
         if(!$eCodEvento)
         {
@@ -379,7 +380,7 @@ class clSis
                             VALUES
                             (
                             $eCodUsuario,
-							1,
+							$eCodEstatus,
                             $eCodCliente,
                             $fhFechaEvento,
                             $tDireccion,

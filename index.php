@@ -174,7 +174,7 @@ if(!$_SESSION['sessionAdmin'])
                     <div class="container-fluid">
                         
 						<?	
-<<<<<<< HEAD
+
 						//$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
 						//if($val==$_GET['tCodSeccion'])
 						//{
@@ -184,17 +184,17 @@ if(!$_SESSION['sessionAdmin'])
 						//{
 						// $clSistema->cerrarSesion();
 						//}
-=======
-						$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
-						if($val==$_GET['tCodSeccion'])
-						{
-							$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
-						}
-						else
-						{
-						 $clSistema->cerrarSesion();
-						}
->>>>>>> 1798ee66a08257a96aae30de33690da99f0f4af2
+
+						//$val = $clSistema->validarSeccion($_GET['tCodSeccion']);
+						//if($val==$_GET['tCodSeccion'])
+						//{
+						//	$tCodSeccion = $clSistema->cargarSeccion($_GET['tCodSeccion']);
+						//}
+						//else
+						//{
+						// $clSistema->cerrarSesion();
+						//}
+
 					
 						?>
                         
