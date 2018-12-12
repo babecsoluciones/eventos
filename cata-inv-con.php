@@ -4,6 +4,12 @@ require_once("cls/cls-sistema.php");
 $clSistema = new clSis();
 session_start();
 
+if($_GET['eCodInventario'])
+{
+    mysql_query("DELETE FROM CatInventario WHERE eCodInventario =".$_GET['eCodInventario']);
+    echo '<script>window.location="?tCodSeccion=cata-inv-con";</script>';
+}
+
 ?>
 
 <script>
@@ -11,6 +17,10 @@ session_start();
 function detalles(eCodCliente)
     {
         window.location="?tCodSeccion=cata-inv-det&eCodInventario="+eCodCliente;
+    }
+function eliminar(eCodInventario)
+    {
+        window.location="?tCodSeccion=cata-inv-con&eCodInventario="+eCodInventario;
     }
 </script>
 <div class="row">
@@ -70,6 +80,7 @@ function detalles(eCodCliente)
 												<td><?=$rPublicacion{'ePiezas'}?></td>
                                                 <td class="text-right"> 
 													<button onclick="detalles(<?=$rPublicacion{'eCodInventario'}?>)"><i class="fa fa-eye"></i></button> 
+                                                    <button onclick="eliminar(<?=$rPublicacion{'eCodInventario'}?>)"><i class="far fa-trash-alt"></i></button> 
 													<button onclick="window.location='?tCodSeccion=cata-inv-reg&eCodInventario=<?=$rPublicacion{'eCodInventario'}?>'"><i class="fa fa-pencil-square-o"></i></button>
 												</td>
                                             </tr>

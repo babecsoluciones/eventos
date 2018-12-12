@@ -5,14 +5,12 @@ $clSistema = new clSis();
 session_start();
 
 ?>
-<div class="row">
-	<div class="col-lg-12">
-	<button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva publicaci&oacute;n</button>
-	</div>
-</div>
+
 <div class="row">
 <!--calendario-->
-    <div class="col-lg-4 au-card au-card--no-shadow au-card--no-pad" id="datepicker"></div>
+    <div class="col-lg-4" >
+        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40" id="datepicker"></div>
+    </div>
 <!--calendario-->
 <!--Listado de eventos de ese día-->
 <div class="col-lg-8">

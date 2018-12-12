@@ -3,23 +3,25 @@ require_once("cnx/swgc-mysql.php");
 
 $sql = array();
 
-$sql[] = "DROP TABLE IF EXISTS `BitEventos`;";
-$sql[] = "CREATE TABLE IF NOT EXISTS `BitEventos` (
-  `eCodEvento` int(11) NOT NULL AUTO_INCREMENT,
+$sql[] = "DROP TABLE IF EXISTS `BitTransacciones`;";
+$sql[] = "CREATE TABLE IF NOT EXISTS `BitTransacciones` (
+  `eCodTransaccion` int(11) NOT NULL AUTO_INCREMENT,
   `eCodUsuario` int(11) NOT NULL,
-  `eCodCliente` int(11) NOT NULL,
-  `fhFechaEvento` datetime NOT NULL,
-  `tDireccion` text NOT NULL,
-  `tObservaciones` text NOT NULL,
+  `eCodEvento` int(11) NOT NULL,
+  `fhFecha` datetime NOT NULL,
+  `dMonto` double NOT NULL,
+  `eCodTipoPago` int NOT NULL,
   PRIMARY KEY (`eCodEvento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-$sql[] = "CREATE TABLE RelEventosPaquetes
+$sql[] = "CREATE TABLE CatTiposPagos
 (
-    eCodEvento  INT NOT NULL,
-    eCodServicio    INT NOT NULL,
-    eCantidad       INT NOT NULL
+    eCodTipoPago  INT NOT NULL AUTO_INCREMENT,
+    tNombre    INT NOT NULL
 )";
-$sql[] = "INSERT INTO `SisSecciones` (`tCodSeccion`, `tCodPadre`, `tTitulo`, `eCodEstatus`, `ePosicion`, `bFiltro`, `tIcono`) VALUES('oper-eve-reg', 'cata-eve-con', '+ Eventos', 3, 1, 0, 'fa fa-file-text-o');";
+$sql[] = "INSERT INTO `CatTiposPagos` (`tNombre`) VALUES('Efectivo');";
+$sql[] = "INSERT INTO `CatTiposPagos` (`tNombre`) VALUES('Tarjeta');";
+$sql[] = "INSERT INTO `CatTiposPagos` (`tNombre`) VALUES('Cheque');";
+$sql[] = "INSERT INTO `CatTiposPagos` (`tNombre`) VALUES('Transferencia');";
 
 for($i=0;$i<sizeof($sql);$i++)
 {

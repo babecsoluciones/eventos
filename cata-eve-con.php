@@ -4,11 +4,22 @@ require_once("cls/cls-sistema.php");
 $clSistema = new clSis();
 session_start();
 $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
+
+if($_GET['eCodEvento'])
+{
+    mysql_query("UPDATE BitEventos SET eCodEstatus = 4 WHERE eCodEvento =".$_GET['eCodEvento']);
+    echo '<script>window.location="?tCodSeccion=cata-eve-con";</script>';
+}
+
 ?>
 <script>
 function detalles(codigo)
     {
         window.location="?tCodSeccion=cata-eve-det&eCodEvento="+codigo;
+    }
+function canelar(codigo)
+    {
+        window.location="?tCodSeccion=cata-eve-con&eCodEvento="+codigo;
     }
 </script>
 <div class="row">
@@ -49,7 +60,7 @@ function detalles(codigo)
 															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario".
 												($bAll ? "" : " WHERE cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
-														" ORDER BY be.fhFechaEvento DESC";
+														" AND be.eCodEstatus <> 4 ORDER BY be.fhFechaEvento DESC";
 											
 											
 											$rsPublicaciones = mysql_query($select);
@@ -66,7 +77,7 @@ while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
                                                 <td class="text-right"> 
 													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-eye"></i></button> 
-                                                    <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-trash-o"></i></button> 
+                                                    <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="far fa-trash-alt"></i></button> 
 													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'"><i class="fa fa-pencil-square-o"></i></button>
 												</td>
                                             </tr>
