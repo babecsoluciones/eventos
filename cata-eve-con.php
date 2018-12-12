@@ -60,7 +60,7 @@ function cancelar(codigo)
 															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario".
 												($bAll ? "" : " WHERE cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
-														" AND be.eCodEstatus <> 4 ORDER BY be.fhFechaEvento DESC";
+														" ORDER BY be.fhFechaEvento DESC";
 											
 											
 											$rsPublicaciones = mysql_query($select);
