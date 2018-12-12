@@ -17,7 +17,7 @@ function detalles(codigo)
     {
         window.location="?tCodSeccion=cata-eve-det&eCodEvento="+codigo;
     }
-function canelar(codigo)
+function cancelar(codigo)
     {
         window.location="?tCodSeccion=cata-eve-con&eCodEvento="+codigo;
     }
