@@ -179,7 +179,7 @@ setTimeout(function(){
 											<tr>
 												<td><?=$i?></td>
 												<td><?=date('d/m/Y',strtotime($rTransaccion{'fhFecha'}))?></td>
-												<td>$<?=number_format($rTransaccion{'dMonto'},2)?><input type="hidden" id="abono<?=$i?>" value="<?=number_format($rTransaccion{'dMonto'},2)?>"></td>
+												<td>$<?=$rTransaccion{'dMonto'}?><input type="hidden" id="abono<?=$i?>" value="<?=$rTransaccion{'dMonto'}?>"></td>
 												<td><?=$rTransaccion{'tNombre'}?></td>
 											</tr>
 											<?
