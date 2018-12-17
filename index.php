@@ -8,27 +8,7 @@ if(!$_SESSION['sessionAdmin'])
 	echo '<script>window.location="login.php";</script>';
 }
 
-if($_POST['transaccion'])
-{
-    $eCodEvento = $_POST['eCodEventoTransaccion'];
-    $dMonto = $_POSt['dMonto'];
-    $fhFecha = "'".date('Y-m-d H:i')."'";
-    $eCodTipoPago = $_POST['eCodTipoPago'];
-    $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
-    
-    mysql_query("INSERT INTO BitTransacciones (eCodUsuario,eCodEvento,fhFecha,dMonto,eCodTipoPago) VALUES ($eCodUsuario,$eCodEvento,$fhFecha,$dMonto,$eCodTipoPago)");
-    mysql_query("UPDATE BitEventos SET eCodEstatus = 2 WHERE eCodEvento = ".$eCodEvento);
-    ?>
- <div class="alert alert-success" role="alert">
-                Transacci&oacute;n guardada correctamente!
-            </div>
-<script>
-setTimeout(function(){
-    window.location="?tCodSeccion=<?=$_GET['tCodSeccion']?>";
-},2500);
-</script>
-<?
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -194,6 +174,35 @@ setTimeout(function(){
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
+                    <?
+    if($_POST['transaccion'])
+{
+    $eCodEvento = $_POST['eCodEventoTransaccion'];
+    $dMonto = $_POSt['dMonto'];
+    $fhFecha = "'".date('Y-m-d H:i')."'";
+    $eCodTipoPago = $_POST['eCodTipoPago'];
+    $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
+    
+        $insert = "INSERT INTO BitTransacciones (eCodUsuario,eCodEvento,fhFecha,dMonto,eCodTipoPago) VALUES ($eCodUsuario,$eCodEvento,$fhFecha,$dMonto,$eCodTipoPago)";
+    mysql_query($insert);
+        
+        $pf = fopen("log.txt","w");
+        fwrite($pf,$insert);
+        fclose($pf);
+        
+    mysql_query("UPDATE BitEventos SET eCodEstatus = 2 WHERE eCodEvento = ".$eCodEvento);
+    ?>
+ <div class="alert alert-success" role="alert">
+                Transacci&oacute;n guardada correctamente!
+            </div>
+<script>
+setTimeout(function(){
+    window.location="?tCodSeccion=<?=$_GET['tCodSeccion']?>";
+},2500);
+</script>
+<?
+}
+    ?>
                     <div class="container-fluid">
                         
 						<?	
