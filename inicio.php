@@ -75,7 +75,7 @@ $rsEventos = mysql_query($select);
                                 </div>
                             </div>   
 <!--Listado de eventos de ese día-->
-<form id="Datos" method="post" action="?tCodSeccion=inicio">
+<form id="Datos" method="post" action="<?=$_SERVER['PHP_SELF']?>">
     <input type="hidden" name="fhFechaConsulta" id="datepicker1">
     </form>
 </div>
