@@ -178,7 +178,7 @@ if(!$_SESSION['sessionAdmin'])
     if($_POST['transaccion'])
 {
     $eCodEvento = $_POST['eCodEventoTransaccion'];
-    $dMonto = $_POSt['dMonto'];
+    $dMonto = $_POST['dMonto'];
     $fhFecha = "'".date('Y-m-d H:i')."'";
     $eCodTipoPago = $_POST['eCodTipoPago'];
     $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
