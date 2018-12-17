@@ -28,7 +28,7 @@ $rsEventos = mysql_query($select);
 <div class="row">
 <!--calendario-->
     <div class="col-lg-4" >
-        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40" id="datepicker"></div>
+        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40" id="datepicker" onclick="obtenerFecha()"></div>
     </div>
 <!--calendario-->
 <!--Listado de eventos de ese día-->
