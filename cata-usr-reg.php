@@ -54,6 +54,17 @@ setTimeout(function(){
                                 <div class="card">
                                     
                                     <div class="card-body card-block">
+                                        <?
+                                        if($_SESSION['sessionAdmin'][0]['bAll'])
+                                        {
+                                        ?>
+                                        <div class="form-group">
+                                            <label for="company" class=" form-control-label">Administrador?</label>
+                                            <input type="checkbox" name="bAll" <?=($rUsuario{'bAll'} ? "checked" : "")?> value="1">
+                                        </div>
+                                        <?
+                                        }
+                                            ?>
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Correo electr&oacute;nico</label>
                                             <input type="text" name="tCorreo" placeholder="Correo electrónico" value="<?=$rUsuario{'tCorreo'}?>" class="form-control"<?=$_GET['eCodUsuario'] ? 'readonly' : ''?>>

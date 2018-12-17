@@ -104,19 +104,21 @@ class clSis
         $tPasswordAcceso = $_POST['tPasswordAcceso'] ? "'".base64_encode($_POST['tPasswordAcceso'])."'" : false;
         $tPasswordOperaciones = $_POST['tPasswordOperaciones'] ? "'".base64_encode($_POST['tPasswordOperaciones'])."'" : false;
         $tCorreo = $_POST['tCorreo'] ? "'".$_POST['tCorreo']."'" : false;
+        $bAll = $_POST['bAll'] ? 1 : 0;
         
         $fhFechaCreacion = "'".date('Y-m-d H:i:s')."'";
         
         if(!$eCodUsuario)
         {
-            $insert = "INSERT INTO SisUsuarios (tNombre, tApellidos, tCorreo, tPasswordAcceso, tPasswordOperaciones,  eCodEstatus, eCodPerfil, fhFechaCreacion) VALUES ($tNombre, $tApellidos, $tCorreo, $tPasswordAcceso, $tPasswordOperaciones, 3, $eCodPerfil, $fhFechaCreacion)";
+            $insert = "INSERT INTO SisUsuarios (tNombre, tApellidos, tCorreo, tPasswordAcceso, tPasswordOperaciones,  eCodEstatus, eCodPerfil, fhFechaCreacion,bAll) VALUES ($tNombre, $tApellidos, $tCorreo, $tPasswordAcceso, $tPasswordOperaciones, 3, $eCodPerfil, $fhFechaCreacion,$bAll)";
         }
         else
         {
             $insert = "UPDATE SisUsuarios SET
             tPasswordAcceso = $tPasswordAcceso,
             tPasswordOperaciones = $tPasswordOperaciones,
-            eCodPerfil = $eCodPerfil
+            eCodPerfil = $eCodPerfil,
+            bAll = $bAll
             WHERE
             eCodUsuario = $eCodUsuario";
         }
