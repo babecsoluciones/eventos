@@ -94,7 +94,7 @@ setTimeout(function(){
            </div>
            <div class="form-group">
               <label>Fecha del Evento</label>
-              <input type="text" class="form-control" name="fhFechaEvento" id="fhFechaEvento" placeholder="dd/mm/YYYY" value="<?=date('d/m/Y',strtotime($rPublicacion{'fhFechaEvento'}))?>" >
+              <input type="text" class="form-control" name="fhFechaEvento" id="fhFechaEvento" placeholder="dd-mm-YYYY" value="<?=$rPublicacion{'fhFechaEvento'} ? date('d-m-Y',strtotime($rPublicacion{'fhFechaEvento'})) : ""?>" >
            </div>
            <div class="form-group">
               <label>Hora de Montaje</label>
