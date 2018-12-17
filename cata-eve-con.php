@@ -76,6 +76,7 @@ while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 												<td><?=date('d/m/Y H:i', strtotime($rPublicacion{'fhFechaEvento'}))?></td>
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
                                                 <td class="text-right"> 
+                                                    <button onclick="agregarTransaccion(<?=$rPublicacion{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i></button>
 													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-eye"></i></button> 
                                                     <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="far fa-trash-alt"></i></button> 
 													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'"><i class="fa fa-pencil-square-o"></i></button>

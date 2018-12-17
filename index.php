@@ -8,6 +8,28 @@ if(!$_SESSION['sessionAdmin'])
 	echo '<script>window.location="login.php";</script>';
 }
 
+if($_POST['transaccion'])
+{
+    $eCodEvento = $_POST['eCodEventoTransaccion'];
+    $dMonto = $_POSt['dMonto'];
+    $fhFecha = "'".date('Y-m-d H:i')."'";
+    $eCodTipoPago = $_POST['eCodTipoPago'];
+    $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
+    
+    mysql_query("INSERT INTO BitTransacciones (eCodUsuario,eCodEvento,fhFecha,dMonto,eCodTipoPago) VALUES ($eCodUsuario,$eCodEvento,$fhFecha,$dMonto,$eCodTipoPago)");
+    mysql_query("UPDATE BitEventos SET eCodEstatus = 2 WHERE eCodEvento = ".$eCodEvento);
+    ?>
+ <div class="alert alert-success" role="alert">
+                Transacci&oacute;n guardada correctamente!
+            </div>
+<script>
+setTimeout(function(){
+    window.location="?tCodSeccion=<?=$_GET['tCodSeccion']?>";
+},2500);
+</script>
+<?
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -196,6 +218,46 @@ if(!$_SESSION['sessionAdmin'])
         </div>
 
     </div>
+    
+    <!--transacciones-->
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Nueva Transacci&oacute;n</h4>
+        </div>
+        <div class="modal-body">
+          <form action="?tCodSeccion=<?=$_GET['tCodSeccion']?>" method="post">
+              <input type="hidden" id="eCodEventoTransaccion" name="eCodEventoTransaccion">
+            <label>Monto: $<input type="text" class="form-control" name="dMonto" id="dMonto" required></label><br>
+            <label>Forma de pago: 
+              <select name="eCodTipoPago" id="eCodTipoPago">
+                <?
+    $select = "SELECT * FROM CatTiposPagos ORDER BY tNombre ASC";
+                                        $rsTiposPagos = mysql_query($select);
+                                        while($rTipoPago = mysql_fetch_array($rsTiposPagos))
+                                        {
+                                            ?>
+                  <option value="<?=$rTipoPago{'eCodTipoPago'}?>"><?=$rTipoPago{'tNombre'}?></option>
+                  <?
+                                        }
+    ?>
+                </select>
+              </label><br>
+              <input type="submit" value="Guardar" name="transaccion" class="btn btn-info">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -240,6 +302,11 @@ $('#search').keyup(function() {
 });
 
     });
+      
+      function agregarTransaccion(codigo)
+      {
+          document.getElementById('eCodEventoTransaccion').value = codigo;
+      }
 
 </script>
     

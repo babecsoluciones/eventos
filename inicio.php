@@ -67,6 +67,7 @@ $rsEventos = mysql_query($select);
                                                         </h5>
                                                         <span class="time"><?=$rEvento{'Estatus'}?></span>
                                                         <span class="time"><?=date('d/m/Y',strtotime($rEvento{'fhFechaEvento'}))?> (<?=date('H:i',strtotime($rEvento{'fhFechaEvento'}))?>)</span>
+                                                        <button onclick="agregarTransaccion(<?=$rPublicacion{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i></button>
                                                     </div>
                                                 </div>
                                             <?
