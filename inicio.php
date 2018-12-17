@@ -82,7 +82,7 @@ $rsEventos = mysql_query($select);
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 <script src="https://rawgithub.com/cletourneau/angular-bootstrap-datepicker/master/dist/angular-bootstrap-datepicker.js" charset="utf-8"></script>
 <script>
-$('#datepicker').datepicker();
+
 
 
 function obtenerFecha()
@@ -92,4 +92,6 @@ var fhFecha = new Date(fecha);
 document.getElementById('datepicker1').value = fhFecha.getDate()+'-'+fhFecha.getMonth()+'-'+fhFecha.getFullYear();
    window.location="?tCodSeccion=inicio&fhFechaConsulta="+document.getElementById('datepicker1').value;
 }
+    
+    $('#datepicker').datepicker();
 </script>
