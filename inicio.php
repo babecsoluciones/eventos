@@ -6,10 +6,10 @@ session_start();
 
 $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
 
-$fhFechaInicio = $_GET['fhFechaConsulta'] ? date('Y-m-d',strtotime($_GET['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
-$fhFechaTermino = $_GET['fhFechaConsulta'] ? date('Y-m-d',strtotime($_GET['fhFechaConsulta'])).' 23:59:59' : date('Y-m-d').' 23:59:59';
+$fhFechaInicio = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
+$fhFechaTermino = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 23:59:59' : date('Y-m-d').' 23:59:59';
 
-$fhFechaConsulta = $_GET['fhFechaConsulta'] ? date('Y-m-d',strtotime($_GET['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
+$fhFechaConsulta = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
 
 $fhFechaInicio = "'".$fhFechaInicio."'";
 $fhFechaTermino = "'".$fhFechaTermino."'";
@@ -29,6 +29,12 @@ $rsEventos = mysql_query($select);
 <!--calendario-->
     <div class="col-lg-4" >
         <div class="au-card au-card--no-shadow au-card--no-pad m-b-40" id="datepicker" onclick="obtenerFecha()"></div>
+        <center>
+        <form id="Datos" method="post" action="<?=$_SERVER['PHP_SELF']?>?tCodSeccion=inicio">
+    <input type="hidden" name="fhFechaConsulta" id="datepicker1">
+    <input type="submit" class="btn btn-info" value="Consultar">
+    </form>
+        </center>
     </div>
 <!--calendario-->
 <!--Listado de eventos de ese día-->
@@ -75,9 +81,7 @@ $rsEventos = mysql_query($select);
                                 </div>
                             </div>   
 <!--Listado de eventos de ese día-->
-<form id="Datos" method="post" action="<?=$_SERVER['PHP_SELF']?>?tCodSeccion=inicio">
-    <input type="hidden" name="fhFechaConsulta" id="datepicker1">
-    </form>
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 <script src="https://rawgithub.com/cletourneau/angular-bootstrap-datepicker/master/dist/angular-bootstrap-datepicker.js" charset="utf-8"></script>
