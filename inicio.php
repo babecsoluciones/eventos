@@ -9,6 +9,8 @@ $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
 $fhFechaInicio = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
 $fhFechaTermino = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 23:59:59' : date('Y-m-d').' 23:59:59';
 
+$fhFechaConsulta = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
+
 $fhFechaInicio = "'".$fhFechaInicio."'";
 $fhFechaTermino = "'".$fhFechaTermino."'";
 
@@ -42,7 +44,7 @@ $rsEventos = mysql_query($select);
                                     </div>
                                     <div class="au-task js-list-load">
                                         <div class="au-task__title">
-                                            <p><?=date('d/m/Y',strtotime($fhFechaInicio))?></p>
+                                            <p><?=date('d/m/Y',strtotime($fhFechaConsulta))?></p>
                                         </div>
                                         <div class="au-task-list js-scrollbar3">
                                             <?
@@ -73,7 +75,7 @@ $rsEventos = mysql_query($select);
                                 </div>
                             </div>   
 <!--Listado de eventos de ese día-->
-<form id="Datos" method="post">
+<form id="Datos" method="post" action="?tCodSeccion=inicio">
     <input type="hidden" name="fhFechaConsulta" id="datepicker1">
     </form>
 </div>
