@@ -6,10 +6,10 @@ session_start();
 
 $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
 
-$fhFechaInicio = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
-$fhFechaTermino = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 23:59:59' : date('Y-m-d').' 23:59:59';
+$fhFechaInicio = $_GET['fhFechaConsulta'] ? date('Y-m-d',strtotime($_GET['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
+$fhFechaTermino = $_GET['fhFechaConsulta'] ? date('Y-m-d',strtotime($_GET['fhFechaConsulta'])).' 23:59:59' : date('Y-m-d').' 23:59:59';
 
-$fhFechaConsulta = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
+$fhFechaConsulta = $_GET['fhFechaConsulta'] ? date('Y-m-d',strtotime($_GET['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
 
 $fhFechaInicio = "'".$fhFechaInicio."'";
 $fhFechaTermino = "'".$fhFechaTermino."'";
@@ -90,6 +90,6 @@ function obtenerFecha()
 var fecha = $("#datepicker").datepicker( 'getDate' );
 var fhFecha = new Date(fecha);
 document.getElementById('datepicker1').value = fhFecha.getDate()+'-'+fhFecha.getMonth()+'-'+fhFecha.getFullYear();
-    document.getElementById('Datos').submit();
+   window.location="?tCodSeccion=inicio&fhFechaConsulta="+document.getElementById('datepicker1').value;
 }
 </script>
