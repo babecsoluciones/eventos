@@ -6,10 +6,10 @@ session_start();
 
 $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
 
-$fhFechaInicio = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
-$fhFechaTermino = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 23:59:59' : date('Y-m-d').' 23:59:59';
+$fhFechaInicio = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime("+1 month",strtotime($_POST['fhFechaConsulta']))).' 00:00:00' : date('Y-m-d').' 00:00:00';
+$fhFechaTermino = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime("+1 month",strtotime($_POST['fhFechaConsulta']))).' 23:59:59' : date('Y-m-d').' 23:59:59';
 
-$fhFechaConsulta = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime($_POST['fhFechaConsulta'])).' 00:00:00' : date('Y-m-d').' 00:00:00';
+$fhFechaConsulta = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime("+1 month",strtotime($_POST['fhFechaConsulta']))).' 00:00:00' : date('Y-m-d').' 00:00:00';
 
 $fhFechaInicio = "'".$fhFechaInicio."'";
 $fhFechaTermino = "'".$fhFechaTermino."'";
@@ -22,6 +22,7 @@ $select = "SELECT be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosClient
                                                         be.fhFechaEvento between $fhFechaInicio AND $fhFechaTermino".
 												($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
 														" ORDER BY be.fhFechaEvento DESC";
+														
 $rsEventos = mysql_query($select);
 ?>
 
@@ -62,7 +63,7 @@ $rsEventos = mysql_query($select);
                                                 <div class="au-task__item au-task__item--primary">
                                                     <div class="au-task__item-inner">
                                                         <h5 class="task">
-                                                            <a href="#"><?=$rEvento{'nombreCliente'}.' '.$rEvento{'apellidosCliente'}?></a>
+                                                            <a href="?tCodSeccion=cata-eve-det&eCodEvento=<?=$rEvento{'eCodEvento'}?>"><?=$rEvento{'nombreCliente'}.' '.$rEvento{'apellidosCliente'}?></a>
                                                         </h5>
                                                         <span class="time"><?=$rEvento{'Estatus'}?></span>
                                                         <span class="time"><?=date('d/m/Y',strtotime($rEvento{'fhFechaEvento'}))?> (<?=date('H:i',strtotime($rEvento{'fhFechaEvento'}))?>)</span>
@@ -93,7 +94,11 @@ function obtenerFecha()
 {
 var fecha = $("#datepicker").datepicker( 'getDate' );
 var fhFecha = new Date(fecha);
-document.getElementById('datepicker1').value = fhFecha.getDate()+'-'+fhFecha.getMonth()+'-'+fhFecha.getFullYear();
+
+var mes = fhFecha.getMonth();
+mes = mes+1;
+document.getElementById('datepicker1').value = fhFecha;
+/*document.getElementById('datepicker1').value = fhFecha.getDate()+'-'+mes+'-'+fhFecha.getFullYear();*/
    window.location="?tCodSeccion=inicio&fhFechaConsulta="+document.getElementById('datepicker1').value;
 }
     
