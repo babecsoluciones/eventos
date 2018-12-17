@@ -183,6 +183,7 @@ setTimeout(function(){
 												<td><?=$rTransaccion{'tNombre'}?></td>
 											</tr>
 											<?
+                                                $i++;
 											}
 											?>
 											<tr>
