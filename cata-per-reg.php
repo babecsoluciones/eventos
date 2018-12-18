@@ -36,7 +36,7 @@ if($_POST)
 	<input type="hidden" name="eAccion" id="eAccion" value="">
 <div class="row">
                             <div class="col-lg-4">
-                                <h2 class="title-1 m-b-25">Modificar permisos</h2>
+                                <h2 class="title-1 m-b-25">Perfil</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <tr>
@@ -61,10 +61,18 @@ if($_POST)
                                         <div class="table-responsive">
                                             <table class="table table-borderless table-striped">
                                                 <tbody>
+                                                    <tr>
+                                                        <td width="16"><input type="checkbox" name="tCodSeccion[0]" value="inicio" checked></td>
+                                                        <td colspan="2">Dashboard</td>
+														<td align="right">
+															<label>A <input type="checkbox" name="bAll[0]" value="1" checked></label>
+                                                        </td>
+														
+                                                    </tr>
 													<?
-													$select = "SELECT * FROM SisSecciones ORDER BY ePosicion ASC";
+													$select = "SELECT * FROM SisSecciones WHERE tCodPadre = 'Inicio' ORDER BY ePosicion ASC";
 													$rsSecciones = mysql_query($select);
-													$b=0;
+													$b=1;
 													while($rSeccion = mysql_fetch_array($rsSecciones))
 													{
                                                         
