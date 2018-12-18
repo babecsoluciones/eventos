@@ -5,7 +5,14 @@ $clSistema = new clSis();
 session_start();
 if($_POST)
 {
-	$eCodPerfil = $_POST['eCodPerfil'];
+	$eCodPerfil = $_POST['eCodPerfil'] ? $_POST['eCodPerfil'] : false;
+    if(!$eCodPerfil)
+    {
+        $tNombre = "'".$_POST['tNombre']."'";
+        $insert = "INSERT INTO SisPerfiles (tNombre) VALUES($tNombre)";
+        $rsNuevo = mysql_query($insert);
+        $eCodPerfil = mysqli_insert_id();
+    }
 	mysql_query("DELETE FROM SisSeccionesPerfiles WHERE eCodPerfil = $eCodPerfil");
 	foreach($_POST['tCodSeccion'] as $key => $tCodSeccion)
 	{
@@ -41,7 +48,7 @@ if($_POST)
 	  													$rPerfil = mysql_fetch_array($rsPerfiles);
 													?>
 												<input type="hidden" name="eCodPerfil" id="eCodPerfil" value="<?=$_GET['eCodPerfil']?>">
-												<input type="text" class="form-control" id="eCodPerfil" value="<?=$rPerfil['tNombre']?>" <?=$_GET['eCodPerfil'] ? 'readonly' : ''?>>
+												<input type="text" class="form-control" name="tNombre" id="tNombre" value="<?=$rPerfil['tNombre']?>" <?=$_GET['eCodPerfil'] ? 'readonly' : ''?>>
 											</td>
 										</tr>
                                     </table>
@@ -55,7 +62,7 @@ if($_POST)
                                             <table class="table table-borderless table-striped">
                                                 <tbody>
 													<?
-													$select = "SELECT * FROM SisSecciones WHERE tCodPadre = 'inicio' ORDER BY ePosicion ASC";
+													$select = "SELECT * FROM SisSecciones ORDER BY ePosicion ASC";
 													$rsSecciones = mysql_query($select);
 													$b=0;
 													while($rSeccion = mysql_fetch_array($rsSecciones))
@@ -67,7 +74,7 @@ if($_POST)
                                                         
 														?>
 													<tr>
-                                                        <td width="16"><input type="checkbox" name="tCodSeccion[<?=$b?>]" value="<?=$rSeccion{'tCodSeccion'}?>" <?=$bSeccion ? 'checked' : ''?>></td>
+                                                        <td width="16"><input type="checkbox" name="tCodSeccion[<?=$b?>]" value="<?=$rSeccion{'tCodSeccion'}?>" <?=$bSeccion || !$rSeccion{'tCodPadre'} ? 'checked' : ''?>></td>
                                                         <td colspan="2"><?=$rSeccion{'tTitulo'}?></td>
 														<td align="right">
 															<? if($rSeccion{'bFiltro'})

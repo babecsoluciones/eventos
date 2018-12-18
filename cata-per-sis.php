@@ -7,7 +7,7 @@ session_start();
 ?>
 <div class="row">
 	<div class="col-lg-12">
-	<button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo perfil</button>
+	<button type="button" class="btn btn-primary" onclick="window.location='?tCodSeccion=cata-per-reg'"><i class="fa fa-plus"></i> Nuevo perfil</button>
 	</div>
 </div>
 <div class="row">
