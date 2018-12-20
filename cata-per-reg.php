@@ -79,7 +79,7 @@ if($_POST)
                                                         $seccion = "SELECT * FROM SisSeccionesPerfiles WHERE eCodPerfil = ".$_GET['eCodPerfil']." AND tCodSeccion = '".$rSeccion{'tCodSeccion'}."'";
                                                         $rsSeccionPerfil = mysql_query($seccion);
                                                         $bSeccion = mysql_num_rows($rsSeccionPerfil) ? true : false;
-                                                        
+                                                        $rSeccionPerfil = mysql_fetch__array($rsSeccionPerfil);
 														?>
 													<tr>
                                                         <td width="16"><input type="checkbox" name="tCodSeccion[<?=$b?>]" value="<?=$rSeccion{'tCodSeccion'}?>" <?=$bSeccion || !$rSeccion{'tCodPadre'} ? 'checked' : ''?>></td>
@@ -88,13 +88,13 @@ if($_POST)
 															<? if($rSeccion{'bFiltro'})
 														{
 															?>
-															<label>A <input type="checkbox" name="bAll[<?=$b?>]" value="1" <?=$rSeccion{'tCodSeccion'} ? 'checked' : ''?>></label></td>
+															<label>A <input type="checkbox" name="bAll[<?=$b?>]" value="1" <?=$rSeccionPerfil{'bAll'} ? 'checked' : ''?>></label></td>
 															<?
 														}
 														else
 														{
 															?>
-														<input type="hidden" name="bAll[<?=$b?>]" value="0">
+                                                        <input type="hidden" name="bAll[<?=$b?>]" value="0"></td>
 														<?
 														}
 														?>	
