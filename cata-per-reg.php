@@ -107,10 +107,14 @@ if($_POST)
 													$rsSecciones2 = mysql_query($select2);
 													while($rSeccion2 = mysql_fetch_array($rsSecciones2))
 														{
+                                                        
+                                                        $seccion2 = "SELECT * FROM SisSeccionesPerfiles WHERE eCodPerfil = ".$_GET['eCodPerfil']." AND tCodSeccion = '".$rSeccion2{'tCodSeccion'}."'";
+                                                        $rsSeccionPerfil2 = mysql_query($seccion2);
+                                                        $bSeccion2 = mysql_num_rows($rsSeccionPerfil2) ? true : false;
 														?>
 															<tr>
 															<td></td>
-                                                    	    <td width="16"><input type="checkbox" name="tCodSeccion[<?=$b?>]" value="<?=$rSeccion2{'tCodSeccion'}?>"></td>
+                                                    	    <td width="16"><input type="checkbox" name="tCodSeccion[<?=$b?>]" value="<?=$rSeccion2{'tCodSeccion'}?>" <?=$bSeccion2 ? 'checked' : ''?>></td>
                                                     	    <td><?=$rSeccion2{'tTitulo'}?></td>
 															<td><input type="hidden" name="bAll[<?=$b?>]" value="0"></td>
                                                     	</tr>
