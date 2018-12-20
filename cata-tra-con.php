@@ -27,9 +27,9 @@ session_start();
                                         </thead>
                                         <tbody>
 											<?
-											$select = "SELECT bt.eCodTransaccion, bt.fhFecha, bt.eCodEvento, cc.tNombres as nombreCliente, cc.tApellidos as apellidosCliente, bt.dMonto, ctp.tNombre, (su.tNombre) as nombreUsuario, su.tApellidos as apellidosUsuario FROM BitTransacciones bt INNER JOIN CatTiposPagos ctp ON ctp.eCodTipoPago = bt.eCodTipoPago INNER JOIN BitEventos be ON be.eCodEvento = bt.eCodEvento INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente INNER JOIN SisUsuarios su ON su.eCodUsuario = bt.eCodUsuario WHERE ORDER BY bt.eCodTransaccion DESC LIMIT 0,25";
+											$select = "SELECT bt.eCodTransaccion, bt.fhFecha, bt.eCodEvento, cc.tNombres as nombreCliente, cc.tApellidos as apellidosCliente, bt.dMonto, ctp.tNombre, (su.tNombre) as nombreUsuario, su.tApellidos as apellidosUsuario FROM BitTransacciones bt INNER JOIN CatTiposPagos ctp ON ctp.eCodTipoPago = bt.eCodTipoPago INNER JOIN BitEventos be ON be.eCodEvento = bt.eCodEvento INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente INNER JOIN SisUsuarios su ON su.eCodUsuario = bt.eCodUsuario ORDER BY bt.eCodTransaccion DESC LIMIT 0,25";
                                             
-                                            echo $select;
+                                           
                                             
 											$rsPublicaciones = mysql_query($select);
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
