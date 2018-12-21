@@ -139,7 +139,7 @@ setTimeout(function(){
                                                 </td>
 												<td>
                                                     <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                    <input type="button" class="btn btn-info" id="extras" onclick="mostrarInventario()" value="+ Extras">
+                                                    <input type="button" class="btn btn-info" id="extras" onclick="mostrarInventario()" value="Mostrar Extras">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -339,31 +339,23 @@ $('#search<?=$i?>').keyup(function() {
 
 
 <script>
-/*var options = {
-			                         url: "auc/auc-clientes.php",
-			                         getValue: "nombre",
-			                         list: {
-                                           onSelectItemEvent: function() {
-                                           var selectedItemCode = $("#tCliente").getSelectedItemData().codigo;
-                                           $("#eCodCliente").val(selectedItemCode).trigger("change");
-                                           }
-                                       }
-		                           };
-		          $("#tCliente").easyAutocomplete(options);	*/
+
 function mostrarInventario()
     {
         var fila = document.getElementById('inventario');
         var boton = document.getElementById('extras');
         
-        if(boton.value=="+ Extras")
+        alert(boton.value);
+        
+        if(boton.value=="Mostrar Extras")
             {
-                fila.style.display = 'inline';
-                boton.value="- Extras";
+                fila.style.display = "inline";
+                boton.value="Ocultar Extras";
             }
-        if(boton.value=="- Extras")
+        if(boton.value=="Ocultar Extras")
             {
-                fila.style.display = 'none';
-                boton.value="+ Extras";
+                fila.style.display = "none";
+                boton.value="Mostrar Extras";
             }
     }
     
