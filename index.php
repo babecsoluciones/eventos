@@ -363,8 +363,6 @@ $('#search<?=$i?>').keyup(function() {
 		   									
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
-												$select = "SELECT * FROM RelServiciosInventario WHERE eCodInventario = ".$rPublicacion{'eCodInventario'}." AND eCodServicio = ".$_GET['eCodServicio'];
-												$rServicio = mysql_fetch_array(mysql_query($select));
 												?>
 											<tr>
 												<td>
@@ -374,9 +372,9 @@ $('#search<?=$i?>').keyup(function() {
 													<input type="text" size="4" name="ePiezas<?=$b?>" id="ePiezas<?=$b?>" class="form-control" placeholder="10" value="<?=$rServicio{'ePiezas'}?>">
 												</td>
                                                 <td>
-                                                    <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rServicio{'eCodInventario'}?>">
-                                                    <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rServicio{'tNombre'}?>">
-                                                    <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rServicio{'dPrecioVenta'}?>">
+                                                    <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
+                                                    <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
+                                                    <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
                                                     <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>)" value="Agregar">
                                                 </td>
                                             </tr>
