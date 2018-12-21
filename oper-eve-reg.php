@@ -141,8 +141,131 @@ setTimeout(function(){
                                                 </td>
 												<td>
                                                     <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#inventario">+ Extras</button>
+                                                    <input type="button" class="btn btn-info" id="extras" onclick="mostrarInventario()" value="+ Extras">
                                                 </td>
+                                            </tr>
+                                            <tr hidden id="inventario">
+                                            <th colspan="4">
+                                                <!--inventario-->
+            <!--tabs-->
+        <?
+    $select = "SELECT * FROM CatTiposInventario ORDER BY tNombre DESC";
+           $rsTipos = mysql_query($select);
+           $tipos = array();
+           while($rTipo = mysql_fetch_array($rsTipos))
+           {
+               $tipos[] = array('eCodTipoInventario'=>$rTipo{'eCodTipoInventario'},'tNombre'=>$rTipo{'tNombre'});
+           }
+    ?>
+        <div class="card">
+        <div class="custom-tab">
+
+											<nav>
+												<div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <?
+                                                    for($i=0;$i<sizeof($tipos);$i++)
+                                                    {
+                                                        ?>
+                                                    <a class="nav-item nav-link <?=($i==0) ? 'active' : ''?>" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
+													 aria-selected="true"><?=$tipos[$i]['tNombre']?></a>
+                                                    <?
+                                                    }
+                                                    ?>
+												</div>
+											</nav>
+											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
+                                                <?
+                                                $b=0;
+                                                    for($i=0;$i<sizeof($tipos);$i++)
+                                                    {
+                                                        ?>
+                                                    <div class="tab-pane fade <?=($i==0) ? 'show active' : ''?>" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+													
+                                                        <!--tablas-->
+                                                        <div class="table-data__tool">
+                                    <div class="table-data__tool-left">   </div>
+                                    <div class="table-data__tool-right">
+                                       <input class="au-input" id='search<?=$i?>' placeholder='Búsqueda rápida...'> 
+                                        <script type="text/javascript">
+
+
+    $(window).load(function(){
+      
+var $rows = $('#table<?=$i?> tbody tr');
+$('#search<?=$i?>').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
+
+    });
+
+</script>
+                                        
+                                    </div>
+                                </div>
+		<div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
+                                    <table class="table table-borderless table-striped table-earning" id="table<?=$i?>">
+                                        <thead>
+                                            <tr>
+			   <th width="95%">Inventario</th>
+				   <th>Piezas</th>
+				   <th></th>
+			   </tr>
+                                        </thead>
+                                        <tbody>
+											<?
+											$select = "	SELECT 
+															cti.tNombre as tipo, 
+															ci.*
+														FROM
+															CatInventario ci
+															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario".
+														" WHERE ci.eCodTipoInventario = ".$tipos[$i]['eCodTipoInventario'].
+														" ORDER BY ci.tNombre ASC";
+											$rsPublicaciones = mysql_query($select);
+		   									
+											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											{
+												?>
+											<tr>
+												<td>
+												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=utf8_decode($rPublicacion{'tNombre'})?> | <?=utf8_decode($rPublicacion{'tMarca'})?>
+												</td>
+												<td>
+													<input type="text" size="4" name="ePiezas<?=$b?>" id="ePiezas<?=$b?>" class="form-control" placeholder="10" value="<?=$rServicio{'ePiezas'}?>">
+												</td>
+                                                <td>
+                                                    <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
+                                                    <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
+                                                    <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
+                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>)" value="Agregar">
+                                                </td>
+                                            </tr>
+											<?
+													$b++;
+											}
+											?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                                        <!--tablas-->
+                                                        
+												</div>
+                                                    <?
+                                                    }
+                                                    ?>
+												
+											</div>
+
+										</div>
+        </div>
+        <!--tabs-->
+          <!--inventario-->    
+                                            </th>
                                             </tr>
                                             <tr>
                                                 <th></th>
@@ -218,7 +341,7 @@ setTimeout(function(){
 
 
 <script>
-var options = {
+/*var options = {
 			                         url: "auc/auc-clientes.php",
 			                         getValue: "nombre",
 			                         list: {
@@ -228,7 +351,7 @@ var options = {
                                            }
                                        }
 		                           };
-		          $("#tCliente").easyAutocomplete(options);	
+		          $("#tCliente").easyAutocomplete(options);	*/
 
     
     function segmentar()
@@ -285,6 +408,23 @@ var options = {
         });
         
         document.getElementById('totalVenta').innerHTML = "Total: $"+venta.toFixed(2);
+    }
+    
+    function mostrarInventario()
+    {
+        var fila = document.getElementById('inventario');
+        var boton = document.getElementById('extras');
+        
+        if(boton.value=="+ Extras")
+            {
+                fila.hidden = false;
+                boton.value="- Extras";
+            }
+        if(boton.value=="- Extras")
+            {
+                fila.hidden = true;
+                boton.value="+ Extras";
+            }
     }
     
     calcular();
