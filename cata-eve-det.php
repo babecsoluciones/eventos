@@ -56,7 +56,7 @@ setTimeout(function(){
 <script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
     
 <div class="row">
-    <center><a href="gene-eve-pdf.php?eCodEvento=<?=$_GET['eCodEvento']?>" class="btn btn-danger">Descargar PDF</a></center>
+    <center><a href="gene-eve-pdf.php?eCodEvento=<?=$_GET['eCodEvento']?>" class="btn btn-danger" target="new">Descargar PDF</a></center>
     <div class="col-lg-12">
     <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="eCodEvento" value="<?=$_GET['eCodEvento']?>">
