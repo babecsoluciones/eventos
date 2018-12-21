@@ -457,22 +457,27 @@ $('#search<?=$i?>').keyup(function() {
         if(!document.getElementById('eCodCliente').value)
             {
                 mensaje += "*Cliente\n";
+                bandera = true;
             }
         if(!document.getElementById('fhFechaEvento').value)
             {
                 mensaje += "*Fecha del evento\n";
+                bandera = true;
             }
         if(!document.getElementById('tmHoraEvento').value)
             {
                 mensaje += "*Hora de montaje\n";
+                bandera = true;
             }
         if(!document.getElementById('tDireccion').value)
             {
                 mensaje += "*Ubicaci\u00F3n del evento\n";
+                bandera = true;
             }
         if(cmbTotal.length<1)
             {
                 mensaje += "*Debes insertar al menos un paquete o extra\n";
+                bandera = true;
             }
         
         if(bandera)
