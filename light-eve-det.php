@@ -180,8 +180,6 @@ $rsClientes = mysql_query($select);
             </tr>
             
             
-												?>
-            
 											<?
                                             $i = 0;
 											$select = "	SELECT DISTINCT
