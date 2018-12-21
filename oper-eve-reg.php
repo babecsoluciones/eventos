@@ -51,9 +51,7 @@ setTimeout(function(){
 }
 ?>
 
-<link href="dist/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
-<script src="lib/jquery-1.11.2.min.js"></script>
-<script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+
     
 <div class="row">
 	<div class="col-lg-12">
