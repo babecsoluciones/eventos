@@ -144,7 +144,7 @@ setTimeout(function(){
                                                     <input type="button" class="btn btn-info" id="extras" onclick="mostrarInventario()" value="+ Extras">
                                                 </td>
                                             </tr>
-                                            <tr hidden id="inventario">
+                                            <tr hidden>
                                             <th colspan="4">
                                                 <!--inventario-->
             <!--tabs-->
@@ -157,7 +157,7 @@ setTimeout(function(){
                $tipos[] = array('eCodTipoInventario'=>$rTipo{'eCodTipoInventario'},'tNombre'=>$rTipo{'tNombre'});
            }
     ?>
-        <div class="card">
+        <div class="card" id="inventario" style="display:none;">
         <div class="custom-tab">
 
 											<nav>
@@ -417,12 +417,12 @@ $('#search<?=$i?>').keyup(function() {
         
         if(boton.value=="+ Extras")
             {
-                fila.hidden = false;
+                fila.style.display = 'inline';
                 boton.value="- Extras";
             }
         if(boton.value=="- Extras")
             {
-                fila.hidden = true;
+                fila.style.display = 'none';
                 boton.value="+ Extras";
             }
     }
