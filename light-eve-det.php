@@ -31,6 +31,7 @@ $rsClientes = mysql_query($select);
     .invoice-box {
         max-width: 800px;
         width:700px;
+        height:95vh;
         margin: auto;
         padding: 30px;
         border: 1px solid #eee;
@@ -131,7 +132,7 @@ $rsClientes = mysql_query($select);
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="../images/icon/logo.png" style="width:100%; max-width:300px;">
+                                <img src="../images/icon/logo.png" style="width:120%; max-width:120px;">
                             </td>
                             
                             <td>
