@@ -16,9 +16,8 @@ $select = "	SELECT
 														FROM
 															CatClientes cc
 														
-														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario".
-												($bAll ? "" : " WHERE cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
-														" ORDER BY cc.eCodCliente ASC";
+														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario
+                                                        ORDER BY cc.eCodCliente ASC";
 $rsClientes = mysql_query($select);
 
 ?>
@@ -54,9 +53,10 @@ setTimeout(function(){
 <link href="dist/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
 <script src="lib/jquery-1.11.2.min.js"></script>
 <script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
-    
-<div class="row">
-    <center><a href="gene-eve-pdf.php?eCodEvento=<?=$_GET['eCodEvento']?>" class="btn btn-danger">Descargar PDF</a></center>
+    <center>
+<table style="width:700px">
+    <tr>
+    <td>
     <div class="col-lg-12">
     <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="eCodEvento" value="<?=$_GET['eCodEvento']?>">
@@ -188,55 +188,14 @@ setTimeout(function(){
                                     </div>
                                 </div>
 								
-								<div class="col-lg-12">
-                                
-                                    <div class="card-body card-block">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-												<th>Fecha</th>
-												<th>Monto</th>
-												<th>Forma</th>
-                                            </tr>
-                                        </thead>
-										<tbody>
-											<?
-											$select = "SELECT bt.fhFecha, bt.dMonto, ctp.tNombre FROM BitTransacciones bt INNER JOIN CatTiposPagos ctp ON ctp.eCodTipoPago = bt.eCodTipoPago WHERE bt.eCodEvento = ".$_GET['eCodEvento'];
-											$rsTransacciones = mysql_query($select);
-											$i = 1;
-											while($rTransaccion = mysql_fetch_array($rsTransacciones))
-											{
-												?>
-											<tr>
-												<td><?=$i?></td>
-												<td><?=date('d/m/Y',strtotime($rTransaccion{'fhFecha'}))?></td>
-												<td>$<?=$rTransaccion{'dMonto'}?><input type="hidden" id="abono<?=$i?>" value="<?=$rTransaccion{'dMonto'}?>"></td>
-												<td><?=$rTransaccion{'tNombre'}?></td>
-											</tr>
-											<?
-                                                $i++;
-											}
-											?>
-											<tr>
-											<td colspan="3" align="right">Total abonado:</td>
-												<td id="totAbono"></td>
-											</tr>
-											<tr>
-											<td colspan="3" align="right">Restante:</td>
-												<td id="totRestante"></td>
-											</tr>
-										</tbody>
-                                    </table>
-      
-                                    </div>
-                                </div>
+								
                                 
                             </div>
     </form>
     </div>
-                        </div>
-
+                        
+        </td></tr></table>
+        </center>
 <script> 
 
     function calcular()
