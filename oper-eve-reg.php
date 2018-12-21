@@ -346,15 +346,15 @@ function mostrarInventario()
         var fila = document.getElementById('inventario');
         var boton = document.getElementById('extras');
         
-        if(boton.value==1)
+        if(boton.value=="1")
             {
                 fila.style.display = "inline";
-                boton.value=2;
+                boton.value="2";
             }
-        if(boton.value==2)
+        if(boton.value=="2")
             {
                 fila.style.display = "none";
-                boton.value=1;
+                boton.value="1";
             }
     }
     
