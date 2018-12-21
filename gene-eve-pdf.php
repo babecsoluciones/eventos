@@ -4,9 +4,9 @@ $url = "http://eventos.sdibabec.com/light-eve-det.php?eCodEvento=".$_GET['eCodEv
 
 $html=file_get_contents($url);
 
-echo $url.'<br>';
-
-echo $html;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 
 $html=str_replace('font-size:14px;','font-size:12px;',$html);
