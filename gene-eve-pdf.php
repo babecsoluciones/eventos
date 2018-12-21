@@ -1,6 +1,6 @@
 <?php
 
-$url = "http://eventos.sdibabec.com/light-eve-det.php?eCodEvento=".$_GET['eCodEvento'];
+$url = "light-eve-det.php?eCodEvento=".$_GET['eCodEvento'];
 
 $html=file_get_contents($url);
 
@@ -21,7 +21,7 @@ $html=str_replace('font-size:14px;','font-size:12px;',$html);
 //==============================================================
 
 
-include("mpdf/mpdf-2.php");
+include("./mpdf/mpdf-2.php");
 $mpdf=new mPDF('c'); 
 
 $mpdf->mirrorMargins = true;
