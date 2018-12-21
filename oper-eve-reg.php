@@ -142,7 +142,7 @@ setTimeout(function(){
                                                     <input type="button" class="btn btn-info" id="extras" onclick="mostrarInventario()" value="+ Extras">
                                                 </td>
                                             </tr>
-                                            <tr hidden>
+                                            <tr>
                                             <th colspan="4">
                                                 <!--inventario-->
             <!--tabs-->
