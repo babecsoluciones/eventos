@@ -401,12 +401,10 @@ class clSis
                     $indice=str_replace("eCodServicio","",$tCampo);
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
-                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad) VALUES ($eCodEvento, $eCodServicio, $eCantidad)";
+                    $eCodTipo = $_POST['eCodTipo'.$indice];
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo)";
                     mysql_query($insert);
                     
-                     $pf = fopen("log.txt","w");
-            fwrite($pf,$insert."\n\n");
-            fclose($pf);
                     
                 }
                 return true;
@@ -431,13 +429,10 @@ class clSis
                 {
                     $indice=str_replace("eCodServicio","",$tCampo);
                     $eCodServicio = $_POST['eCodServicio'.$indice];
-                    $eCantidad = $_POST['eCantidad'.$indice];
-                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad) VALUES ($eCodEvento, $eCodServicio, $eCantidad)";
+                    $eCodTipo = $_POST['eCodTipo'.$indice];
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo)";
                     mysql_query($insert);
                     
-                     $pf = fopen("log.txt","w");
-            fwrite($pf,$insert."\n\n");
-            fclose($pf);
                     
                 }
                 return true;

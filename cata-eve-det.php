@@ -117,16 +117,17 @@ setTimeout(function(){
                                         </thead>
                                         <tbody>
 											<?
+                                            $i = 0;
 											$select = "	SELECT DISTINCT
 															cs.tNombre,
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
                                                             rep.eCantidad
                                                         FROM CatServicios cs
-                                                        INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio
+                                                        INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio and rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
 											$rsPublicaciones = mysql_query($select);
-                                            $i = 0;
+                                            
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
@@ -135,6 +136,36 @@ setTimeout(function(){
                                                 <td>
                                                     <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
+                                                    <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
+                                                    <?=$rPublicacion{'tNombre'}?>
+                                                </td>
+                                                <td>
+                                                    <?=$rPublicacion{'eCantidad'}?>
+                                                </td>
+												<td>$<?=number_format($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'},2)?><input type="hidden" id="totalServ<?=$i?>" value="<?=($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'})?>"></td>
+                                            </tr>
+											<?
+											$i++;
+											}
+                                            $select = "	SELECT DISTINCT
+															cs.tNombre,
+                                                            cs.dPrecioVenta,
+                                                            rep.eCodServicio,
+                                                            rep.eCantidad
+                                                        FROM CatInventario cs
+                                                        INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
+                                                        WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
+											$rsPublicaciones = mysql_query($select);
+                                            
+											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											{
+												?>
+											<tr id="paq<?=$i?>">
+                                                <td></td>
+                                                <td>
+                                                    <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
+                                                    <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
+                                                    <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
                                                     <?=$rPublicacion{'tNombre'}?>
                                                 </td>
                                                 <td>

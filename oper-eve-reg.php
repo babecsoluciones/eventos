@@ -59,7 +59,7 @@ setTimeout(function(){
             <i class="fa fa-key" ></i></button>
 	<input type="hidden" id="tPasswordVerificador"  style="display:none;" value="<?=base64_decode($_SESSION['sessionAdmin'][0]['tPasswordOperaciones'])?>">
         <input type="password" class="form-control col-md-3" onkeyup="validarUsuario()"  id="tPasswordOperaciones"  style="display:none;" size="8">
-        <button type="button" id="btnGuardar" class="btn btn-primary" disabled onclick="guardar()"><i class="fa fa-floppy-o"></i> Guardar</button>
+        <button type="button" id="btnGuardar" class="btn btn-primary" disabled onclick="validar()"><i class="fa fa-floppy-o"></i> Guardar</button>
 	</div>
 </div>
 <div class="row">
@@ -278,16 +278,18 @@ $('#search<?=$i?>').keyup(function() {
                                         </thead>
                                         <tbody>
 											<?
+                                            $i = 0;
 											$select = "	SELECT DISTINCT
 															cs.tNombre,
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
-                                                            rep.eCantidad
+                                                            rep.eCantidad,
+                                                            rep.eCodTipo
                                                         FROM CatServicios cs
-                                                        INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio
+                                                        INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio AND rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
 											$rsPublicaciones = mysql_query($select);
-                                            $i = 0;
+                                            
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
@@ -296,6 +298,37 @@ $('#search<?=$i?>').keyup(function() {
                                                 <td>
                                                     <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
+                                                    <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
+                                                    <?=$rPublicacion{'tNombre'}?>
+                                                </td>
+                                                <td>
+                                                    <?=$rPublicacion{'eCantidad'}?>
+                                                </td>
+												<td>$<?=number_format($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'},2)?></td>
+                                            </tr>
+											<?
+											$i++;
+											}
+                                            $select = "	SELECT DISTINCT
+															cs.tNombre,
+                                                            cs.dPrecioVenta,
+                                                            rep.eCodServicio,
+                                                            rep.eCantidad,
+                                                            rep.eCodTipo
+                                                        FROM CatInventario cs
+                                                        INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
+                                                        WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
+											$rsPublicaciones = mysql_query($select);
+                                            
+											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											{
+												?>
+											<tr id="paq<?=$i?>">
+                                                <td><i class="far fa-trash-alt" onclick="deleteRow(<?=$i?>)"></i></td>
+                                                <td>
+                                                    <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
+                                                    <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
+                                                    <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
                                                     <?=$rPublicacion{'tNombre'}?>
                                                 </td>
                                                 <td>
@@ -371,7 +404,7 @@ $('#search<?=$i?>').keyup(function() {
     var table = document.getElementById("table");
     var row = table.insertRow(x);
     row.id="paq"+(x);
-    row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+(indice ? 1 : 2)+'"></td>';
+    row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+(indice ? 2 : 1)+'"></td>';
     row.innerHTML += '<td><input type="hidden" name="eCodServicio'+(x-2)+'" id="eCodServicio'+(x-2)+'" value="'+codigo.value+'">'+tPaquete+'</td>';
     row.innerHTML += '<td><input type="hidden" name="eCantidad'+(x-2)+'" id="eCantidad'+(x-2)+'" value="'+cantidad.value+'">'+cantidad.value+'</td>';
 	row.innerHTML += '<td id="dTotal'+(x-2)+'"><input type="hidden" id="totalServ'+(x-2)+'" value="'+total.toFixed(2)+'">$'+total.toFixed(2)+'</td>';
@@ -414,6 +447,43 @@ $('#search<?=$i?>').keyup(function() {
         document.getElementById('mInventario').style.display = "inline";
     }
     
+    function validar()
+    {
+        var cmbTotal = document.querySelectorAll("[id^=totalServ]");
+        
+        var mensaje="<-Favor de revisar la siguiente informaci\u00F3n->\n";
+        var bandera = false;
+        
+        if(!document.getElementById('eCodCliente').value)
+            {
+                mensaje += "*Cliente\n";
+            }
+        if(!document.getElementById('fhFechaEvento').value)
+            {
+                mensaje += "*Fecha del evento\n";
+            }
+        if(!document.getElementById('tmHoraEvento').value)
+            {
+                mensaje += "*Hora de montaje\n";
+            }
+        if(!document.getElementById('tDireccion').value)
+            {
+                mensaje += "*Ubicaci\u00F3n del evento\n";
+            }
+        if(cmbTotal.length<1)
+            {
+                mensaje += "*Debes insertar al menos un paquete o extra\n";
+            }
+        
+        if(bandera)
+            {
+                alert(mensaje);
+            }
+        else
+            {
+                guardar();
+            }
+    }
     
     
     calcular();
