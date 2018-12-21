@@ -348,12 +348,12 @@ function mostrarInventario()
         
         if(boton.value=="S")
             {
-                fila.style.display = "inline";
+                fila.style.display = "none";
                 boton.value="O";
             }
         if(boton.value=="O")
             {
-                fila.style.display = "none";
+                fila.style.display = "inline";
                 boton.value="S";
             }
     }
