@@ -139,8 +139,8 @@ setTimeout(function(){
                                                 </td>
 												<td>
                                                     <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                    <input type="button" class="btn btn-info"  id="mInventario" onclick="document.getElementById('inventario').style.display='inline'; this.style.display:'none' document.getElementById('oInventario').style.display='inline'" value="+ Extras">
-                                                    <input type="button" class="btn btn-info"  id="oInventario" onclick="document.getElementById('inventario').style.display='none'; this.style.display:'none' document.getElementById('mInventario').style.display='inline'" value="- Extras">
+                                                    <input type="button" class="btn btn-info"  id="mInventario" onclick="mostrar()" value="+ Extras">
+                                                    <input type="button" class="btn btn-info"  id="oInventario" onclick="ocultar()" value="- Extras" style="display:none">
                                                     
                                                 </td>
                                             </tr>
@@ -399,6 +399,19 @@ $('#search<?=$i?>').keyup(function() {
         });
         
         document.getElementById('totalVenta').innerHTML = "Total: $"+venta.toFixed(2);
+    }
+    
+    function mostrar()
+    {
+        document.getElementById('inventario').style.display = "inline";
+        document.getElementById('oInventario').style.display = "inline";
+        docuyment.getElementById('mInventario').style.display = "none";
+    }
+    function ocultar()
+    {
+        document.getElementById('inventario').style.display = "none";
+        document.getElementById('oInventario').style.display = "none";
+        docuyment.getElementById('mInventario').style.display = "inventario";
     }
     
     
