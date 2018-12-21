@@ -411,7 +411,7 @@ $('#search<?=$i?>').keyup(function() {
     {
         document.getElementById('inventario').style.display = "none";
         document.getElementById('oInventario').style.display = "none";
-        docuyment.getElementById('mInventario').style.display = "inventario";
+        docuyment.getElementById('mInventario').style.display = "inline";
     }
     
     
