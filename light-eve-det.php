@@ -153,7 +153,7 @@ $rsClientes = mysql_query($select);
      while($rPaquete = mysql_fetch_array($rsClientes))
 {
          ?>
-                  <?=($rPublicacion{'eCodCliente'}==$rPaquete{'eCodCliente'}) ? $rPaquete{'tNombres'}.' '.$rPaquete{'tApellidos'}.' <br>'.$rPaquete{'tCorreo'}.'<br>'$rPaquete{'tTelefono'} : ''?>
+                  <?=($rPublicacion{'eCodCliente'}==$rPaquete{'eCodCliente'}) ? $rPaquete{'tNombres'}.' '.$rPaquete{'tApellidos'}.' <br>'.$rPaquete{'tCorreo'}.'<br>'.$rPaquete{'tTelefono'} : ''?>
                   <?
 }
     ?>
@@ -244,7 +244,7 @@ $rsClientes = mysql_query($select);
                 <td></td>
                 
                 <td>
-                   Total: $$<?=number_format($dTotalEvento,2)?>
+                   Total: $<?=number_format($dTotalEvento,2)?>
                 </td>
             </tr>
         </table>
