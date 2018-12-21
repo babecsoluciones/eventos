@@ -237,7 +237,7 @@ $('#search<?=$i?>').keyup(function() {
 												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=utf8_decode($rPublicacion{'tNombre'})?> | <?=utf8_decode($rPublicacion{'tMarca'})?>
 												</td>
 												<td>
-													<input type="text" size="4" name="ePiezas<?=$b?>" id="ePiezas<?=$b?>" class="form-control" placeholder="10" value="<?=$rServicio{'ePiezas'}?>">
+													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" class="form-control" placeholder="10" value="<?=$rServicio{'ePiezas'}?>">
 												</td>
                                                 <td>
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
