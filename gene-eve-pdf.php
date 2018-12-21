@@ -1,6 +1,6 @@
 <?php
 
-$url = "light-eve-det.php?eCodEvento=".$_GET['eCodEvento'];
+$url = "./light-eve-det.php?eCodEvento=".$_GET['eCodEvento'];
 
 $html=file_get_contents($url);
 
