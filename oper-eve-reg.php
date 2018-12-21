@@ -352,7 +352,22 @@ $('#search<?=$i?>').keyup(function() {
                                        }
 		                           };
 		          $("#tCliente").easyAutocomplete(options);	*/
-
+function mostrarInventario()
+    {
+        var fila = document.getElementById('inventario');
+        var boton = document.getElementById('extras');
+        
+        if(boton.value=="+ Extras")
+            {
+                fila.style.display = 'inline';
+                boton.value="- Extras";
+            }
+        if(boton.value=="- Extras")
+            {
+                fila.style.display = 'none';
+                boton.value="+ Extras";
+            }
+    }
     
     function segmentar()
     {
@@ -410,22 +425,7 @@ $('#search<?=$i?>').keyup(function() {
         document.getElementById('totalVenta').innerHTML = "Total: $"+venta.toFixed(2);
     }
     
-    function mostrarInventario()
-    {
-        var fila = document.getElementById('inventario');
-        var boton = document.getElementById('extras');
-        
-        if(boton.value=="+ Extras")
-            {
-                fila.style.display = 'inline';
-                boton.value="- Extras";
-            }
-        if(boton.value=="- Extras")
-            {
-                fila.style.display = 'none';
-                boton.value="+ Extras";
-            }
-    }
+    
     
     calcular();
 
