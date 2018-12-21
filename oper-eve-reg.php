@@ -405,13 +405,13 @@ $('#search<?=$i?>').keyup(function() {
     {
         document.getElementById('inventario').style.display = "inline";
         document.getElementById('oInventario').style.display = "inline";
-        docuyment.getElementById('mInventario').style.display = "none";
+        document.getElementById('mInventario').style.display = "none";
     }
     function ocultar()
     {
         document.getElementById('inventario').style.display = "none";
         document.getElementById('oInventario').style.display = "none";
-        docuyment.getElementById('mInventario').style.display = "inline";
+        document.getElementById('mInventario').style.display = "inline";
     }
     
     
