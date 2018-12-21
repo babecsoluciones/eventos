@@ -349,12 +349,12 @@ function mostrarInventario()
         if(boton.value==1)
             {
                 fila.style.display = "inline";
-                boton.value="Extras";
+                boton.value=2;
             }
         if(boton.value==2)
             {
                 fila.style.display = "none";
-                boton.value="Extras";
+                boton.value=1;
             }
     }
     
