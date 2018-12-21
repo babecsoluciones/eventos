@@ -133,11 +133,9 @@ var tTelefonoMovil = document.getElementById("tTelefonoMovil");
            </div>
             <div class="form-group">
               <label>Comentarios</label>
-<<<<<<< HEAD
+
               <textarea rows="5" class="form-control" name="tComentarios" id="tComentarios" ><?=utf8_decode($rPublicacion{'tComentarios'})?></textarea>
-=======
-              <textarea rows="5" class="form-control" name="tComentarios" id="tComentarios" ><?=utf8_decode($rPublicacion{'tTelefonoMovil'})?></textarea>
->>>>>>> 1798ee66a08257a96aae30de33690da99f0f4af2
+
            </div>
                                         <!--campos-->
                                     </div>
