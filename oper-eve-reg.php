@@ -140,7 +140,7 @@ setTimeout(function(){
 												<td>
                                                     <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
                                                     <input type="button" class="btn btn-info"  onclick="mostrarInventario()" value="Extras">
-                                                    <input type="hidden" id="extras" value="1">
+                                                    <input type="hidden" id="extras" name="extras" value="S">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -346,15 +346,15 @@ function mostrarInventario()
         var fila = document.getElementById('inventario');
         var boton = document.getElementById('extras');
         
-        if(boton.value=="1")
+        if(boton.value=="S")
             {
                 fila.style.display = "inline";
-                boton.value="2";
+                boton.value="O";
             }
-        if(boton.value=="2")
+        if(boton.value=="O")
             {
                 fila.style.display = "none";
-                boton.value="1";
+                boton.value="S";
             }
     }
     
