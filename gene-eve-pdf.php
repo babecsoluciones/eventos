@@ -1,6 +1,8 @@
 <?php
 
-$html=file_get_contents('light-eve-det.php?eCodEvento='.$_GET['eCodEvento']);
+$url = "http://eventos.sdibabec.com/light-eve-det.php?eCodEvento=".$_GET['eCodEvento'];
+
+$html=file_get_contents($url);
 
 
 
