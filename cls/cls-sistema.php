@@ -436,7 +436,9 @@ class clSis
                     $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo)";
                     mysql_query($insert);
                     
-                    
+                    $pf = fopen("log.txt","a");
+                    fwrite($pf,$insert."\n");
+                    fclose($pf);
                 }
                 return true;
             }
