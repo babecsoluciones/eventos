@@ -294,8 +294,8 @@ setTimeout(function(){
     <script src="js/main.js"></script>
 	<script src="js/aplicacion.js"></script>
 	
-	<!--Search--
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>-->
+	<!--Search-->
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
    
   <script type="text/javascript">
  
