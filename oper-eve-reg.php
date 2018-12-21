@@ -139,12 +139,14 @@ setTimeout(function(){
                                                 </td>
 												<td>
                                                     <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                    <input type="button" class="btn btn-info"  onclick="mostrarInventario()" value="Extras">
-                                                    <input type="hidden" id="extras" name="extras" value="S">
+                                                    <input type="button" class="btn btn-info"  id="mInventario" onclick="document.getElementById('inventario').style.display='inline'; this.style.display:'none' document.getElementById('oInventario').style.display='inline'" value="+ Extras">
+                                                    <input type="button" class="btn btn-info"  id="oInventario" onclick="document.getElementById('inventario').style.display='none'; this.style.display:'none' document.getElementById('mInventario').style.display='inline'" value="- Extras">
+                                                    
                                                 </td>
                                             </tr>
                                             <tr>
                                             <th colspan="4">
+                                                <div class="col-lg-12">
                                                 <!--inventario-->
             <!--tabs-->
         <?
@@ -174,7 +176,7 @@ setTimeout(function(){
 											</nav>
 											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
                                                 <?
-                                                $b=0;
+                                                $b=1;
                                                     for($i=0;$i<sizeof($tipos);$i++)
                                                     {
                                                         ?>
@@ -263,7 +265,8 @@ $('#search<?=$i?>').keyup(function() {
 										</div>
         </div>
         <!--tabs-->
-          <!--inventario-->    
+          <!--inventario-->   
+                                                </div>
                                             </th>
                                             </tr>
                                             <tr>
@@ -341,22 +344,6 @@ $('#search<?=$i?>').keyup(function() {
 
 <script>
 
-function mostrarInventario()
-    {
-        var fila = document.getElementById('inventario');
-        var boton = document.getElementById('extras');
-        
-        if(boton.value=="S")
-            {
-                fila.style.display = "none";
-                boton.value="O";
-            }
-        if(boton.value=="O")
-            {
-                fila.style.display = "inline";
-                boton.value="S";
-            }
-    }
     
     function segmentar()
     {
