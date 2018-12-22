@@ -234,7 +234,7 @@ $('#search<?=$i?>').keyup(function() {
 												?>
 											<tr>
 												<td>
-												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=utf8_decode($rPublicacion{'tNombre'})?> | <?=utf8_decode($rPublicacion{'tMarca'})?>
+												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=($rPublicacion{'tNombre'})?> | <?=($rPublicacion{'tMarca'})?>
 												</td>
 												<td>
 													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" class="form-control" placeholder="10">
