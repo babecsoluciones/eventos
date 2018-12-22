@@ -212,7 +212,7 @@ $('#search<?=$i?>').keyup(function() {
                                                         
 												</td>
 												<td>
-												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=utf8_decode($rPublicacion{'tNombre'})?> | <?=utf8_decode($rPublicacion{'tMarca'})?>
+												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=utf8_encode($rPublicacion{'tNombre'})?> | <?=utf8_encode($rPublicacion{'tMarca'})?>
 												</td>
 												<td>
 													<input type="text" size="4" name="ePiezas<?=$b?>" id="ePiezas<?=$b?>" class="form-control" placeholder="10" value="<?=$rServicio{'ePiezas'}?>">
