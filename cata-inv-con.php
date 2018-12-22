@@ -72,8 +72,8 @@ function eliminar(eCodInventario)
 												?>
 											<tr>
                                                 <td><?=utf8_decode($rPublicacion{'tipo'})?></td>
-												<td><?=utf8_decode($rPublicacion{'tNombre'})?></td>
-												<td><?=utf8_decode($rPublicacion{'tMarca'})?></td>
+												<td><?=($rPublicacion{'tNombre'})?></td>
+												<td><?=($rPublicacion{'tMarca'})?></td>
 												<td><?=substr(utf8_decode($rPublicacion{'tDescripcion'}),0,50)?>...</td>
 												<td>$<?=number_format($rPublicacion{'dPrecioInterno'},2)?></td>
 												<td>$<?=number_format($rPublicacion{'dPrecioVenta'},2)?></td>
