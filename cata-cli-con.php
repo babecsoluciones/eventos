@@ -10,12 +10,17 @@ function detalles(eCodCliente)
     {
         window.location="?tCodSeccion=cata-cli-det&eCodCliente="+eCodCliente;
     }
+function exportar()
+    {
+        window.location="gene-cli-xls.php";
+    }
 </script>
 <div class="row">
 	<div class="col-lg-12">
         <? if($clSistema->validarEnlace('cata-cli-reg')) { ?>
 	<button type="button" class="btn btn-primary" onclick="window.location='?tCodSeccion=cata-cli-reg'"><i class="fa fa-plus"></i> Nuevo Cliente</button>
         <? } ?>
+        <button type="button" onclick="exportar()" class="btn btn-success">Exportar Clientes (Con eventos realizados)</button>
 	</div>
 </div>
 <div class="row">

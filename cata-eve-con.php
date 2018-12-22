@@ -7,7 +7,7 @@ $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
 
 if($_GET['eCodEvento'])
 {
-    mysql_query("UPDATE BitEventos SET eCodEstatus = 4 WHERE eCodEvento =".$_GET['eCodEvento']);
+    mysql_query("UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
     echo '<script>window.location="?tCodSeccion=cata-eve-con";</script>';
 }
 
@@ -19,7 +19,11 @@ function detalles(codigo)
     }
 function cancelar(codigo)
     {
-        window.location="?tCodSeccion=cata-eve-con&eCodEvento="+codigo;
+        window.location="?tCodSeccion=cata-eve-con&eAccion=4&eCodEvento="+codigo;
+    }
+function finalizar(codigo)
+    {
+        window.location="?tCodSeccion=cata-eve-con&eAccion=8&eCodEvento="+codigo;
     }
 </script>
 <div class="row">
@@ -80,6 +84,7 @@ while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-eye"></i></button> 
                                                     <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="far fa-trash-alt"></i></button> 
 													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button onclick="finalizar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fas fa-check-double"></i></button>
 												</td>
                                             </tr>
 											<?
