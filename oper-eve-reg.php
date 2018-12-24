@@ -171,7 +171,7 @@ setTimeout(function(){
                                         <thead>
                                            
                                             <tr>
-												<th width="80%">Nombre</th>
+												<th width="85%">Nombre</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
@@ -215,8 +215,8 @@ setTimeout(function(){
 
 										</div>
                                
-                                        
-                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
+                                    <div class="card col-lg-12">
+                                        <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                             <tr>
                                                 <th></th>
@@ -292,7 +292,9 @@ setTimeout(function(){
 											}
 											?>
                                         </tbody>
-                                    </table>
+                                    </table>    
+                                    </div>
+                                    
       
                                     </div>
                                 </div>
