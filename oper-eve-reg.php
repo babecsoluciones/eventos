@@ -167,11 +167,11 @@ setTimeout(function(){
                                     </div>
                                 </div>
                                 <div class="table-responsive " style="max-height:300px; overflow-y: scroll;">
-                                    <table class="table table-responsive table-borderless table-top-campaign" id="table" width="100%">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                            
                                             <tr>
-												<th >Nombre</th>
+												<th width="88%">Nombre</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
@@ -191,8 +191,8 @@ setTimeout(function(){
 												?>
 											<tr>
 												<td><?=($rPublicacion{'tNombre'})?></td>
-												<td class="text-right"> 
-													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
+												<td class="text-right" align="right"> 
+													<input type="text" class="form-control" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
 												
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
