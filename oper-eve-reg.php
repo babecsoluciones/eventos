@@ -154,17 +154,12 @@ setTimeout(function(){
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning" id="table">
+                                    <table class="table table-responsive table-borderless table-striped table-earning" id="table">
                                         <thead>
                                            
                                             <tr>
-												<th>Tipo</th>
 												<th>Nombre</th>
                                                 <th>Marca</th>
-                                                <th>Descripci&oacute;n</th>
-                                                <th class="text-right">Precio Interno</th>
-                                                <th class="text-right">Precio P&uacute;blico</th>
-                                                <th class="text-right">Existencia</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
@@ -183,13 +178,8 @@ setTimeout(function(){
 											{
 												?>
 											<tr>
-                                                <td><?=utf8_decode($rPublicacion{'tipo'})?></td>
 												<td><?=($rPublicacion{'tNombre'})?></td>
-												<td><?=($rPublicacion{'tMarca'})?></td>
-												<td><?=($rPublicacion{'tDescripcion'})</td>
-												
-												<td><?=$rPublicacion{'ePiezas'}?></td>
-                                                <td class="text-right"> 
+												<td class="text-right"> 
 													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
 												
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
@@ -211,7 +201,7 @@ setTimeout(function(){
 
 										</div>
                                         
-                                    <table class="table table-borderless table-top-campaign" id="table">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                             <tr>
                                                 <th></th>
