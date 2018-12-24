@@ -171,7 +171,8 @@ setTimeout(function(){
                                         <thead>
                                            
                                             <tr>
-												<th width="88%">Nombre</th>
+												<th width="85%">Nombre</th>
+                                                <th></th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
@@ -193,7 +194,7 @@ setTimeout(function(){
 												<td><?=($rPublicacion{'tNombre'})?></td>
 												<td class="text-right" align="right"> 
 													<input type="text" class="form-control" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
-												
+                                                </td><td>
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
