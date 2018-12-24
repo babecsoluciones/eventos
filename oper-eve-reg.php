@@ -167,12 +167,12 @@ setTimeout(function(){
                                        <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
                                     </div>
                                 </div>
-                                <div class="table-responsive " style="max-height:500px; overflow-y: scroll;">
+                                <div class="table-responsive " style="max-height:300px; overflow-y: scroll;">
                                     <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                            
                                             <tr>
-												<th>Nombre</th>
+												<th width="90%">Nombre</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
