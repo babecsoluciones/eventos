@@ -110,7 +110,7 @@ setTimeout(function(){
                                         <!--campos-->
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 row">
                                 
                                     <div class="card-body card-block table-responsive">
                                         <div class="custom-tab">
@@ -171,7 +171,7 @@ setTimeout(function(){
                                         <thead>
                                            
                                             <tr>
-												<th width="90%">Nombre</th>
+												<th width="80%">Nombre</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
