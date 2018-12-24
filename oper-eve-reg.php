@@ -125,23 +125,36 @@ setTimeout(function(){
 											</nav>
 											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
 												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
-													<div class="col-md-12"><input type="hidden" id="eCodServicio">
-                                                    <input type="hidden" id="dPrecioVenta">
-                                                    <select class="col-md-6 form-control" id="paquete" onchange="segmentar()">
-                                                    <option value="">Paquete...</option>
-                                                        <?
-                                                        $select = "SELECT * FROM CatServicios";
-                                                        $rsPaquetes = mysql_query($select);
-                                                        while($rPaquete = mysql_fetch_array($rsPaquetes))
-                                                        {
-                                                            ?>
-                                                        <option value="<?=$rPaquete{'eCodServicio'}.'-'.$rPaquete{'dPrecioVenta'}?>"><?=$rPaquete{'tNombre'}?></option>
-                                                        <?
-                                                        }
-                                                                                            ?>
-                                                    </select>
-                                                        <input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>">
-                                                        <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
+													<table>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" id="eCodServicio">
+                                                            <input type="hidden" id="dPrecioVenta">
+                                                            <select class="col-md-6 form-control" id="paquete" onchange="segmentar()">
+                                                            <option value="">Paquete...</option>
+                                                                <?
+                                                                $select = "SELECT * FROM CatServicios";
+                                                                $rsPaquetes = mysql_query($select);
+                                                                while($rPaquete = mysql_fetch_array($rsPaquetes))
+                                                                {
+                                                                    ?>
+                                                                <option value="<?=$rPaquete{'eCodServicio'}.'-'.$rPaquete{'dPrecioVenta'}?>"><?=$rPaquete{'tNombre'}?></option>
+                                                                <?
+                                                                }
+                                                                                                    ?>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>">
+                                                        </td>
+                                                        <td>
+                                                            <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
+                                                        </td>
+                                                        </tr>
+                                                    </table>
+                                                    
+                                                        
+                                                        
                                                     </div>
 												</div>
 												<div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
@@ -154,13 +167,12 @@ setTimeout(function(){
                                        <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
                                     </div>
                                 </div>
-                                <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-responsive table-borderless table-striped table-earning" id="table">
+                                <div class="table-responsive " style="max-height:500px; overflow-y: scroll;">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                            
                                             <tr>
 												<th>Nombre</th>
-                                                <th>Marca</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
