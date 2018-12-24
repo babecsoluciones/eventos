@@ -167,11 +167,11 @@ setTimeout(function(){
                                     </div>
                                 </div>
                                 <div class="table-responsive " style="max-height:300px; overflow-y: scroll;">
-                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table" width="100%">
                                         <thead>
                                            
                                             <tr>
-												<th width="85%">Nombre</th>
+												<th >Nombre</th>
                                                 <th class="text-right"></th>
                                             </tr>
                                         </thead>
