@@ -125,7 +125,7 @@ setTimeout(function(){
 											</nav>
 											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
 												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
-													<div class="col-md-4"><input type="hidden" id="eCodServicio">
+													<div class="col-md-12"><input type="hidden" id="eCodServicio">
                                                     <input type="hidden" id="dPrecioVenta">
                                                     <select class="col-md-6 form-control" id="paquete" onchange="segmentar()">
                                                     <option value="">Paquete...</option>
@@ -139,9 +139,10 @@ setTimeout(function(){
                                                         <?
                                                         }
                                                                                             ?>
-                                                    </select></div>
-                                                    <div class="col-md-4"><input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>"></div>
-                                                    <div class="col-md-4"><input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()"></div>
+                                                    </select>
+                                                        <input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>">
+                                                        <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
+                                                    </div>
 												</div>
 												<div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
 													<div class="table-data__tool">
