@@ -110,9 +110,9 @@ setTimeout(function(){
                                         <!--campos-->
                                     </div>
                                 </div>
-                                <div class="col-lg-12 row">
+                                <div class="col-lg-12">
                                 
-                                    <div class="card-body card-block table-responsive">
+                                    <div class="card card-body card-block table-responsive">
                                         <div class="custom-tab">
 
 											<nav>
