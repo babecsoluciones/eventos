@@ -217,7 +217,7 @@ setTimeout(function(){
 										</div>
                                
                                     <div class="card col-lg-12">
-                                        <table class="table table-responsive table-borderless table-top-campaign" id="table">
+                                        <table class="table table-responsive table-borderless table-top-campaign" id="paquetes">
                                         <thead>
                                             <tr>
                                                 <th></th>
@@ -354,8 +354,8 @@ setTimeout(function(){
         {
             var total = dPrecio.value*cantidad.value;
             
-		var x = document.getElementById("table").rows.length;
-    var table = document.getElementById("table");
+		var x = document.getElementById("paquetes").rows.length;
+    var table = document.getElementById("paquetes");
     var row = table.insertRow(x);
     row.id="paq"+(x);
     row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+(indice ? 2 : 1)+'"></td>';
