@@ -171,7 +171,7 @@ setTimeout(function(){
                                         <thead>
                                            
                                             <tr>
-												<th width="85%">Nombre</th>
+												<th width="80%">Nombre</th>
                                                 <th></th>
                                                 <th class="text-right"></th>
                                             </tr>
