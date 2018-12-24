@@ -112,8 +112,8 @@ setTimeout(function(){
                                 </div>
                                 <div class="col-lg-12">
                                 
-                                    <div class="card-body card-block">
-                                    <table class="table table-borderless " id="table">
+                                    <div class="card-body card-block table-responsive">
+                                    <table class="table table-borderless table-top-campaign" id="table">
                                         <thead>
                                             <tr>
                                                 <td></td>
@@ -139,8 +139,8 @@ setTimeout(function(){
                                                 </td>
 												<td>
                                                     <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                    <input type="button" class="btn btn-info"  id="mInventario" onclick="mostrar()" value="+ Extras">
-                                                    <input type="button" class="btn btn-info"  id="oInventario" onclick="ocultar()" value="- Extras" style="display:none">
+                                                    <input type="button" class="btn btn-info"  id="mInventario" onclick="mostrar()" value="+ Inventario">
+                                                    <input type="button" class="btn btn-info"  id="oInventario" onclick="ocultar()" value="- Inventario" style="display:none">
                                                     
                                                 </td>
                                             </tr>
@@ -208,12 +208,12 @@ $('#search<?=$i?>').keyup(function() {
                                         
                                     </div>
                                 </div>
-		<div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning" id="table<?=$i?>">
+		<div class="table-responsive" style="max-height:500px; overflow-y: scroll;">
+                                    <table class="table table-top-campaign" id="table<?=$i?>">
                                         <thead>
                                             <tr>
 			   <th width="95%">Inventario</th>
-				   <th>Piezas</th>
+				   
 				   <th></th>
 			   </tr>
                                         </thead>
@@ -238,8 +238,7 @@ $('#search<?=$i?>').keyup(function() {
 												</td>
 												<td>
 													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" class="form-control" placeholder="10">
-												</td>
-                                                <td>
+												
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
