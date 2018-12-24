@@ -113,12 +113,19 @@ setTimeout(function(){
                                 <div class="col-lg-12">
                                 
                                     <div class="card-body card-block table-responsive">
-                                    <table class="table table-borderless table-top-campaign" id="table">
-                                        <thead>
-                                            <tr>
-                                                <td></td>
-                                                <td>
-                                                    <input type="hidden" id="eCodServicio">
+                                        <div class="custom-tab">
+
+											<nav>
+												<div class="nav nav-tabs" id="nav-tab" role="tablist">
+													<a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-home" role="tab" aria-controls="custom-nav-home"
+													 aria-selected="true">Paquetes</a>
+													<a class="nav-item nav-link" id="custom-nav-profile-tab" data-toggle="tab" href="#custom-nav-profile" role="tab" aria-controls="custom-nav-profile"
+													 aria-selected="false">Inventario</a>
+												</div>
+											</nav>
+											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
+												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+													<div class="col-md-4"><input type="hidden" id="eCodServicio">
                                                     <input type="hidden" id="dPrecioVenta">
                                                     <select class="col-md-6 form-control" id="paquete" onchange="segmentar()">
                                                     <option value="">Paquete...</option>
@@ -132,90 +139,34 @@ setTimeout(function(){
                                                         <?
                                                         }
                                                                                             ?>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>">
-                                                </td>
-												<td>
-                                                    <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                    <input type="button" class="btn btn-info"  id="mInventario" onclick="mostrar()" value="+ Inventario">
-                                                    <input type="button" class="btn btn-info"  id="oInventario" onclick="ocultar()" value="- Inventario" style="display:none">
-                                                    
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                            <th colspan="4">
-                                                <div class="col-lg-12">
-                                                <!--inventario-->
-            <!--tabs-->
-        <?
-    $select = "SELECT * FROM CatTiposInventario ORDER BY tNombre DESC";
-           $rsTipos = mysql_query($select);
-           $tipos = array();
-           while($rTipo = mysql_fetch_array($rsTipos))
-           {
-               $tipos[] = array('eCodTipoInventario'=>$rTipo{'eCodTipoInventario'},'tNombre'=>$rTipo{'tNombre'});
-           }
-    ?>
-        <div class="card" id="inventario" style="display:none;">
-        <div class="custom-tab">
-
-											<nav>
-												<div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                    <?
-                                                    for($i=0;$i<sizeof($tipos);$i++)
-                                                    {
-                                                        ?>
-                                                    <a class="nav-item nav-link <?=($i==0) ? 'active' : ''?>" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tab" aria-controls="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>"
-													 aria-selected="true"><?=$tipos[$i]['tNombre']?></a>
-                                                    <?
-                                                    }
-                                                    ?>
+                                                    </select></div>
+                                                    <div class="col-md-4"><input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>"></div>
+                                                    <div class="col-md-4"><input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()"></div>
 												</div>
-											</nav>
-											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
-                                                <?
-                                                $b=1;
-                                                    for($i=0;$i<sizeof($tipos);$i++)
-                                                    {
-                                                        ?>
-                                                    <div class="tab-pane fade <?=($i==0) ? 'show active' : ''?>" id="custom-nav-<?=$tipos[$i]['eCodTipoInventario']?>" role="tabpanel" aria-labelledby="custom-nav-home-tab">
-													
-                                                        <!--tablas-->
-                                                        <div class="table-data__tool">
-                                    <div class="table-data__tool-left">   </div>
-                                    <div class="table-data__tool-right">
-                                       <input class="au-input" id='search<?=$i?>' placeholder='Búsqueda rápida...'> 
-                                        <script type="text/javascript">
-
-
-    $(window).load(function(){
-      
-var $rows<?=$i?> = $('#table<?=$i?> tbody tr');
-$('#search<?=$i?>').keyup(function() {
-    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
-    $rows<?=$i?>.show().filter(function() {
-        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(val);
-    }).hide();
-});
-
-    });
-
-</script>
+												<div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
+													<div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        
                                         
                                     </div>
+                                    <div class="table-data__tool-right">
+                                       <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
+                                    </div>
                                 </div>
-		<div class="table-responsive" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-top-campaign" id="table<?=$i?>">
+                                <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
+                                    <table class="table table-borderless table-striped table-earning" id="table">
                                         <thead>
+                                           
                                             <tr>
-			   <th width="95%">Inventario</th>
-				   
-				   <th></th>
-			   </tr>
+												<th>Tipo</th>
+												<th>Nombre</th>
+                                                <th>Marca</th>
+                                                <th>Descripci&oacute;n</th>
+                                                <th class="text-right">Precio Interno</th>
+                                                <th class="text-right">Precio P&uacute;blico</th>
+                                                <th class="text-right">Existencia</th>
+                                                <th class="text-right"></th>
+                                            </tr>
                                         </thead>
                                         <tbody>
 											<?
@@ -224,50 +175,44 @@ $('#search<?=$i?>').keyup(function() {
 															ci.*
 														FROM
 															CatInventario ci
-															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario".
-														" WHERE ci.eCodTipoInventario = ".$tipos[$i]['eCodTipoInventario'].
-														" ORDER BY ci.tNombre ASC";
+															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario
+														ORDER BY ci.tNombre ASC";
 											$rsPublicaciones = mysql_query($select);
-		   									
+                                            $b=1;
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr>
-												<td>
-												<?=utf8_decode($rPublicacion{'tipo'})?> | <?=($rPublicacion{'tNombre'})?> | <?=($rPublicacion{'tMarca'})?>
-												</td>
-												<td>
-													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" class="form-control" placeholder="10">
+                                                <td><?=utf8_decode($rPublicacion{'tipo'})?></td>
+												<td><?=($rPublicacion{'tNombre'})?></td>
+												<td><?=($rPublicacion{'tMarca'})?></td>
+												<td><?=($rPublicacion{'tDescripcion'})</td>
+												
+												<td><?=$rPublicacion{'ePiezas'}?></td>
+                                                <td class="text-right"> 
+													<input type="text" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
 												
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
                                                     <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>)" value="Agregar">
-                                                </td>
+												</td>
                                             </tr>
 											<?
-													$b++;
+                                                    $b++;
 											}
 											?>
                                         </tbody>
                                     </table>
                                 </div>
-                                                        <!--tablas-->
-                                                        
 												</div>
-                                                    <?
-                                                    }
-                                                    ?>
 												
 											</div>
 
 										</div>
-        </div>
-        <!--tabs-->
-          <!--inventario-->   
-                                                </div>
-                                            </th>
-                                            </tr>
+                                        
+                                    <table class="table table-borderless table-top-campaign" id="table">
+                                        <thead>
                                             <tr>
                                                 <th></th>
 												<th>Paquete</th>
