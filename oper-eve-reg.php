@@ -156,8 +156,7 @@ setTimeout(function(){
                                                         
                                                         
                                                     </div>
-												</div>
-												<div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
+                                                <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
 													<div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         
@@ -209,10 +208,13 @@ setTimeout(function(){
                                     </table>
                                 </div>
 												</div>
+												</div>
+												
 												
 											</div>
 
 										</div>
+                               
                                         
                                     <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
