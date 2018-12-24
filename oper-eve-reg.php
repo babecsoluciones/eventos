@@ -192,11 +192,11 @@ setTimeout(function(){
 
     $(window).load(function(){
       
-var $rows = $('#table<?=$i?> tbody tr');
+var $rows<?=$i?> = $('#table<?=$i?> tbody tr');
 $('#search<?=$i?>').keyup(function() {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
     
-    $rows.show().filter(function() {
+    $rows<?=$i?>.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
     }).hide();
