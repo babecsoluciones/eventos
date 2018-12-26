@@ -310,6 +310,16 @@ $('#search').keyup(function() {
         return !~text.indexOf(val);
     }).hide();
 });
+        
+        var $rows2 = $('#table2 tbody tr');
+$('#search2').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows2.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
 
     });
       

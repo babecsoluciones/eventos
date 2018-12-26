@@ -125,36 +125,52 @@ setTimeout(function(){
 											</nav>
 											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
 												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
-													<table>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="hidden" id="eCodServicio">
-                                                            <input type="hidden" id="dPrecioVenta">
-                                                            <select class="col-md-6 form-control" id="paquete" onchange="segmentar()">
-                                                            <option value="">Paquete...</option>
-                                                                <?
-                                                                $select = "SELECT * FROM CatServicios";
-                                                                $rsPaquetes = mysql_query($select);
-                                                                while($rPaquete = mysql_fetch_array($rsPaquetes))
-                                                                {
-                                                                    ?>
-                                                                <option value="<?=$rPaquete{'eCodServicio'}.'-'.$rPaquete{'dPrecioVenta'}?>"><?=$rPaquete{'tNombre'}?></option>
-                                                                <?
-                                                                }
-                                                                                                    ?>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="col-md-4 form-control" id="eCantidad" placeholder="Cantidad" value="<?=$rPublicacion{'eCantidad'}?>">
-                                                        </td>
-                                                        <td>
-                                                            <input type="button" class="btn btn-info" value="Agregar" onclick="nvaFila()">
-                                                        </td>
-                                                        </tr>
-                                                    </table>
-                                                    
-                                                        
-                                                        
+													<div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        
+                                        
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                       <input class="au-input" id='search2' placeholder='Búsqueda rápida...'> 
+                                    </div>
+                                </div>
+                                <div class="table-responsive " style="max-height:300px; overflow-y: scroll;">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table2">
+                                        <thead>
+                                           
+                                            <tr>
+												<th width="83%">Nombre</th>
+                                                <th width="10%"></th>
+                                                <th class="text-right"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+											<?
+											$select = "	SELECT 
+															* FROM CatServicios ORDER BY eCodServicio ASC";
+											$rsPublicaciones = mysql_query($select);
+                                            $b=1;
+											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											{
+												?>
+											<tr>
+												<td><?=($rPublicacion{'tNombre'})?></td>
+												<td class="text-right" align="right"> 
+													<input type="text" class="form-control" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
+                                                </td><td>
+                                                    <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodServicio'}?>">
+                                                    <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
+                                                    <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
+                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,1)" value="Agregar">
+												</td>
+                                            </tr>
+											<?
+                                                    $b++;
+											}
+											?>
+                                        </tbody>
+                                    </table>
+                                </div>    
                                                     </div>
                                                 <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
 													<div class="table-data__tool">
@@ -186,7 +202,7 @@ setTimeout(function(){
 															INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario
 														ORDER BY ci.tNombre ASC";
 											$rsPublicaciones = mysql_query($select);
-                                            $b=1;
+                                            
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
@@ -198,7 +214,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
-                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>)" value="Agregar">
+                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="Agregar">
 												</td>
                                             </tr>
 											<?
@@ -343,7 +359,7 @@ setTimeout(function(){
     	
     
     //tabla
-    function nvaFila(indice) {
+    function nvaFila(indice,eCodTipo) {
 		var codigo		=	!indice ? document.getElementById('eCodServicio')   :   document.getElementById('eCodServicio'+indice);
     	var cantidad	=	!indice ? document.getElementById('eCantidad')      :   document.getElementById('eCantidad'+indice);
         var paquete     =   !indice ? document.getElementById('paquete')        :   document.getElementById('paquete'+indice);
@@ -358,7 +374,7 @@ setTimeout(function(){
     var table = document.getElementById("paquetes");
     var row = table.insertRow(x);
     row.id="paq"+(x);
-    row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+(indice ? 2 : 1)+'"></td>';
+    row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+eCodTipo+'"></td>';
     row.innerHTML += '<td><input type="hidden" name="eCodServicio'+(x-2)+'" id="eCodServicio'+(x-2)+'" value="'+codigo.value+'">'+tPaquete+'</td>';
     row.innerHTML += '<td><input type="hidden" name="eCantidad'+(x-2)+'" id="eCantidad'+(x-2)+'" value="'+cantidad.value+'">'+cantidad.value+'</td>';
 	row.innerHTML += '<td id="dTotal'+(x-2)+'"><input type="hidden" id="totalServ'+(x-2)+'" value="'+total.toFixed(2)+'">$'+total.toFixed(2)+'</td>';
