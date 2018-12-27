@@ -134,13 +134,13 @@ setTimeout(function(){
                                        <input class="au-input" id='search2' placeholder='Búsqueda rápida...'> 
                                     </div>
                                 </div>
-                                <div class="table-responsive " style="max-height:300px; overflow-y: scroll;">
+                                <div style="max-height:300px; overflow-y: scroll;">
                                     <table class="table table-responsive table-borderless table-top-campaign" id="table2">
                                         <thead>
                                            
                                             <tr>
 												<th width="70%">Nombre</th>
-                                                <th width="25%"></th>
+                                                <th width="25%">Cantidad</th>
                                                 <th class="text-right" width="5%"></th>
                                             </tr>
                                         </thead>
@@ -184,13 +184,13 @@ setTimeout(function(){
                                        <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
                                     </div>
                                 </div>
-                                <div class="table-responsive " style="max-height:300px; overflow-y: scroll;">
+                                <div style="max-height:300px; overflow-y: scroll;">
                                     <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                            
                                             <tr>
 												<th width="70%">Nombre</th>
-                                                <th width="25%"></th>
+                                                <th width="25%">Cantidad</th>
                                                 <th class="text-right" width="5%"></th>
                                             </tr>
                                         </thead>
