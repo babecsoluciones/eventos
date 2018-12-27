@@ -141,7 +141,7 @@ setTimeout(function(){
                                             <tr>
 												<th width="80%">Nombre</th>
                                                 <th width="15%"></th>
-                                                <th class="text-right"></th>
+                                                <th class="text-right" width="5%"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,7 +161,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
-                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,1)" value="Agregar">
+                                                    <button class="btn btn-info" onclick="nvaFila(<?=$b?>,1)" ><i class="far fa-plus-square"></i></button>
 												</td>
                                             </tr>
 											<?
@@ -189,7 +189,7 @@ setTimeout(function(){
                                             <tr>
 												<th width="80%">Nombre</th>
                                                 <th width="15%"></th>
-                                                <th class="text-right"></th>
+                                                <th class="text-right" width="5%"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -214,7 +214,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
-                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="Agregar">
+                                                <button class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" ><i class="far fa-plus-square"></i></button>
 												</td>
                                             </tr>
 											<?
