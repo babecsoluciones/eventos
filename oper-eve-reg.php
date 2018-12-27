@@ -139,13 +139,15 @@ setTimeout(function(){
                                         <thead>
                                            
                                             <tr>
-												<th width="80%">Nombre</th>
-                                                <th width="15%"></th>
+												<th width="70%">Nombre</th>
+                                                <th width="25%"></th>
                                                 <th class="text-right" width="5%"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
 											<?
+    $opciones = '';
+                     for($i=1;$i<=10;$i++){$opciones.='<option value="'.$i.'">'.$i.'</option>';}
 											$select = "	SELECT 
 															* FROM CatServicios ORDER BY eCodServicio ASC";
 											$rsPublicaciones = mysql_query($select);
@@ -156,7 +158,7 @@ setTimeout(function(){
 											<tr>
 												<td><?=($rPublicacion{'tNombre'})?></td>
 												<td class="text-right" align="right"> 
-													<input type="text" class="form-control" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
+                                                    <select class="form-control" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" ><?=$opciones?></select>
                                                 </td><td>
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
@@ -187,8 +189,8 @@ setTimeout(function(){
                                         <thead>
                                            
                                             <tr>
-												<th width="80%">Nombre</th>
-                                                <th width="15%"></th>
+												<th width="70%">Nombre</th>
+                                                <th width="25%"></th>
                                                 <th class="text-right" width="5%"></th>
                                             </tr>
                                         </thead>
@@ -209,7 +211,7 @@ setTimeout(function(){
 											<tr>
 												<td><?=($rPublicacion{'tNombre'})?></td>
 												<td class="text-right" align="right"> 
-													<input type="text" class="form-control" size="4" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
+													<select class="form-control" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" ><?=$opciones?></select>
                                                 </td><td>
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
