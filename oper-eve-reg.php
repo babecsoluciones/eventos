@@ -163,7 +163,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
-                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="\uf0fe">
+                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,1)" value="+">
 												</td>
                                             </tr>
 											<?
@@ -216,7 +216,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
-                                                <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="\uf0fe">
+                                                <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="+">
 												</td>
                                             </tr>
 											<?

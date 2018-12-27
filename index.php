@@ -3,6 +3,9 @@ require_once("cnx/swgc-mysql.php");
 require_once("cls/cls-sistema.php");
 $clSistema = new clSis();
 session_start();
+
+date_default_timezone_set('America/America/Mexico_City');
+
 if(!$_SESSION['sessionAdmin'])
 {
 	echo '<script>window.location="login.php";</script>';
@@ -179,16 +182,20 @@ if(!$_SESSION['sessionAdmin'])
 {
     $eCodEvento = $_POST['eCodEventoTransaccion'];
     $dMonto = $_POST['dMonto'];
-    $fhFecha = "'".date('Y-m-d H:i')."'";
+    $fhFecha = "'".date('Y-m-d H:i:s')."'";
     $eCodTipoPago = $_POST['eCodTipoPago'];
     $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
     
         $insert = "INSERT INTO BitTransacciones (eCodUsuario,eCodEvento,fhFecha,dMonto,eCodTipoPago) VALUES ($eCodUsuario,$eCodEvento,$fhFecha,$dMonto,$eCodTipoPago)";
     mysql_query($insert);
         
-        $pf = fopen("log.txt","w");
-        fwrite($pf,$insert);
-        fclose($pf);
+       //$pf = fopen("log.txt","w");
+       //fwrite($pf,$insert);
+       //fclose($pf);
+        
+        $tDescripcion = "Se ha registrado una transaccion por ".number_format($dMonto,2)." en el evento ".sprintf("%07d",$eCodEvento);
+                $tDescripcion = "'".$tDescripcion."'";
+                mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
         
     mysql_query("UPDATE BitEventos SET eCodEstatus = 2 WHERE eCodEvento = ".$eCodEvento);
     ?>

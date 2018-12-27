@@ -7,10 +7,14 @@ session_start();
 if($_POST)
 {
 	$res = $clSistema->iniciarSesion();
-	if($res)
+	if($res['exito']==1)
 	{
 		echo '<script>window.location="index.php?tCodSeccion=inicio";</script>';
 	}
+    else
+    {
+        echo '<script language="javascript">alert("Error de inicio");</script>';
+    }
 }
 ?>
 <!DOCTYPE html>

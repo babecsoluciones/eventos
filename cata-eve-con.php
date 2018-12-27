@@ -8,7 +8,15 @@ $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
 if($_GET['eCodEvento'])
 {
     mysql_query("UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
+    
+        $fhFecha = "'".date('Y-m-d H:i:s')."'";
+        $tDescripcion = "Se ha ".(($_POST['eAccion']==4) ? 'CANCELADO' : 'FINALIZADO')." el evento ".sprintf("%07d",$eCodEvento);
+        $tDescripcion = "'".$tDescripcion."'";
+        $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
+        mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
+    
     echo '<script>window.location="?tCodSeccion=cata-eve-con";</script>';
+              
 }
 
 ?>

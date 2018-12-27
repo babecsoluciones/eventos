@@ -1,7 +1,7 @@
 <?php
 require_once("swgc-mysql.php");
 session_start();
-
+date_default_timezone_set('America/America/Mexico_City');
 
 class clSis
 {
@@ -389,6 +389,8 @@ class clSis
                             $tObservaciones)";
             
            
+            $fhFecha = "'".date('Y-m-d H:i:s')."'";
+            
             
             $rsEvento = mysql_query($query);
             if($rsEvento)
@@ -406,6 +408,11 @@ class clSis
                     mysql_query($insert);
                     
                 }
+                
+                $tDescripcion = "Se ha registrado el evento ".sprintf("%07d",$eCodEvento);
+                $tDescripcion = "'".$tDescripcion."'";
+                mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
+                
                 return true;
             }
             else
@@ -434,6 +441,9 @@ class clSis
                     mysql_query($insert);
                     
                 }
+                $tDescripcion = "Se ha modificado el evento ".sprintf("%07d",$eCodEvento);
+                $tDescripcion = "'".$tDescripcion."'";
+                mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
                 return true;
             }
             else
