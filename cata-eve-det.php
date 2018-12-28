@@ -110,7 +110,7 @@ setTimeout(function(){
                                         <thead>
                                             
                                             <tr>
-												<th width="75%">Paquete</th>
+												<th width="85%">Paquete</th>
                                                 <th>Cantidad</th>
                                                 <th>Precio</th>
                                             </tr>
@@ -138,7 +138,7 @@ setTimeout(function(){
                                                     <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
                                                     <?=$rPublicacion{'tNombre'}?>
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     <?=$rPublicacion{'eCantidad'}?>
                                                 </td>
 												<td>$<?=number_format($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'},2)?><input type="hidden" id="totalServ<?=$i?>" value="<?=($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'})?>"></td>
