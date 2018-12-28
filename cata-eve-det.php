@@ -110,7 +110,7 @@ setTimeout(function(){
                                         <thead>
                                             
                                             <tr>
-												<th>Paquete</th>
+												<th width="75%">Paquete</th>
                                                 <th>Cantidad</th>
                                                 <th>Precio</th>
                                             </tr>
