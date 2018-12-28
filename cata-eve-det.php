@@ -105,12 +105,11 @@ setTimeout(function(){
                                 </div>
                                 <div class="col-lg-12">
                                 
-                                    <div class="card-body card-block">
-                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
+                                    <div class="card card-body card-block">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table" width="100%">
                                         <thead>
                                             
                                             <tr>
-                                                <th></th>
 												<th>Paquete</th>
                                                 <th>Cantidad</th>
                                                 <th>Precio</th>
@@ -133,7 +132,6 @@ setTimeout(function(){
 											{
 												?>
 											<tr id="paq<?=$i?>">
-                                                <td></td>
                                                 <td>
                                                     <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
@@ -190,7 +188,7 @@ setTimeout(function(){
 								
 								<div class="col-lg-12">
                                 
-                                    <div class="card-body card-block">
+                                    <div class="card card-body card-block">
                                     <table class="table table-responsive table-borderless table-top-campaign">
                                         <thead>
                                             <tr>
