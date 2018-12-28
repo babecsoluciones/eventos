@@ -106,7 +106,7 @@ setTimeout(function(){
                                 <div class="col-lg-12">
                                 
                                     <div class="card-body card-block">
-                                    <table class="table table-borderless table-striped table-earning" id="table">
+                                    <table class="table table-responsive table-borderless table-top-campaign" id="table">
                                         <thead>
                                             
                                             <tr>
@@ -191,7 +191,7 @@ setTimeout(function(){
 								<div class="col-lg-12">
                                 
                                     <div class="card-body card-block">
-                                    <table class="table table-borderless table-striped table-earning">
+                                    <table class="table table-responsive table-borderless table-top-campaign">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
