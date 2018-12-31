@@ -132,11 +132,11 @@ setTimeout(function(){
 											{
 												?>
 											<tr id="paq<?=$i?>">
-                                                <td>
+                                                <td align="left">
+                                                    <?=$rPublicacion{'tNombre'}?>
                                                     <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
                                                     <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
-                                                    <?=$rPublicacion{'tNombre'}?>
                                                 </td>
                                                 <td align="center">
                                                     <?=$rPublicacion{'eCantidad'}?>
@@ -161,11 +161,11 @@ setTimeout(function(){
 												?>
 											<tr id="paq<?=$i?>">
                                                 <td></td>
-                                                <td>
+                                                <td align="left">
+                                                    <?=$rPublicacion{'tNombre'}?>
                                                     <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
                                                     <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
-                                                    <?=$rPublicacion{'tNombre'}?>
                                                 </td>
                                                 <td>
                                                     <?=$rPublicacion{'eCantidad'}?>
