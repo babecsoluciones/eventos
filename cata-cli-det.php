@@ -77,7 +77,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                                   <?=$rPublicacion{'Conceptos'}?> conceptos totales
                                                 </td>
                                                 <td align="center" valign="top">
-                                                    <?=date('d/m/Y',$rPublicacion{'fhFechaEvento'}?>
+                                                    <?=date('d/m/Y',strtotime($rPublicacion{'fhFechaEvento'}))?>
                                                 </td>
                                                 <td>
                                                     <a href="?tCodSeccion=cata-eve-det.pph?eCodEvento=<?=$rPublicacion{'eCodEvento'}?>" target="_blank" class="btn btn-info">Ver Detalles</a>
