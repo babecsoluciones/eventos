@@ -91,7 +91,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                                     <?=date('d/m/Y',strtotime($rPublicacion{'fhFechaEvento'}))?>
                                                 </td>
                                                 <td>
-                                                    <a href="?tCodSeccion=cata-eve-det.php?eCodEvento=<?=$rPublicacion{'eCodEvento'}?>" target="_blank" class="btn btn-info">Ver Detalles</a>
+                                                    <a href="?tCodSeccion=cata-eve-det?eCodEvento=<?=$rPublicacion{'eCodEvento'}?>" target="_blank" class="btn btn-info">Ver Detalles</a>
                                                 </td>
                                             </tr>
 											<?
