@@ -75,7 +75,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                         <tbody>
 											<?
                                             $i = 0;
-											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos, ce.tIcono FROM BitEventos be INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus WHERE be.eCodCliente = ".$_GET['eCodCliente'];
+											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos, ce.tIcono FROM BitEventos be INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus WHERE be.eCodCliente = ".$_GET['eCodCliente']." ORDER BY be.eCodEvento DESC";
 											$rsPublicaciones = mysql_query($select);
                                             
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
