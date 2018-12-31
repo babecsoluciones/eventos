@@ -160,7 +160,7 @@ setTimeout(function(){
 											{
 												?>
 											<tr id="paq<?=$i?>">
-                                                <td></td>
+                                                
                                                 <td align="left">
                                                     <?=$rPublicacion{'tNombre'}?>
                                                     <input type="hidden" name="eCodServicio<?=$i?>" id="eCodServicio<?=$i?>" value="<?=$rPublicacion{'eCodServicio'}?>">
