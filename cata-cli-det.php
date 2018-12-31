@@ -17,16 +17,18 @@ $rCliente = mysql_fetch_array($rsCliente);
 <div class="row">
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Detalles del Cliente</h2>
+                                <div class="col-md-6">
                                 <div class="form-group col-md-6">
                                     
                                     <label>Nombre(s)</label>
               <?=$rCliente{'tNombres'}?>
-                                    
-                                    <div class="form-group col-md-6">
-                                    
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group col-md-6">
                                     <label>Apellido(s)</label>
               <?=$rCliente{'tApellidos'}?>
-                                    
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>E-mail</label>
