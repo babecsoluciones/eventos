@@ -30,25 +30,31 @@ $rCliente = mysql_fetch_array($rsCliente);
               <?=$rCliente{'tApellidos'}?>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
                                 <div class="form-group">
                                     <label>E-mail</label>
               <?=$rCliente{'tCorreo'}?>
                                 </div>
+                                    </div>
+                                <div class="col-md-6">
                                 <div class="form-group">
-                                    <div class="col-md-6">
+                                    
                                     <label>Teléfono Fijo</label>
               <?=$rCliente{'tTelefonoFijo'}?>
                                     </div>
+                                </div>
                                     <div class="col-md-6">
+                                        <div class="form-group">
                                     <label>Teléfono Móvil</label>
               <?=$rCliente{'tTelefonoMovil'}?>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Comentarios</label>
               <?=$rCliente{'tComentarios'}?>
                                 </div>
-                                    
+                                    </div>
                             </div>
     
     
@@ -59,6 +65,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                         <thead>
                                             
                                             <tr>
+                                                <th></th>
                                                 <th>Evento</th>
 												<th># Conceptos</th>
                                                 <th>Fecha del evento</th>
@@ -68,13 +75,14 @@ $rCliente = mysql_fetch_array($rsCliente);
                                         <tbody>
 											<?
                                             $i = 0;
-											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos FROM BitEventos be WHERE be.eCodCliente = ".$_GET['eCodCliente'];
+											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos, ce.tIcono FROM BitEventos be INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus WHERE be.eCodCliente = ".$_GET['eCodCliente'];
 											$rsPublicaciones = mysql_query($select);
                                             
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr>
+                                                <td align="center"><i class="<?=$rPublicacion{'tIcono'}?>"></i></td>
                                                 <td valign="top"><?=sprintf("%07d",$rPublicacion{'eCodEvento'})?></td>
                                                 <td>
                                                   <?=$rPublicacion{'Conceptos'}?> conceptos totales
