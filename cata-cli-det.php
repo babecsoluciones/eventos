@@ -18,14 +18,14 @@ $rCliente = mysql_fetch_array($rsCliente);
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Detalles del Cliente</h2>
                                 <div class="col-md-6">
-                                <div class="form-group col-md-6">
+                                <div class="form-group">
                                     
                                     <label>Nombre(s)</label>
               <?=$rCliente{'tNombres'}?>
                                     </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                     <label>Apellido(s)</label>
               <?=$rCliente{'tApellidos'}?>
                                     </div>
