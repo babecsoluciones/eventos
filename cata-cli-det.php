@@ -65,7 +65,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                         <tbody>
 											<?
                                             $i = 0;
-											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosRelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos FROM BitEventos be WHERE be.eCodCliente = ".$_GET['eCodCliente'];
+											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos FROM BitEventos be WHERE be.eCodCliente = ".$_GET['eCodCliente'];
 											$rsPublicaciones = mysql_query($select);
                                             
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
