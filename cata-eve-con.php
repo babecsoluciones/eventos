@@ -81,6 +81,9 @@ function finalizar(codigo)
 
 while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
+    $edicion = ($clSistema->validarEnlace('oper-eve-reg')) ? '' : 'style="display:none;" disabled';
+    $detalle = ($clSistema->validarEnlace('cata-eve-det')) ? '' : 'style="display:none;" disabled';
+    $bloqueo = $bAll ? '' : 'style="display:none;" disabled';
 												?>
 											<tr>
                                                 <td align="center"><i class="<?=$rPublicacion{'tIcono'}?>"></i></td>
@@ -89,10 +92,10 @@ while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
                                                 <td class="text-right"> 
                                                     <button onclick="agregarTransaccion(<?=$rPublicacion{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i></button>
-													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fa fa-eye"></i></button> 
-                                                    <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="far fa-trash-alt"></i></button> 
-													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'"><i class="fa fa-pencil-square-o"></i></button>
-                                                    <button onclick="finalizar(<?=$rPublicacion{'eCodEvento'}?>)"><i class="fas fa-check-double"></i></button>
+													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)" <?=$detalle?>><i class="fa fa-eye"></i></button> 
+													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'" <?=$edicion?>><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)" <?=$bloqueo?>><i class="far fa-trash-alt"></i></button>
+                                                    <button onclick="finalizar(<?=$rPublicacion{'eCodEvento'}?>)" <?=$bloqueo?>><i class="fas fa-check-double"></i></button>
 												</td>
                                             </tr>
 											<?
