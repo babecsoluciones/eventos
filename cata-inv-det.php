@@ -48,7 +48,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                         </tr>
 										<tr>
                                             <td>Imagen</td>
-                                            <td colspan="3"><img src="<?=base64_decode($rCliente{'tImagen'})?>" style="max-width:250px"></td>
+                                            <td colspan="3"><img src="<?=$rCliente{'tImagen'}?>" style="max-width:250px"></td>
 											
                                         </tr>
                                         
