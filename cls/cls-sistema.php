@@ -309,7 +309,7 @@ class clSis
         $dPrecioInterno = $_POST['dPrecioInterno'];
         $dPrecioVenta = $_POST['dPrecioVenta'];
         $ePiezas = $_POST['ePiezas'];
-        $tImagen = "'".$this->base64toImage($_POST['tImagen'])."'";
+        $tImagen = "'".$this->base64toImage(base64_encode($_POST['tImagen']))."'";
         
         if(!$eCodInventario)
         {
@@ -458,7 +458,7 @@ class clSis
     {
         $fname = "inv/".uniqid().'.jpg';
         //$img = filter_input(INPUT_POST, "image");
-        $img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', $data);
+        $img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', base64_decode($data));
         $img = str_replace(' ', '+', $img);
         $img = base64_decode($img);
         
