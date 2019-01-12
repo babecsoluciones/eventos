@@ -458,7 +458,7 @@ class clSis
     {
         $fname = "inv/".uniqid().'.jpg';
         //$img = filter_input(INPUT_POST, "image");
-        $img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', $img);
+        $img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', $data);
         $img = str_replace(' ', '+', $img);
         $img = base64_decode($img);
         
