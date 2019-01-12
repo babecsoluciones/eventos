@@ -457,12 +457,19 @@ class clSis
     private function base64toImage($data)
     {
         $fname = "inv/".uniqid().'.jpg';
+        $data1 = explode(',', base64_decode($data));
+        $content = base64_decode($data1[1]);
         //$img = filter_input(INPUT_POST, "image");
-        $img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', base64_decode($data));
-        $img = str_replace(' ', '+', $img);
-        $img = base64_decode($img);
+        //$img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', base64_decode($data));
+        //$img = str_replace(' ', '+', $img);
+        //$img = base64_decode($img);
         
-        file_put_contents($fname, $img);
+        //file_put_contents($fname, $img);
+        
+        $pf = fopen($fname,"w");
+        fwrite($pf,$content);
+        fclose($pf);
+        
         return $fname;
     }
 }
