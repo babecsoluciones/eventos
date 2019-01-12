@@ -24,22 +24,25 @@ $rCliente = mysql_fetch_array($rsCliente);
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Detalles del Producto</h2>
                                 
-                                    <table class="table">
+                                    <table class="table table-responsive">
                                         <tr>
                                             <td>Nombre</td>
                                             <td><?=$rCliente{'tNombre'}?></td>
+                                        </tr><tr>
 											<td>Marca</td>
                                             <td><?=$rCliente{'tMarca'}?></td>
 										</tr>
 										<tr>
 											<td>Tipo</td>
                                             <td><?=$rCliente{'tipo'}?></td>
+                                            </tr><tr>
                                             <td>Descripci&oacute;n</td>
                                             <td><?=$rCliente{'tDescripcion'}?></td>
                                         </tr>
                                         <tr>
                                             <td>Precio Interno</td>
                                             <td>$<?=$rCliente{'dPrecioInterno'}?></td>
+                                            </tr><tr>
 											<td>Precio Venta</td>
                                             <td>$<?=$rCliente{'dPrecioVenta'}?></td>
                                         </tr>

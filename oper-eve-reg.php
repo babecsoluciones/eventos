@@ -158,7 +158,7 @@ setTimeout(function(){
 											<tr>
 												<td><?=($rPublicacion{'tNombre'})?></td>
 												<td class="text-right" align="right"> 
-                                                    <select class="form-control" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" ><?=$opciones?></select>
+                                                   <input type="text" class="form-control" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
                                                 </td><td>
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodServicio'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
@@ -211,7 +211,7 @@ setTimeout(function(){
 											<tr>
 												<td><?=($rPublicacion{'tNombre'})?></td>
 												<td class="text-right" align="right"> 
-													<select class="form-control" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" ><?=$opciones?></select>
+													<input type="text" class="form-control" name="eCantidad<?=$b?>" id="eCantidad<?=$b?>" placeholder="10">
                                                 </td><td>
                                                     <input type="hidden" id="eCodServicio<?=$b?>" name="eCodServicio<?=$b?>" value="<?=$rPublicacion{'eCodInventario'}?>">
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">

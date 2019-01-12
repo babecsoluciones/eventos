@@ -42,8 +42,8 @@ function eliminar(eCodInventario)
                                        <input class="au-input" id='search' placeholder='Búsqueda rápida...'> 
                                     </div>
                                 </div>
-                                <div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table class="table table-borderless table-striped table-earning" id="table">
+                                <div class="table table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
+                                    <table class="table table-responsive table-top-campaign" id="table">
                                         <thead>
                                            
                                             <tr>
@@ -74,7 +74,7 @@ function eliminar(eCodInventario)
                                                 <td><?=utf8_decode($rPublicacion{'tipo'})?></td>
 												<td><?=($rPublicacion{'tNombre'})?></td>
 												<td><?=($rPublicacion{'tMarca'})?></td>
-												<td><?=substr(utf8_decode($rPublicacion{'tDescripcion'}),0,50)?>...</td>
+												<td><?=substr($rPublicacion{'tDescripcion'},0,50)?>...</td>
 												<td>$<?=number_format($rPublicacion{'dPrecioInterno'},2)?></td>
 												<td>$<?=number_format($rPublicacion{'dPrecioVenta'},2)?></td>
 												<td><?=$rPublicacion{'ePiezas'}?></td>

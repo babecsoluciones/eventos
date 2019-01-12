@@ -45,9 +45,11 @@ $rsEventos = mysql_query($select);
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
                                             <i class="zmdi zmdi-account-calendar"></i>Eventos del d&iacute;a</h3>
-                                        <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-eve-reg'" alt="Nuevo Evento">
-                                            <i class="zmdi zmdi-plus"></i>
-                                        </button>
+                                         <? if($clSistema->validarEnlace('oper-eve-reg')) { ?>
+	                                           <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-eve-reg'" alt="Nuevo Evento"><i class="zmdi zmdi-plus"></i></button>
+                                           <? } ?>
+                                       
+                                           
                                     </div>
                                     <div class="au-task js-list-load">
                                         <div class="au-task__title">

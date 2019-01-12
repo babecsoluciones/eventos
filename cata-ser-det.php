@@ -18,7 +18,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Detalles del Paquete</h2>
                                 
-                                    <table class="table">
+                                    <table class="table table-responsive table-top-campaign">
                                         <tr>
                                             <td>Nombre</td>
                                             <td><?=$rCliente{'tNombre'}?></td>
@@ -73,7 +73,7 @@ $rCliente = mysql_fetch_array($rsCliente);
                                                         <!--tablas-->
                                                         
 		<div class="table-responsive table--no-card m-b-40" style="max-height:500px; overflow-y: scroll;">
-                                    <table width="100%" class="table table-borderless table-striped table-earning">
+                                    <table width="100%" class="table table-responsive table-top-campaign">
 		   <thead>
 			   <tr>
 				   

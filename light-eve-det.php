@@ -187,7 +187,8 @@ $rsClientes = mysql_query($select);
 															cs.tNombre,
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
-                                                            rep.eCantidad
+                                                            rep.eCantidad,
+                                                            cs.eCodServicio
                                                         FROM CatServicios cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio and rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
@@ -198,7 +199,17 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr class="item">
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?>
+                    <?=utf8_decode($rPublicacion{'tNombre'})?><br><i>
+                    <?
+                        $select = "SELECT ci.tNombre, rsi.ePiezas FROM CatInventario ci INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario WHERE rsi.eCodServicio = ".$rPublicacion{'eCodServicio'};
+                                                $rsDetalle = mysql_query($select);
+                                                while($rDetalle = mysql_fetch_array($rsDetalle))
+                                                {
+                                                    ?>
+                    ·x<?=$rDetalle{'ePiezas'}?> - <?=utf8_decode($rDetalle{'tNombre'})?>, 
+                    <?
+                                                }
+                    ?></i>
                 </td>
                 
                 <td>
