@@ -20,7 +20,8 @@ $select = "SELECT be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosClient
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario
                                                         WHERE
                                                         be.fhFechaEvento between $fhFechaInicio AND $fhFechaTermino".
-												($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
+                                                        " AND be.eCodEstatus<>4".
+												        ($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
 														" ORDER BY be.fhFechaEvento DESC";
 														
 $rsEventos = mysql_query($select);

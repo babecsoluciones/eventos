@@ -71,7 +71,8 @@ function finalizar(codigo)
 															su.tNombre as promotor, ce.tIcono FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
 															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario".
-												($bAll ? "" : " WHERE cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
+                                                " WHERE be.eCodEstatus<>4 ".
+												($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
 														" ORDER BY be.fhFechaEvento DESC";
 											
 											
