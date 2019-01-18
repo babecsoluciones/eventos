@@ -380,7 +380,7 @@ setTimeout(function(){
         {
             var total = dPrecio.value*cantidad.value;
             
-		var x = document.getElementById("eFilas").rows.length;
+		var x = document.getElementById("paquetes").rows.length;
             var nIndice = document.getElementById('eFilas').value;
     var table = document.getElementById("paquetes");
     var row = table.insertRow(x);
