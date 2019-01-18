@@ -164,7 +164,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
                                                     <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,1)" value="+">
-                                                    <button class="btn btn-info" onclick="nvaFila(<?=$b?>,1,1)" ><i class="fas fa-gift"></i></button>
+                                                    <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,1,1)" value="C">
 												</td>
                                             </tr>
 											<?
@@ -218,7 +218,8 @@ setTimeout(function(){
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
                                                 <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="+">
-                                                <button class="btn btn-info" onclick="nvaFila(<?=$b?>,2,1)" ><i class="fas fa-gift"></i></button>
+                                                <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2,1)" value="C">
+                                                
 												</td>
                                             </tr>
 											<?
