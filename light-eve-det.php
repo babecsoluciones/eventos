@@ -188,7 +188,8 @@ $rsClientes = mysql_query($select);
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
                                                             rep.eCantidad,
-                                                            cs.eCodServicio
+                                                            cs.eCodServicio,
+                                                            rep.dMonto
                                                         FROM CatServicios cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio and rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
@@ -213,7 +214,7 @@ $rsClientes = mysql_query($select);
                 </td>
                 
                 <td>
-                    $<?=number_format($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'},2)?>
+                    $<?=number_format($rPublicacion{'dMonto'},2)?>
                 </td>
             </tr>
 											<?
@@ -224,7 +225,8 @@ $rsClientes = mysql_query($select);
 															cs.tNombre,
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
-                                                            rep.eCantidad
+                                                            rep.eCantidad,
+                                                            rep.dMonto
                                                         FROM CatInventario cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
@@ -239,12 +241,12 @@ $rsClientes = mysql_query($select);
                 </td>
                 
                 <td>
-                    $<?=number_format($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'},2)?>
+                    $<?=number_format($rPublicacion{'dMonto'},2)?>
                 </td>
             </tr>
 											<?
 											$i++;
-                                                $dTotalEvento = $dTotalEvento + ($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'});
+                                                $dTotalEvento = $dTotalEvento + ($rPublicacion{'dMonto'});
 											}
 											?>
             

@@ -164,6 +164,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
                                                     <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,1)" value="+">
+                                                    <button class="btn btn-info" onclick="nvaFila(<?=$b?>,1,1)" ><i class="fas fa-gift"></i></button>
 												</td>
                                             </tr>
 											<?
@@ -217,6 +218,7 @@ setTimeout(function(){
                                                     <input type="hidden" id="tPaquete<?=$b?>" name="tPaquete<?=$b?>" value="<?=$rPublicacion{'tNombre'}?>">
                                                     <input type="hidden" id="dPrecioVenta<?=$b?>" name="dPrecioVenta<?=$b?>" value="<?=$rPublicacion{'dPrecioVenta'}?>">
                                                 <input type="button" class="btn btn-info" onclick="nvaFila(<?=$b?>,2)" value="+">
+                                                <button class="btn btn-info" onclick="nvaFila(<?=$b?>,2,1)" ><i class="fas fa-gift"></i></button>
 												</td>
                                             </tr>
 											<?
@@ -252,7 +254,8 @@ setTimeout(function(){
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
                                                             rep.eCantidad,
-                                                            rep.eCodTipo
+                                                            rep.eCodTipo,
+                                                            rep.dMonto
                                                         FROM CatServicios cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio AND rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
@@ -268,6 +271,7 @@ setTimeout(function(){
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
                                                     <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
                                                     <input type="hidden" name="totalServ<?=$i?>" id="totalServ<?=$i?>" value="<?=($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'})?>">
+                                                    <input type="hidden" name="dMonto<?=$i?>" id="dMonto<?=$i?>" value="<?=($rPublicacion{'dMonto'})?>">
                                                     <?=$rPublicacion{'tNombre'}?>
                                                 </td>
                                                 <td>
@@ -283,7 +287,8 @@ setTimeout(function(){
                                                             cs.dPrecioVenta,
                                                             rep.eCodServicio,
                                                             rep.eCantidad,
-                                                            rep.eCodTipo
+                                                            rep.eCodTipo,
+                                                            rep.dMonto
                                                         FROM CatInventario cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
@@ -299,6 +304,7 @@ setTimeout(function(){
                                                     <input type="hidden" name="eCantidad<?=$i?>" id="eCantidad<?=$i?>" value="<?=$rPublicacion{'eCantidad'}?>">
                                                     <input type="hidden" name="eCodTipo<?=$i?>" id="eCodTipo<?=$i?>" value="<?=$rPublicacion{'eCodTipo'}?>">
                                                     <input type="hidden" name="totalServ<?=$i?>" id="totalServ<?=$i?>" value="<?=($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'})?>">
+                                                    <input type="hidden" name="dMonto<?=$i?>" id="dMonto<?=$i?>" value="<?=($rPublicacion{'dMonto'})?>">
                                                     <?=$rPublicacion{'tNombre'}?>
                                                 </td>
                                                 <td>
@@ -361,7 +367,7 @@ setTimeout(function(){
     	
     
     //tabla
-    function nvaFila(indice,eCodTipo) {
+    function nvaFila(indice,eCodTipo,bCortesia) {
 		var codigo		=	!indice ? document.getElementById('eCodServicio')   :   document.getElementById('eCodServicio'+indice);
     	var cantidad	=	!indice ? document.getElementById('eCantidad')      :   document.getElementById('eCantidad'+indice);
         var paquete     =   !indice ? document.getElementById('paquete')        :   document.getElementById('paquete'+indice);
@@ -379,7 +385,7 @@ setTimeout(function(){
     row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+eCodTipo+'"></td>';
     row.innerHTML += '<td><input type="hidden" name="eCodServicio'+(x-2)+'" id="eCodServicio'+(x-2)+'" value="'+codigo.value+'">'+tPaquete+'</td>';
     row.innerHTML += '<td><input type="hidden" name="eCantidad'+(x-2)+'" id="eCantidad'+(x-2)+'" value="'+cantidad.value+'">'+cantidad.value+'</td>';
-	row.innerHTML += '<td id="dTotal'+(x-2)+'"><input type="hidden" id="totalServ'+(x-2)+'" value="'+total.toFixed(2)+'">$'+total.toFixed(2)+'</td>';
+	row.innerHTML += '<td id="dTotal'+(x-2)+'"><input type="hidden" id="dMonto'+(x-2)+'" name="dMonto'+(x-2)+'" value="'+((!bCortesia) ? total.toFixed(2) : 0)+'"><input type="hidden" id="totalServ'+(x-2)+'" value="'+((!bCortesia) ? total.toFixed(2) : 0)+'">$'+((!bCortesia) ? total.toFixed(2) : 0)+'</td>';
    
     calcular();
             
