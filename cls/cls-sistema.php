@@ -404,7 +404,7 @@ class clSis
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
                     $eCodTipo = $_POST['eCodTipo'.$indice];
-                    $dMonto = $_POST['dMonto'.$indice];
+                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : $_POST['totalServ'.$indice];
                     $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo,$dMonto)";
                     mysql_query($insert);
                     
@@ -438,7 +438,8 @@ class clSis
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
                     $eCodTipo = $_POST['eCodTipo'.$indice];
-                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo)";
+                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : $_POST['totalServ'.$indice];
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo, $dMonto)";
                     mysql_query($insert);
                     
                 }

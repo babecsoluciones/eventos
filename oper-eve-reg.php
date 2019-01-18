@@ -348,6 +348,7 @@ setTimeout(function(){
                                 </div>
                                 
                             </div>
+        <input type="hidden" name="eFilas" id="eFilas" value="<?=$i?>">
     </form>
     </div>
                         </div>
@@ -379,15 +380,16 @@ setTimeout(function(){
         {
             var total = dPrecio.value*cantidad.value;
             
-		var x = document.getElementById("paquetes").rows.length;
+		var x = document.getElementById("eFilas").rows.length;
+            var nIndice = document.getElementById('eFilas').value;
     var table = document.getElementById("paquetes");
     var row = table.insertRow(x);
     row.id="paq"+(x);
-    row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+(x-2)+')"></i><input type="hidden" name="eCodTipo'+(x-2)+'" id="eCodTipo'+(x-2)+'" value="'+eCodTipo+'"></td>';
-    row.innerHTML += '<td><input type="hidden" name="eCodServicio'+(x-2)+'" id="eCodServicio'+(x-2)+'" value="'+codigo.value+'">'+tPaquete+'</td>';
-    row.innerHTML += '<td><input type="hidden" name="eCantidad'+(x-2)+'" id="eCantidad'+(x-2)+'" value="'+cantidad.value+'">'+cantidad.value+'</td>';
-	row.innerHTML += '<td id="dTotal'+(x-2)+'"><input type="hidden" id="dMonto'+(x-2)+'" name="dMonto'+(x-2)+'" value="'+((!bCortesia) ? total.toFixed(2) : 0)+'"><input type="hidden" id="totalServ'+(x-2)+'" value="'+((!bCortesia) ? total.toFixed(2) : 0)+'">$'+((!bCortesia) ? total.toFixed(2) : 0)+'</td>';
-   
+    row.innerHTML = '<td><i class="far fa-trash-alt" onclick="deleteRow('+nIndice+')"></i><input type="hidden" name="eCodTipo'+nIndice+'" id="eCodTipo'+nIndice+'" value="'+eCodTipo+'"></td>';
+    row.innerHTML += '<td><input type="hidden" name="eCodServicio'+nIndice+'" id="eCodServicio'+nIndice+'" value="'+codigo.value+'">'+tPaquete+'</td>';
+    row.innerHTML += '<td><input type="hidden" name="eCantidad'+nIndice+'" id="eCantidad'+nIndice+'" value="'+cantidad.value+'">'+cantidad.value+'</td>';
+	row.innerHTML += '<td id="dTotal'+nIndice+'"><input type="hidden" id="dMonto'+nIndice+'" name="dMonto'+nIndice+'" value="'+((!bCortesia) ? total.toFixed(2) : 0)+'"><input type="hidden" id="totalServ'+nIndice+'" value="'+((!bCortesia) ? total.toFixed(2) : 0)+'">$'+((!bCortesia) ? total.toFixed(2) : 0)+'</td>';
+    document.getElementById('eFilas').value = nIndice+1;
     calcular();
             
     }
