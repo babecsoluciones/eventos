@@ -40,6 +40,7 @@ function exportar()
                                         <thead>
                                             
                                             <tr>
+                                                <th>C&oacute;digo</th>
 												<th>E</th>
 												<th></th>
                                                 <th>Nombre</th>
@@ -48,14 +49,13 @@ function exportar()
                                                 <th class="text-right">Tel&eacute;fono</th>
 												<th class="text-right">Fecha de registro</th>
 												<th class="text-right">Promotor</th>
-                                                <th class="text-right"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
 											<?
 											$select = "	SELECT 
 															cc.*, 
-															ce.tNombre as estatus,
+															ce.tIcono as estatus,
 															su.tNombre as promotor
 														FROM
 															CatClientes cc
@@ -66,9 +66,21 @@ function exportar()
 											$rsPublicaciones = mysql_query($select);
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
+                                                
+                                                $menuEmergente = '<div class="dropdown">
+                                                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            '.sprintf("%07d",$rPublicacion{'eCodCliente'}).'
+                                                                            </button>
+                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-cli-det&eCodCliente='.$rPublicacion{'eCodCliente'}.'"><i class="fa fa-eye"></i> Detalles</a>
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-cli-reg&eCodCliente='.$rPublicacion{'eCodCliente'}.'"><i class="fa fa-pencil-square-o"></i> Editar</a>
+                                                                        </div>
+                                                                   </div>';
+                                                
 												?>
 											<tr>
-                                                <td><?=substr(utf8_decode(strtoupper($rPublicacion{'estatus'})),0,2)?></td>
+                                                <td><?=$menuEmergente?></td>
+                                                <td><i class="<?=$rPublicacion{'estatus'})),0,2)?>"></i></td>
                                                 <td><?=utf8_decode($rPublicacion{'tTitulo'})?></td>
 												<td><?=utf8_decode($rPublicacion{'tNombres'})?></td>
 												<td><?=utf8_decode($rPublicacion{'tApellidos'})?></td>
@@ -76,10 +88,6 @@ function exportar()
 												<td><?=utf8_decode($rPublicacion{'tTelefonoFijo'})?></td>
                                                 <td><?=date('d/m/Y',strtotime($rPublicacion{'fhFechaCreacion'}))?></td>
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
-                                                <td class="text-right"> 
-													<button onclick="detalles(<?=$rPublicacion{'eCodCliente'}?>)"><i class="fa fa-eye"></i></button> 
-													<button onclick="window.location='?tCodSeccion=cata-cli-reg&eCodCliente=<?=$rPublicacion{'eCodCliente'}?>'"><i class="fa fa-pencil-square-o"></i></button>
-												</td>
                                             </tr>
 											<?
 											}
