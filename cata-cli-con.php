@@ -80,7 +80,7 @@ function exportar()
 												?>
 											<tr>
                                                 <td><?=$menuEmergente?></td>
-                                                <td><i class="<?=$rPublicacion{'estatus'})),0,2)?>"></i></td>
+                                                <td><i class="<?=$rPublicacion{'estatus'}?>"></i></td>
                                                 <td><?=utf8_decode($rPublicacion{'tTitulo'})?></td>
 												<td><?=utf8_decode($rPublicacion{'tNombres'})?></td>
 												<td><?=utf8_decode($rPublicacion{'tApellidos'})?></td>
