@@ -9,7 +9,7 @@ if($_POST)
 	$res = $clSistema->iniciarSesion();
 	if($res['exito']==1 && $_SESSION['sessionAdmin'][0]['eCodUsuario']>0)
 	{
-		echo '<script>window.location="index.php?tCodSeccion=inicio";</script>';
+		echo '<script>window.location="index.php?tCodSeccion='.$res['seccion'].'";</script>';
 	}
     else
     {

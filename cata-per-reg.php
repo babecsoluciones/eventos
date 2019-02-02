@@ -13,6 +13,10 @@ if($_POST)
         $rsNuevo = mysql_query($insert);
         $eCodPerfil = mysqli_insert_id();
     }
+    
+    mysql_query("DELETE FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = $eCodPerfil");
+    mysql_query("INSERT INTO SisSeccionesPerfilesInicio (eCodPerfil, tCodSeccion) VALUES ($eCodPerfil,'".$_POST['tCodSeccionInicio']."')");
+    
 	mysql_query("DELETE FROM SisSeccionesPerfiles WHERE eCodPerfil = $eCodPerfil");
 	foreach($_POST['tCodSeccion'] as $key => $tCodSeccion)
 	{
@@ -49,6 +53,21 @@ if($_POST)
 													?>
 												<input type="hidden" name="eCodPerfil" id="eCodPerfil" value="<?=$_GET['eCodPerfil']?>">
 												<input type="text" class="form-control" name="tNombre" id="tNombre" value="<?=$rPerfil['tNombre']?>" <?=$_GET['eCodPerfil'] ? 'readonly' : ''?>>
+											</td>
+										</tr>
+                                        <tr>
+											<td>Seccion de Inicio</td>
+											<td><select name="tCodSeccionInicio" id="tCodSeccionInicio">
+													<?
+														$select = "SELECT * FROM SisSecciones WHERE tCodPadre = 'Inicio' ORDER BY ss.ePosicion ASC";
+	  													$rsPerfiles = mysql_query($select);
+	  													while($rPerfil = mysql_fetch_array($rsPerfiles))
+                                                        {
+                                                            $rSeccion = mysql_fetch_array(mysql_query("SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".($_GET{'eCodPerfil'} ? $_GET{'eCodPerfil'} : 1)));
+                                                            ?><option value="<?=$rPerfil{'tCodSeccion'}?>" <?=($rPerfil{'tCodSeccion'}==$rSeccion{'tCodSeccion'}) ? 'selected' : ''?>><?=$rPerfil{'tTitulo'}?></option><?
+                                                        }
+													?>
+												</select>
 											</td>
 										</tr>
                                     </table>

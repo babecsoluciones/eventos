@@ -1,6 +1,7 @@
 <?php
 require_once("cnx/swgc-mysql.php");
 require_once("cls/cls-sistema.php");
+require_once("lstTiposDocumentos.php");
 $clSistema = new clSis();
 session_start();
 
@@ -14,17 +15,7 @@ $fhFechaConsulta = $_POST['fhFechaConsulta'] ? date('Y-m-d',strtotime("+1 month"
 $fhFechaInicio = "'".$fhFechaInicio."'";
 $fhFechaTermino = "'".$fhFechaTermino."'";
 
-$select = "SELECT be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosCliente,
-															su.tNombre as promotor, ce.tNombre Estatus FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
-															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
-														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario
-                                                        WHERE
-                                                        be.fhFechaEvento between $fhFechaInicio AND $fhFechaTermino".
-                                                        " AND be.eCodEstatus<>4".
-												        ($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
-														" ORDER BY be.fhFechaEvento DESC";
-														
-$rsEventos = mysql_query($select);
+
 ?>
 
 <div class="row">
@@ -41,11 +32,30 @@ $rsEventos = mysql_query($select);
 <!--calendario-->
 <!--Listado de eventos de ese día-->
 <div class="col-lg-8">
+    <?
+    for($i=0;$i<sizeof($lstTiposDocumentos);$i++)
+    {
+    
+    $eCodTipoDocumento =   $lstTiposDocumentos[$i]['eCodTipoDocumento'];  
+    $tNombre =  $lstTiposDocumentos[$i]['tNombre'];    
+    $select = "SELECT be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosCliente,
+															su.tNombre as promotor, ce.tNombre Estatus FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
+															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
+														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario
+                                                        WHERE
+                                                        be.fhFechaEvento between $fhFechaInicio AND $fhFechaTermino".
+                                                        " AND be.eCodEstatus<>4".
+                                                        " AND be.eCodTipoDocumento=$eCodTipoDocumento".
+												        ($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
+														" ORDER BY be.fhFechaEvento DESC";
+														
+$rsEventos = mysql_query($select);
+    ?>
                                 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
                                     <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
-                                            <i class="zmdi zmdi-account-calendar"></i>Eventos del d&iacute;a</h3>
+                                            <i class="zmdi zmdi-account-calendar"></i><?=$tNombre?> del d&iacute;a</h3>
                                          <? if($clSistema->validarEnlace('oper-eve-reg')) { ?>
 	                                           <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-eve-reg'" alt="Nuevo Evento"><i class="zmdi zmdi-plus"></i></button>
                                            <? } ?>
@@ -84,6 +94,9 @@ $rsEventos = mysql_query($select);
                                         </div>
                                     </div>
                                 </div>
+    <?
+    }
+    ?>
                             </div>   
 <!--Listado de eventos de ese día-->
 
