@@ -21,7 +21,8 @@ class clSis
 		if($rsUsuario)
 		{
 			$_SESSION['sessionAdmin'] = array($rUsuario);
-			return array('exito'=>1);
+            $rInicio = mysql_fetch_array(mysql_query("SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".$rUsuario{'eCodPerfil'}));
+			return array('exito'=>1,'seccion'=>$rInicio{'tCodSeccion'});
 		}
 		else
 		{
@@ -395,7 +396,7 @@ class clSis
             $rsEvento = mysql_query($query);
             if($rsEvento)
             {
-                $buscar = mysql_fetch_array(mysql_query("SELECT TOP 1 eCodEvento FROM BitEventos WHERE eCodCliente = $eCodCliente AND eCodUsuario = $eCodUsuario ORDER BY eCodEvento DESC"));
+                $buscar = mysql_fetch_array(mysql_query("SELECT MAX(eCodEvento) as eCodEvento FROM BitEventos WHERE eCodCliente = $eCodCliente AND eCodUsuario = $eCodUsuario ORDER BY eCodEvento DESC"));
                 $eCodEvento = $buscar['eCodEvento'];
                 
                 foreach($_POST as $tCampo => $tValor)
@@ -404,8 +405,8 @@ class clSis
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
                     $eCodTipo = $_POST['eCodTipo'.$indice];
-                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : $_POST['totalServ'.$indice];
-                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo,$dMonto)";
+                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : ($_POST['totalServ'.$indice]? $_POST['totalServ'.$indice]:0);
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo, $dMonto)";
                     mysql_query($insert);
                     
                 }
@@ -438,7 +439,7 @@ class clSis
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
                     $eCodTipo = $_POST['eCodTipo'.$indice];
-                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : $_POST['totalServ'.$indice];
+                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : ($_POST['totalServ'.$indice]? $_POST['totalServ'.$indice]:0);
                     $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo, $dMonto)";
                     mysql_query($insert);
                     
