@@ -58,12 +58,15 @@ if($_POST)
                                         <tr>
 											<td>Seccion de Inicio</td>
 											<td><select name="tCodSeccionInicio" id="tCodSeccionInicio">
+											    <?
+											    $rSeccion = mysql_fetch_array(mysql_query("SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".($_GET{'eCodPerfil'} ? $_GET{'eCodPerfil'} : 1)));
+											    ?>
+											    <option value="inicio" <?=($rSeccion{'tCodSeccion'}=="inicio") ? 'selected' : ''?>>Dashboard</option>
 													<?
-														$select = "SELECT * FROM SisSecciones WHERE tCodPadre = 'Inicio' ORDER BY ss.ePosicion ASC";
+														$select = "SELECT * FROM SisSecciones WHERE tCodPadre = 'inicio' ORDER BY ePosicion ASC";
 	  													$rsPerfiles = mysql_query($select);
 	  													while($rPerfil = mysql_fetch_array($rsPerfiles))
                                                         {
-                                                            $rSeccion = mysql_fetch_array(mysql_query("SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".($_GET{'eCodPerfil'} ? $_GET{'eCodPerfil'} : 1)));
                                                             ?><option value="<?=$rPerfil{'tCodSeccion'}?>" <?=($rPerfil{'tCodSeccion'}==$rSeccion{'tCodSeccion'}) ? 'selected' : ''?>><?=$rPerfil{'tTitulo'}?></option><?
                                                         }
 													?>

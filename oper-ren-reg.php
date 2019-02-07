@@ -31,11 +31,11 @@ if($_POST)
     {
         ?>
             <div class="alert alert-success" role="alert">
-                El evento se guard&oacute; correctamente!
+                La renta se guard&oacute; correctamente!
             </div>
 <script>
 setTimeout(function(){
-    window.location="?tCodSeccion=cata-eve-con";
+    window.location="?tCodSeccion=cata-ren-con";
 },2500);
 </script>
 <?
@@ -66,9 +66,10 @@ setTimeout(function(){
     <div class="col-lg-12">
     <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="eCodEvento" value="<?=$_GET['eCodEvento']?>">
+        <input type="hidden" name="eCodTipoDocumento" value="2">
         <input type="hidden" name="eAccion" id="eAccion">
                             <div class="col-lg-12">
-								<h2 class="title-1 m-b-25"><?=$_GET['eCodCliente'] ? 'Actualizar ' : '+ '?>Evento</h2>
+								<h2 class="title-1 m-b-25"><?=$_GET['eCodCliente'] ? 'Actualizar ' : '+ '?>Renta</h2>
                                 <div class="card col-lg-12">
                                     
                                     <div class="card-body card-block">
@@ -430,7 +431,7 @@ nIndice++;
         calcular();
 }
 
-    function calcular()
+   function calcular()
     {
         var venta = 0;
         var cmbTotal = document.querySelectorAll("[id^=totalServ]");

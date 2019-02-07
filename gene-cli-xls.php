@@ -1,4 +1,5 @@
 <?php
+require_once("cnx/swgc-mysql.php");
 include_once("cls/xlsxwriter.class.php");
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
@@ -12,9 +13,9 @@ header('Cache-Control: must-revalidate');
 header('Pragma: public');
 
 $rows = array();
-$rows[] = array('Nombre','Apellidios','E-mail','Tel.','Cel.');
+$rows[] = array('Nombre','Apellidos','E-mail','Tel.','Cel.');
 
-$select = "SELECT cc.* FROM CatClientes WHERE eCodCliente IN (SELECT eCodCliente FROM BitEventos WHERE eCodEstatus = 8)";
+$select = "SELECT cc.* FROM CatClientes cc WHERE cc. eCodCliente IN (SELECT eCodCliente FROM BitEventos WHERE eCodEstatus=8)";
 $rsClientes = mysql_query($select);
 while($rCliente = mysql_fetch_array($rsClientes))
 {

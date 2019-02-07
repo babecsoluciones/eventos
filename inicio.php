@@ -37,7 +37,9 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
     {
     
     $eCodTipoDocumento =   $lstTiposDocumentos[$i]['eCodTipoDocumento'];  
-    $tNombre =  $lstTiposDocumentos[$i]['tNombre'];    
+    $tNombre =  $lstTiposDocumentos[$i]['tNombre'];  
+    $tEnlace =  $lstTiposDocumentos[$i]['enlace']; 
+    $tFondo =  $lstTiposDocumentos[$i]['fondo']; 
     $select = "SELECT be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosCliente,
 															su.tNombre as promotor, ce.tNombre Estatus FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
 															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
@@ -52,12 +54,12 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
 $rsEventos = mysql_query($select);
     ?>
                                 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                    <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                    <div class="au-card-title" style="background-image:url('images/<?=$tFondo?>');">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
                                             <i class="zmdi zmdi-account-calendar"></i><?=$tNombre?> del d&iacute;a</h3>
-                                         <? if($clSistema->validarEnlace('oper-eve-reg')) { ?>
-	                                           <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-eve-reg'" alt="Nuevo Evento"><i class="zmdi zmdi-plus"></i></button>
+                                         <? if($clSistema->validarEnlace('oper-<?=$tEnlace?>-reg')) { ?>
+	                                           <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-<?=$tEnlace?>-reg'" alt="Nuevo Evento"><i class="zmdi zmdi-plus"></i></button>
                                            <? } ?>
                                        
                                            

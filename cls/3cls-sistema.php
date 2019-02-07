@@ -21,8 +21,7 @@ class clSis
 		if($rsUsuario)
 		{
 			$_SESSION['sessionAdmin'] = array($rUsuario);
-            $rInicio = mysql_fetch_array(mysql_query("SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".$rUsuario{'eCodPerfil'}));
-			return array('exito'=>1,'seccion'=>$rInicio{'tCodSeccion'});
+			return array('exito'=>1);
 		}
 		else
 		{
@@ -370,8 +369,6 @@ class clSis
         $tDireccion = $_POST['tDireccion'] ? "'".base64_encode($_POST['tDireccion'])."'" : "NULL";
         $tObservaciones = $_POST['tObservaciones'] ? "'".base64_encode($_POST['tObservaciones'])."'" : "NULL";
         $eCodEstatus = 1;
-        $eCodTipoDocumento = $_POST['eCodTipoDocumento'] ? $_POST['eCodTipoDocumento'] : 1;
-        $bIVA = $_POST['bIVA'] ? $_POST['bIVA'] : "NULL";
         
         if(!$eCodEvento)
         {
@@ -381,9 +378,7 @@ class clSis
                             eCodCliente,
                             fhFechaEvento,
                             tDireccion,
-                            tObservaciones,
-                            eCodTipoDocumento,
-                            bIVA)
+                            tObservaciones)
                             VALUES
                             (
                             $eCodUsuario,
@@ -391,9 +386,7 @@ class clSis
                             $eCodCliente,
                             $fhFechaEvento,
                             $tDireccion,
-                            $tObservaciones,
-                            $eCodTipoDocumento,
-                            $bIVA)";
+                            $tObservaciones)";
             
            
             $fhFecha = "'".date('Y-m-d H:i:s')."'";
@@ -433,8 +426,7 @@ class clSis
             $query = "UPDATE BitEventos SET
                             fhFechaEvento = $fhFechaEvento,
                             tDireccion = $tDireccion,
-                            tObservaciones = $tObservaciones,
-                            bIVA = $bIVA
+                            tObservaciones = $tObservaciones
                             WHERE eCodEvento = $eCodEvento";
             $rsEvento = mysql_query($query);
             if($rsEvento)

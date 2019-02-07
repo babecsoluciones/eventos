@@ -1,7 +1,7 @@
 <?php
 require_once("swgc-mysql.php");
 session_start();
-date_default_timezone_set('America/America/Mexico_City');
+
 
 class clSis
 {
@@ -21,8 +21,7 @@ class clSis
 		if($rsUsuario)
 		{
 			$_SESSION['sessionAdmin'] = array($rUsuario);
-            $rInicio = mysql_fetch_array(mysql_query("SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".$rUsuario{'eCodPerfil'}));
-			return array('exito'=>1,'seccion'=>$rInicio{'tCodSeccion'});
+			return array('exito'=>1);
 		}
 		else
 		{
@@ -310,7 +309,7 @@ class clSis
         $dPrecioInterno = $_POST['dPrecioInterno'];
         $dPrecioVenta = $_POST['dPrecioVenta'];
         $ePiezas = $_POST['ePiezas'];
-        $tImagen = "'".$this->base64toImage(base64_encode($_POST['tImagen']))."'";
+        $tImagen = "'".base64_encode($_POST['tImagen'])."'";
         
         if(!$eCodInventario)
         {
@@ -370,8 +369,6 @@ class clSis
         $tDireccion = $_POST['tDireccion'] ? "'".base64_encode($_POST['tDireccion'])."'" : "NULL";
         $tObservaciones = $_POST['tObservaciones'] ? "'".base64_encode($_POST['tObservaciones'])."'" : "NULL";
         $eCodEstatus = 1;
-        $eCodTipoDocumento = $_POST['eCodTipoDocumento'] ? $_POST['eCodTipoDocumento'] : 1;
-        $bIVA = $_POST['bIVA'] ? $_POST['bIVA'] : "NULL";
         
         if(!$eCodEvento)
         {
@@ -381,9 +378,7 @@ class clSis
                             eCodCliente,
                             fhFechaEvento,
                             tDireccion,
-                            tObservaciones,
-                            eCodTipoDocumento,
-                            bIVA)
+                            tObservaciones)
                             VALUES
                             (
                             $eCodUsuario,
@@ -391,18 +386,14 @@ class clSis
                             $eCodCliente,
                             $fhFechaEvento,
                             $tDireccion,
-                            $tObservaciones,
-                            $eCodTipoDocumento,
-                            $bIVA)";
+                            $tObservaciones)";
             
            
-            $fhFecha = "'".date('Y-m-d H:i:s')."'";
-            
             
             $rsEvento = mysql_query($query);
             if($rsEvento)
             {
-                $buscar = mysql_fetch_array(mysql_query("SELECT MAX(eCodEvento) as eCodEvento FROM BitEventos WHERE eCodCliente = $eCodCliente AND eCodUsuario = $eCodUsuario ORDER BY eCodEvento DESC"));
+                $buscar = mysql_fetch_array(mysql_query("SELECT TOP 1 eCodEvento FROM BitEventos WHERE eCodCliente = $eCodCliente AND eCodUsuario = $eCodUsuario ORDER BY eCodEvento DESC"));
                 $eCodEvento = $buscar['eCodEvento'];
                 
                 foreach($_POST as $tCampo => $tValor)
@@ -411,16 +402,10 @@ class clSis
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
                     $eCodTipo = $_POST['eCodTipo'.$indice];
-                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : ($_POST['totalServ'.$indice]? $_POST['totalServ'.$indice]:0);
-                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo, $dMonto)";
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo)";
                     mysql_query($insert);
                     
                 }
-                
-                $tDescripcion = "Se ha registrado el evento ".sprintf("%07d",$eCodEvento);
-                $tDescripcion = "'".$tDescripcion."'";
-                mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
-                
                 return true;
             }
             else
@@ -433,8 +418,7 @@ class clSis
             $query = "UPDATE BitEventos SET
                             fhFechaEvento = $fhFechaEvento,
                             tDireccion = $tDireccion,
-                            tObservaciones = $tObservaciones,
-                            bIVA = $bIVA
+                            tObservaciones = $tObservaciones
                             WHERE eCodEvento = $eCodEvento";
             $rsEvento = mysql_query($query);
             if($rsEvento)
@@ -446,14 +430,10 @@ class clSis
                     $eCodServicio = $_POST['eCodServicio'.$indice];
                     $eCantidad = $_POST['eCantidad'.$indice];
                     $eCodTipo = $_POST['eCodTipo'.$indice];
-                    $dMonto = $_POST['dMonto'.$indice] ? $_POST['dMonto'.$indice] : ($_POST['totalServ'.$indice]? $_POST['totalServ'.$indice]:0);
-                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo,dMonto) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo, $dMonto)";
+                    $insert = "INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad,eCodTipo) VALUES ($eCodEvento, $eCodServicio, $eCantidad, $eCodTipo)";
                     mysql_query($insert);
                     
                 }
-                $tDescripcion = "Se ha modificado el evento ".sprintf("%07d",$eCodEvento);
-                $tDescripcion = "'".$tDescripcion."'";
-                mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
                 return true;
             }
             else
@@ -462,25 +442,6 @@ class clSis
             }
         }
        
-    }
-    
-    private function base64toImage($data)
-    {
-        $fname = "inv/".uniqid().'.jpg';
-        $data1 = explode(',', base64_decode($data));
-        $content = base64_decode($data1[1]);
-        //$img = filter_input(INPUT_POST, "image");
-        //$img = str_replace(array('data:image/png;base64,','data:image/jpg;base64,'), '', base64_decode($data));
-        //$img = str_replace(' ', '+', $img);
-        //$img = base64_decode($img);
-        
-        //file_put_contents($fname, $img);
-        
-        $pf = fopen($fname,"w");
-        fwrite($pf,$content);
-        fclose($pf);
-        
-        return $fname;
     }
 }
 

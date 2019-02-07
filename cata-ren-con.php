@@ -10,7 +10,7 @@ if($_GET['eCodEvento'])
     mysql_query("UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
     
         $fhFecha = "'".date('Y-m-d H:i:s')."'";
-        $tDescripcion = "Se ha ".(($_POST['eAccion']==4) ? 'CANCELADO' : 'FINALIZADO')." el evento ".sprintf("%07d",$_GET['eCodEvento']);
+        $tDescripcion = "Se ha ".(($_POST['eAccion']==4) ? 'CANCELADO' : 'FINALIZADO')." la renta ".sprintf("%07d",$_GET['eCodEvento']);
         $tDescripcion = "'".$tDescripcion."'";
         $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodUsuario'];
         mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
@@ -37,13 +37,13 @@ function finalizar(codigo)
 <div class="row">
 	<div class="col-lg-12">
         <? if($clSistema->validarEnlace('oper-eve-reg')) { ?>
-	<button type="button" class="btn btn-primary" onclick="window.location='?tCodSeccion=oper-eve-reg'"><i class="fa fa-plus"></i> Nuevo Evento</button>
+	<button type="button" class="btn btn-primary" onclick="window.location='?tCodSeccion=oper-ren-reg'"><i class="fa fa-plus"></i> Nueva Renta </button>
         <? } ?>
 	</div>
 </div>
 <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Eventos</h2>
+                                <h2 class="title-1 m-b-25">Rentas</h2>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         
@@ -71,7 +71,7 @@ function finalizar(codigo)
 															su.tNombre as promotor, ce.tIcono FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
 															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario".
-                                                " WHERE be.eCodEstatus<>4 AND be.eCodTipoDocumento=1 ".
+                                                " WHERE be.eCodEstatus<>4  AND be.eCodTipoDocumento=2".
 												($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
 														" ORDER BY be.fhFechaEvento DESC";
 											

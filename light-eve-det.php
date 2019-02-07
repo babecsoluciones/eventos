@@ -8,6 +8,8 @@ $select = "SELECT be.*, (cc.tNombres + ' ' + cc.tApellidos) as tNombre FROM BitE
 $rsPublicacion = mysql_query($select);
 $rPublicacion = mysql_fetch_array($rsPublicacion);
 
+$bIVA = $rPublicacion{'bIVA'};
+
 //clientes
 $select = "	SELECT 
 															cc.*, 
@@ -23,8 +25,8 @@ $rsClientes = mysql_query($select);
 ?>
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    
     <title>Detalle del Evento</title>
     
     <style>
@@ -207,7 +209,7 @@ $rsClientes = mysql_query($select);
                                                 while($rDetalle = mysql_fetch_array($rsDetalle))
                                                 {
                                                     ?>
-                    ·x<?=$rDetalle{'ePiezas'}?> - <?=utf8_decode($rDetalle{'tNombre'})?>, 
+                    x<?=$rDetalle{'ePiezas'}?> - <?=utf8_decode($rDetalle{'tNombre'})?>, 
                     <?
                                                 }
                     ?></i>
@@ -219,7 +221,7 @@ $rsClientes = mysql_query($select);
             </tr>
 											<?
 											$i++;
-                                                $dTotalEvento = $dTotalEvento + ($rPublicacion{'dPrecioVenta'}*$rPublicacion{'eCantidad'});
+                                                $dTotalEvento = $dTotalEvento + ($rPublicacion{'dMonto'});
 											}
                                             $select = "	SELECT DISTINCT
 															cs.tNombre,
@@ -256,9 +258,30 @@ $rsClientes = mysql_query($select);
                 <td></td>
                 
                 <td>
-                   Total: $<?=number_format($dTotalEvento,2)?>
+                   <?=$bIVA ? "Subtotal" : "Total"?>: $<?=number_format($dTotalEvento,2)?>
                 </td>
             </tr>
+            <?
+    if($bIVA)
+    {
+        $dIVA = number_format(($dTotalEvento*0.16),2);
+        $dTotal = number_format(($dTotalEvento*1.16),2);
+    ?>
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   I.V.A.: $<?=number_format($dIVA,2)?>
+                </td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   Total: $<?=number_format($dTotal,2)?>
+                </td>
+            </tr>
+            <? } ?>
         </table>
     </div>
 </body>
