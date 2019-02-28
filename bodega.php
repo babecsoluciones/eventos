@@ -84,7 +84,7 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr>
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?><br>
+                    <b><?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?><br>
                     <?
                         $select = "SELECT ci.tNombre, rsi.ePiezas FROM CatInventario ci INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario WHERE rsi.eCodServicio = ".$rPublicacion{'eCodServicio'};
                                                 $rsDetalle = mysql_query($select);
@@ -113,7 +113,7 @@ $rsClientes = mysql_query($select);
 											{ ?>
 											<tr>
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?>
+                    <b><?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?>
                 </td>
                 
             </tr>
