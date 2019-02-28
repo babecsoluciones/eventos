@@ -20,8 +20,8 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
 
 <div class="row">
 <!--calendario-->
-    <div class="col-lg-4" >
-        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40" id="datepicker" onclick="obtenerFecha()"></div>
+    <div class="col-lg-12 au-card au-card--no-shadow au-card--no-pad m-b-40" >
+        <div id="datepicker" onclick="obtenerFecha()"></div>
         <center>
         <form id="Datos" method="post" action="<?=$_SERVER['PHP_SELF']?>?tCodSeccion=inicio">
     <input type="hidden" name="fhFechaConsulta" id="datepicker1">
@@ -31,7 +31,7 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
     </div>
 <!--calendario-->
 <!--Listado de eventos de ese día-->
-<div class="col-lg-8">
+
     <?
     for($i=0;$i<sizeof($lstTiposDocumentos);$i++)
     {
@@ -41,7 +41,7 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
     $tEnlace =  $lstTiposDocumentos[$i]['enlace']; 
     $tFondo =  $lstTiposDocumentos[$i]['fondo']; 
     $select = "SELECT be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosCliente,
-															su.tNombre as promotor, ce.tNombre Estatus FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
+															su.tNombre as promotor, ce.tNombre Estatus, ce.tIcono FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente
 															INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario
                                                         WHERE
@@ -53,38 +53,54 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
 														
 $rsEventos = mysql_query($select);
     ?>
-                                <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                    <div class="au-card-title" style="background-image:url('images/<?=$tFondo?>');">
-                                        <div class="bg-overlay bg-overlay--blue"></div>
-                                        <h3>
-                                            <i class="zmdi zmdi-account-calendar"></i><?=$tNombre?> del d&iacute;a</h3>
-                                         <? if($clSistema->validarEnlace('oper-<?=$tEnlace?>-reg')) { ?>
-	                                           <button class="au-btn-plus" onclick="window.location='index.php?tCodSeccion=oper-<?=$tEnlace?>-reg'" alt="Nuevo Evento"><i class="zmdi zmdi-plus"></i></button>
+    
+    <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">
+                                            <i class="zmdi zmdi-account-calendar"></i> <?=$tNombre?> del d&iacute;a
+                                            
+                                                <? if($clSistema->validarEnlace('oper-<?=$tEnlace?>-reg')) { ?>
+	                                            | <button onclick="window.location='index.php?tCodSeccion=oper-<?=$tEnlace?>-reg'" alt="Nuevo Evento" style="margin-left:30px;"><i class="zmdi zmdi-plus"></i> Nuevo</button>
                                            <? } ?>
-                                       
                                            
+                                        </strong>
                                     </div>
-                                    <div class="au-task js-list-load">
-                                        <div class="au-task__title">
-                                            <p><?=date('d/m/Y',strtotime($fhFechaConsulta))?></p>
-                                        </div>
-                                        <div class="au-task-list js-scrollbar3">
-                                            <?
+                                    <div class="card-body">
+                                        <?
                                                 if(mysql_num_rows($rsEventos))
                                                 {
                                                     while($rEvento = mysql_fetch_array($rsEventos))
                                                     {
                                                         ?>
-                                                <div class="au-task__item au-task__item--primary">
-                                                    <div class="au-task__item-inner">
-                                                        <h5 class="task">
-                                                            <a href="?tCodSeccion=cata-eve-det&eCodEvento=<?=$rEvento{'eCodEvento'}?>"><?=$rEvento{'nombreCliente'}.' '.$rEvento{'apellidosCliente'}?></a>
-                                                        </h5>
-                                                        <span class="time"><?=$rEvento{'Estatus'}?></span>
-                                                        <span class="time"><?=date('d/m/Y',strtotime($rEvento{'fhFechaEvento'}))?> (<?=date('H:i',strtotime($rEvento{'fhFechaEvento'}))?>)</span>
-                                                        <button onclick="agregarTransaccion(<?=$rEvento{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i></button>
-                                                    </div>
-                                                </div>
+                                        <div class="col-md-12">
+                                <div class="card border border-primary">
+                                    <div class="card-header">
+                                        <strong class="card-title">
+                                         <i class="<?=$rEvento{'tIcono'}?>"></i> <?=$rEvento{'nombreCliente'}.' '.$rEvento{'apellidosCliente'}?>
+                                        </strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            Direcci&oacute;n: <?=$rEvento{'tDireccion'}?><br>
+                                            Estatus: <i class="<?=$rEvento{'tIcono'}?>"></i> <?=$rEvento{'Estatus'}?><br>
+                                            Fecha: <?=date('d/m/Y H:i',strtotime($rEvento{'fhFechaEvento'}))?><br>
+                                           
+                                        </p>
+                                        <br>
+                                        <table width="100%">
+                                        <tr>
+                                            <td align="center">
+                                            <button onclick="window.location='?tCodSeccion=cata-eve-det&eCodEvento=<?=$rEvento{'eCodEvento'}?>'"><i class="fa fa-eye"></i> Detalles</button>
+                                            </td>
+                                            <td align="center">
+                                            <button onclick="agregarTransaccion(<?=$rEvento{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i> Nueva Transacci&oacute;n</button>
+                                            </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                                             <?
                                                     }
                                                 }
@@ -93,13 +109,15 @@ $rsEventos = mysql_query($select);
                                                     echo '<h2>No se han encontrado eventos en la fecha seleccionada</h2>';
                                                 }
                                             ?>
-                                        </div>
                                     </div>
                                 </div>
+                            </div>
+    
+                                
     <?
     }
     ?>
-                            </div>   
+                            
 <!--Listado de eventos de ese día-->
 
 </div>

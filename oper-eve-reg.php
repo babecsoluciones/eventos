@@ -91,16 +91,16 @@ setTimeout(function(){
                
            </div>
            <div class="form-group">
-              <label>I.V.A ?</label>
-              <input type="checkbox" class="form-control" name="bIVA" id="bIVA" value="1" <?=$rPublicacion{'bIVA'} ? "checked" : ""?> >
+              <label>I.V.A ?<input type="checkbox" class="form-control" name="bIVA" id="bIVA" value="1" <?=$rPublicacion{'bIVA'} ? "checked" : ""?> ></label>
+              
            </div>
            <div class="form-group">
               <label>Fecha del Evento</label>
-              <input type="text" class="form-control" name="fhFechaEvento" id="fhFechaEvento" placeholder="dd-mm-YYYY" onkeyup="fecha(this.id)" value="<?=$rPublicacion{'fhFechaEvento'} ? date('d-m-Y',strtotime($rPublicacion{'fhFechaEvento'})) : ""?>" >
+              <input type="text" class="form-control" name="fhFechaEvento" id="fhFechaEvento" placeholder="dd-mm-YYYY HH:mm" onkeyup="fecha(this.id)" value="<?=$rPublicacion{'fhFechaEvento'} ? date('d-m-Y H:i',strtotime($rPublicacion{'fhFechaEvento'})) : ""?>" >
            </div>
            <div class="form-group">
               <label>Hora de Montaje</label>
-              <input type="text" class="form-control" name="tmHoraEvento" id="tmHoraEvento" placeholder="HH:mm" onkeyup="hora(this.id)"value="<?=date('H:i',strtotime($rPublicacion{'fhFechaEvento'}))?>" >
+              <input type="text" class="form-control" name="tmHoraMontaje" id="tmHoraMontaje" placeholder="HH:mm" onkeyup="hora(this.id)"value="<?=$rPublicacion{'tmHoraMontaje'}?>" >
            </div>
            <div class="form-group">
               <label>Direcci&oacute;n</label>
@@ -489,7 +489,7 @@ nIndice++;
                 mensaje += "*Fecha del evento\n";
                 bandera = true;
             }
-        if(!document.getElementById('tmHoraEvento').value)
+        if(!document.getElementById('tmHoraMontaje').value)
             {
                 mensaje += "*Hora de montaje\n";
                 bandera = true;
@@ -522,6 +522,14 @@ nIndice++;
   if(fhFecha.length==2||fhFecha.length==5)
   {
   	document.getElementById(objeto).value = fhFecha + '-';
+  }
+    if(fhFecha.length==10)
+  {
+  	document.getElementById(objeto).value = fhFecha + ' ';
+  }
+    if(fhFecha.length==14)
+  {
+  	document.getElementById(objeto).value = fhFecha + ':';
   }
 }
 

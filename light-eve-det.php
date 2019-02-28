@@ -139,8 +139,8 @@ $rsClientes = mysql_query($select);
                             
                             <td>
                                 Evento # <?=sprintf("%07d",$_GET['eCodEvento'])?><br>
-                                Fecha: <?=date('d/m/Y',strtotime($rPublicacion{'fhFechaEvento'}))?><br>
-                                Hora de Montaje: <?=date('H:i',strtotime($rPublicacion{'fhFechaEvento'}))?>
+                                Fecha: <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFechaEvento'}))?><br>
+                                Hora de Montaje: <?=$rPublicacion{'tmHoraMontaje'}?>
                             </td>
                         </tr>
                     </table>
@@ -202,14 +202,14 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr class="item">
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?><br><i>
+                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?><br><i>
                     <?
                         $select = "SELECT ci.tNombre, rsi.ePiezas FROM CatInventario ci INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario WHERE rsi.eCodServicio = ".$rPublicacion{'eCodServicio'};
                                                 $rsDetalle = mysql_query($select);
                                                 while($rDetalle = mysql_fetch_array($rsDetalle))
                                                 {
                                                     ?>
-                    x<?=$rDetalle{'ePiezas'}?> - <?=utf8_decode($rDetalle{'tNombre'})?>, 
+                    x<?=$rDetalle{'ePiezas'}?> - <?=($rDetalle{'tNombre'})?>, 
                     <?
                                                 }
                     ?></i>
@@ -239,7 +239,7 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr class="item">
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?>
+                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?>
                 </td>
                 
                 <td>
@@ -265,20 +265,21 @@ $rsClientes = mysql_query($select);
     if($bIVA)
     {
         $dIVA = number_format(($dTotalEvento*0.16),2);
+        
         $dTotal = number_format(($dTotalEvento*1.16),2);
     ?>
             <tr class="total">
                 <td></td>
                 
                 <td>
-                   I.V.A.: $<?=number_format($dIVA,2)?>
+                   I.V.A.: $<?=$dIVA?>
                 </td>
             </tr>
             <tr class="total">
                 <td></td>
                 
                 <td>
-                   Total: $<?=number_format($dTotal,2)?>
+                   Total: $<?=$dTotal?>
                 </td>
             </tr>
             <? } ?>

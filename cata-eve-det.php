@@ -22,20 +22,29 @@ $select = "	SELECT
 $rsClientes = mysql_query($select);
 
 ?>
+
+
+<link href="dist/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
+<script src="lib/jquery-1.11.2.min.js"></script>
+<script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+
 <?
 if($_POST)
 {
-    $res = $clSistema -> registrarEvento();
+    mysql_query("DELETE FROM RelEventosRutas WHERE eCodEvento=".$_POST['eCodEvento']);
+    $update = "INSERT INTO RelEventosRutas (eCodEvento,eCodUsuarioEntrega,eCodUsuarioRecoleccion) VALUES (".$_POST['eCodEvento'].",".$_POST['eCodUsuarioEntrega'].",".$_POST['eCodUsuarioRecoleccion'].")";
+    $rsAsignacio = mysql_query($update);
+    $res = $rsAsignacion;
     
     if($res)
     {
         ?>
             <div class="alert alert-success" role="alert">
-                El evento se guard&oacute; correctamente!
+                La informaci&oacute;n se guard&oacute; correctamente!
             </div>
 <script>
 setTimeout(function(){
-    window.location="?tCodSeccion=cata-eve-con";
+    window.location="?tCodSeccion=cata-ren-con";
 },2500);
 </script>
 <?
@@ -51,12 +60,22 @@ setTimeout(function(){
 }
 ?>
 
-<link href="dist/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
-<script src="lib/jquery-1.11.2.min.js"></script>
-<script src="dist/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
-    
 <div class="row">
-    <center><a href="gene-eve-pdf.php?eCodEvento=<?=$_GET['eCodEvento']?>" class="btn btn-danger" target="new">Descargar PDF</a></center>
+	<div class="col-lg-12">
+        <?
+        if($_GET['bRuta'])
+        { ?>
+        <button type="button" class="btn btn-primary" onclick="activarValidacion()" id="btnValidar">
+            <i class="fa fa-key" ></i></button>
+	<input type="hidden" id="tPasswordVerificador"  style="display:none;" value="<?=base64_decode($_SESSION['sessionAdmin'][0]['tPasswordOperaciones'])?>">
+        <input type="password" class="form-control col-md-3" onkeyup="validarUsuario()"  id="tPasswordOperaciones"  style="display:none;" size="8">
+        <button type="button" id="btnGuardar" class="btn btn-primary" disabled onclick="validar()"><i class="fa fa-floppy-o"></i> Guardar</button>
+    <? } ?>    
+    <a href="gene-eve-pdf.php?eCodEvento=<?=$_GET['eCodEvento']?>" class="btn btn-danger" target="new">Descargar PDF</a>
+	</div>
+</div>
+<div class="row">
+
     <div class="col-lg-12">
     <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="eCodEvento" value="<?=$_GET['eCodEvento']?>">
@@ -67,6 +86,47 @@ setTimeout(function(){
                                     
                                     <div class="card-body card-block">
                                         <!--campos-->
+                                        
+                                        <?
+    if($_GET['bRuta'])
+    { ?>
+        <div class="form-group">
+              <label>Usuario Entrega</label>
+              <select class="form-control" id="eCodUsuarioEntrega" name="eCodUsuarioEntrega">
+             <option value="">Seleccione...</option>
+                                                        <?
+    $select = "SELECT * FROM SisUsuarios WHERE eCodPerfil=6";
+       $rsUsuarios = mysql_query($select);
+     while($rUsuario = mysql_fetch_array($rsUsuarios))
+{
+         ?>
+                  <option value="<?=$rUsuario{'eCodUsuario'}?>"><?=$rUsuario{'tNombre'}.' '.$rUsuario{'tApellidos'}.' ('.$rUsuario{'tCorreo'}.')'?></option>
+                  <?
+}
+    ?>
+       </select>
+              
+               
+           </div>
+                                        <div class="form-group">
+              <label>Usuario Recoleccion</label>
+              <select class="form-control" id="eCodUsuarioRecoleccion" name="eCodUsuarioRecoleccion">
+             <option value="">Seleccione...</option>
+                                                        <?
+    $select = "SELECT * FROM SisUsuarios WHERE eCodPerfil=6";
+       $rsUsuarios = mysql_query($select);
+     while($rUsuario = mysql_fetch_array($rsUsuarios))
+{
+         ?>
+                  <option value="<?=$rUsuario{'eCodUsuario'}?>"><?=$rUsuario{'tNombre'}.' '.$rUsuario{'tApellidos'}.' ('.$rUsuario{'tCorreo'}.')'?></option>
+                  <?
+}
+    ?>
+       </select>
+              
+               
+           </div>
+    <? } ?>
                                         
            <div class="form-group">
               <label>Cliente</label>
@@ -85,11 +145,11 @@ setTimeout(function(){
            </div>
            <div class="form-group">
               <label>Fecha del Evento</label>
-              <?=date('d/m/Y',strtotime($rPublicacion{'fhFechaEvento'}))?>
+              <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFechaEvento'}))?>
            </div>
            <div class="form-group">
               <label>Hora de Montaje</label>
-              <?=date('H:i',strtotime($rPublicacion{'fhFechaEvento'}))?>
+              <?=date('H:i',strtotime($rPublicacion{'tmHoraMontaje'}))?>
            </div>
            <div class="form-group">
               <label>Direcci&oacute;n</label>

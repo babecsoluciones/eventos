@@ -222,7 +222,7 @@ setTimeout(function(){
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
-                                    <p>Derechos Reservados © <?=date('Y')?> S.G.E. - Desarrollado por <a href="#">SDI·BABEC</a>.</p>
+                                    <p>Derechos Reservados © <?=date('Y')?> S.G.E. - Desarrollado por <a href="#">Basmesa Asociados</a>.</p>
                                 </div>
                             </div>
                         </div>

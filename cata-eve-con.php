@@ -33,6 +33,10 @@ function finalizar(codigo)
     {
         window.location="?tCodSeccion=cata-eve-con&eAccion=8&eCodEvento="+codigo;
     }
+function ruta(codigo)
+    {
+        window.location="?tCodSeccion=cata-eve-det&eCodEvento="+codigo+"&bRuta=1";
+    }
 </script>
 <div class="row">
 	<div class="col-lg-12">
@@ -58,11 +62,12 @@ function finalizar(codigo)
                                         <thead>
                                             
                                             <tr>
+                                                <th class="text-right">Codigo</th>
                                                 <th class="text-right">E</th>
 												<th class="text-right">Cliente</th>
 												<th class="text-right">Fecha Evento (Hora de montaje)</th>
 												<th class="text-right">Promotor</th>
-                                                <th class="text-right"></th>
+                                                <th style="display:none"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -82,21 +87,39 @@ function finalizar(codigo)
 
 while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
-    $edicion = ($clSistema->validarEnlace('oper-eve-reg')) ? '' : 'style="display:none;" disabled';
-    $detalle = ($clSistema->validarEnlace('cata-eve-det')) ? '' : 'style="display:none;" disabled';
+    $edicion = ($clSistema->validarEnlace('oper-eve-reg'))  ? '' : 'style="display:none;" disabled';
+    $detalle = ($clSistema->validarEnlace('cata-eve-det'))  ? '' : 'style="display:none;" disabled';
+    $ruta    = ($_SESSION['sessionAdmin'][0]['bAll'])       ? '' : 'style="display:none;" disabled';
     $bloqueo = $bAll ? '' : 'style="display:none;" disabled';
+    
+    $menuEmergente = '<div class="dropdown" style="width:100%">
+                                                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            '.sprintf("%07d",$rPublicacion{'eCodEvento'}).'
+                                                                            </button>
+                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                            <a class="dropdown-item" href="?tCodSeccion=oper-eve-reg&eCodEvento='.$rPublicacion{'eCodEvento'}.'" '.$edicion.'><i class="fa fa-pencil-square-o"></i> Editar</a>
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-eve-con&eAccion=4&eCodEvento='.$rPublicacion{'eCodEvento'}.'" '.$edicion.'><i class="far fa-trash-alt"></i> Cancelar</a>
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-eve-con&eAccion=8&eCodEvento='.$rPublicacion{'eCodEvento'}.'" '.$edicion.'><i class="fas fa-check-double"></i> Finalizar</a>
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-eve-det&eCodEvento='.$rPublicacion{'eCodEvento'}.'"><i class="fa fa-eye"></i> Detalles</a>
+                                                                            <a class="dropdown-item" href="#" onclick="agregarTransaccion('.$rPublicacion{'eCodEvento'}.')" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i> Nueva Transacci&oacute;n</a>
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-eve-det&eCodEvento='.$rPublicacion{'eCodEvento'}.'&bRuta=1" '.$edicion.'><i class="fas fa-truck"></i> Asignar Operadores</a>
+                                                                        </div>
+                                                                   </div>';
+    
 												?>
 											<tr>
+                                                <td><?=$menuEmergente?></td>
                                                 <td align="center"><i class="<?=$rPublicacion{'tIcono'}?>"></i></td>
 												<td><?=utf8_decode($rPublicacion{'nombreCliente'}.' '.$rPublicacion{'apellidosCliente'})?></td>
 												<td><?=date('d/m/Y H:i', strtotime($rPublicacion{'fhFechaEvento'}))?></td>
 												<td><?=utf8_decode($rPublicacion{'promotor'})?></td>
-                                                <td class="text-right"> 
+                                                <td class="text-right" style="display:none"> 
                                                     <button onclick="agregarTransaccion(<?=$rPublicacion{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i></button>
 													<button onclick="detalles(<?=$rPublicacion{'eCodEvento'}?>)" <?=$detalle?>><i class="fa fa-eye"></i></button> 
 													<button onclick="window.location='?tCodSeccion=oper-eve-reg&eCodEvento=<?=$rPublicacion{'eCodEvento'}?>'" <?=$edicion?>><i class="fa fa-pencil-square-o"></i></button>
                                                     <button onclick="cancelar(<?=$rPublicacion{'eCodEvento'}?>)" <?=$bloqueo?>><i class="far fa-trash-alt"></i></button>
                                                     <button onclick="finalizar(<?=$rPublicacion{'eCodEvento'}?>)" <?=$bloqueo?>><i class="fas fa-check-double"></i></button>
+                                                    <button onclick="ruta(<?=$rPublicacion{'eCodEvento'}?>)" <?=$bloqueo?>><i class="fas fa-truck"></i></button>
 												</td>
                                             </tr>
 											<?

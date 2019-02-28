@@ -1,2 +1,0 @@
-INSERT INTO RelEventosPaquetes (eCodEvento, eCodServicio, eCantidad) VALUES (1, , )
-

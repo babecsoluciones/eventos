@@ -366,12 +366,15 @@ class clSis
         $eCodEvento = $_POST['eCodEvento'] ? $_POST['eCodEvento'] : false;
         $eCodCliente = $_POST['eCodCliente'] ? $_POST['eCodCliente'] : "NULL";
         $eCodUsuario = $_SESSION['sessionAdmin'][0]['eCodPerfil'];
-        $fhFechaEvento = $_POST['fhFechaEvento'] ? "'".date('Y-m-d',strtotime($_POST['fhFechaEvento'])).' '.$_POST['tmHoraEvento']."'" : "NULL";
+        $fhFechaEvento = $_POST['fhFechaEvento'] ? "'".date('Y-m-d H:i',strtotime($_POST['fhFechaEvento']))."'" : "NULL";
+        $tmHoraMontaje = $_POST['tmHoraMontaje'] ? "'".$_POST['tmHoraMontaje']."'" : "NULL";
         $tDireccion = $_POST['tDireccion'] ? "'".base64_encode($_POST['tDireccion'])."'" : "NULL";
         $tObservaciones = $_POST['tObservaciones'] ? "'".base64_encode($_POST['tObservaciones'])."'" : "NULL";
         $eCodEstatus = 1;
         $eCodTipoDocumento = $_POST['eCodTipoDocumento'] ? $_POST['eCodTipoDocumento'] : 1;
         $bIVA = $_POST['bIVA'] ? $_POST['bIVA'] : "NULL";
+        
+        $fhFecha = "'".date('Y-m-d H:i:s')."'";
         
         if(!$eCodEvento)
         {
@@ -380,23 +383,27 @@ class clSis
 							eCodEstatus,
                             eCodCliente,
                             fhFechaEvento,
+                            tmHoraMontaje,
                             tDireccion,
                             tObservaciones,
                             eCodTipoDocumento,
-                            bIVA)
+                            bIVA,
+                            fhFecha)
                             VALUES
                             (
                             $eCodUsuario,
 							$eCodEstatus,
                             $eCodCliente,
                             $fhFechaEvento,
+                            $tmHoraMontaje,
                             $tDireccion,
                             $tObservaciones,
                             $eCodTipoDocumento,
-                            $bIVA)";
+                            $bIVA,
+                            $fhFecha)";
             
            
-            $fhFecha = "'".date('Y-m-d H:i:s')."'";
+            
             
             
             $rsEvento = mysql_query($query);
@@ -432,6 +439,7 @@ class clSis
         {
             $query = "UPDATE BitEventos SET
                             fhFechaEvento = $fhFechaEvento,
+                            tmHoraMontaje = $tmHoraMontaje,
                             tDireccion = $tDireccion,
                             tObservaciones = $tObservaciones,
                             bIVA = $bIVA
