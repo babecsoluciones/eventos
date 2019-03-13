@@ -210,6 +210,28 @@ setTimeout(function(){
 <?
 }
     ?>
+                    <?
+    if($_POST['operador'])
+{
+    $eCodEvento = $_POST['eCodEventoOperador'];
+    $tCampo = $_POST['tCampo'];
+    $tOperador = "'".$_POST['tResponsable']."'";
+    
+   
+        
+    mysql_query("UPDATE BitEventos SET $tCampo = $tOperador WHERE eCodEvento = ".$eCodEvento);
+    ?>
+ <div class="alert alert-success" role="alert">
+                Responsable guardado correctamente!
+            </div>
+<script>
+setTimeout(function(){
+    window.location="?tCodSeccion=<?=$_GET['tCodSeccion']?>";
+},2500);
+</script>
+<?
+}
+    ?>
                     <div class="container-fluid">
                         
 						<?	
@@ -265,6 +287,35 @@ setTimeout(function(){
                 </select>
               </label><br>
               <input type="submit" value="Guardar" name="transaccion" class="btn btn-info">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    
+    <!--modal de responsable-->
+    <div class="modal fade" id="myModalOperador" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <form action="?tCodSeccion=<?=$_GET['tCodSeccion']?>" method="post">
+              <input type="hidden" id="eCodEventoOperador" name="eCodEventoOperador">
+            <label><input type="radio" value="tOperadorEntrega" name="tCampo"> A la Entrega </label><br>
+            <label><input type="radio" value="tOperadorRecoleccion" name="tCampo"> A la Recolecci&oacute;n </label><br><br>
+            <label>Responsable: 
+              <input type="text" class="form-control" name="tResponsable" id="tResponsable" required>
+              </label><br>
+              <input type="submit" value="Guardar" name="operador" class="btn btn-info">
             </form>
         </div>
         <div class="modal-footer">
@@ -333,6 +384,11 @@ $('#search2').keyup(function() {
       function agregarTransaccion(codigo)
       {
           document.getElementById('eCodEventoTransaccion').value = codigo;
+      }
+      
+      function agregarOperador(codigo)
+      {
+          document.getElementById('eCodEventoOperador').value = codigo;
       }
 
 </script>

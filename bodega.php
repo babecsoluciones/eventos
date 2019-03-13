@@ -42,7 +42,9 @@ $rsClientes = mysql_query($select);
                 <td>
                                 Evento # <?=sprintf("%07d",$rEvento{'eCodEvento'})?><br>
                                 Fecha: <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFechaEvento'}))?><br>
-                                Hora de Montaje: <?=$rPublicacion{'tmHoraMontaje'}?>       
+                                Hora de Montaje: <?=$rPublicacion{'tmHoraMontaje'}?> <br>
+                                Responsable Entrega: <?=$rPublicacion{'tOperadorEntrega'} ? $rPublicacion{'tOperadorEntrega'} : 'Pendiente'?><br>
+                                Responsable Recolecci&oacute;n: <?=$rPublicacion{'tOperadorRecoleccion'} ? $rPublicacion{'tOperadorRecoleccion'} : 'Pendiente'?>
                 </td>
             </tr>
             <tr>

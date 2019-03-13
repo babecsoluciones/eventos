@@ -72,6 +72,7 @@ $rsEventos = mysql_query($select);
                                                 {
                                                     while($rEvento = mysql_fetch_array($rsEventos))
                                                     {
+                                                        $activa = $_SESSION['sessionAdmin'][0]['bAll'] ? '' : 'disabled';
                                                         ?>
                                         <div class="col-md-12">
                                 <div class="card border border-primary">
@@ -82,7 +83,7 @@ $rsEventos = mysql_query($select);
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">
-                                            Direcci&oacute;n: <?=$rEvento{'tDireccion'}?><br>
+                                            Direcci&oacute;n: <?=base64_decode($rEvento{'tDireccion'})?><br>
                                             Estatus: <i class="<?=$rEvento{'tIcono'}?>"></i> <?=$rEvento{'Estatus'}?><br>
                                             Fecha: <?=date('d/m/Y H:i',strtotime($rEvento{'fhFechaEvento'}))?><br>
                                            
@@ -95,6 +96,9 @@ $rsEventos = mysql_query($select);
                                             </td>
                                             <td align="center">
                                             <button onclick="agregarTransaccion(<?=$rEvento{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModal"><i class="fas fa-dollar-sign"></i> Nueva Transacci&oacute;n</button>
+                                            </td>
+                                            <td align="center">
+                                                <button onclick="agregarOperador(<?=$rEvento{'eCodEvento'}?>)" data-toggle="modal" data-target="#myModalOperador" <?=$activa?>><i class="fas fa-truck"></i> Asignar Responsable</button>
                                             </td>
                                             </tr>
                                         </table>

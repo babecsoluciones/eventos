@@ -25,17 +25,17 @@ $rsClientes = mysql_query($select);
 ?>
 <!doctype html>
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <title>Detalle del Evento</title>
     
     <style>
     .invoice-box {
-        max-width: 800px;
-        width:700px;
+        max-width: 820px;
+        width:720px;
         height:95vh;
         margin: auto;
-        padding: 30px;
+        padding: 10px;
         border: 1px solid #eee;
         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
         font-size: 16px;
@@ -134,12 +134,13 @@ $rsClientes = mysql_query($select);
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="../images/icon/logo.png" style="width:120%; max-width:120px;">
+                                <img src="../images/icon/logo.png" style="max-width:100px;">
                             </td>
                             
                             <td>
                                 Evento # <?=sprintf("%07d",$_GET['eCodEvento'])?><br>
-                                Fecha: <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFechaEvento'}))?><br>
+                                Fecha de Elaboraci&oacute;n <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFecha'}))?><br>
+                                Fecha Servicio: <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFechaEvento'}))?><br>
                                 Hora de Montaje: <?=$rPublicacion{'tmHoraMontaje'}?>
                             </td>
                         </tr>
@@ -202,7 +203,7 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr class="item">
                 <td>
-                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?><br><i>
+                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_encode($rPublicacion{'tNombre'})?><br><i>
                     <?
                         $select = "SELECT ci.tNombre, rsi.ePiezas FROM CatInventario ci INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario WHERE rsi.eCodServicio = ".$rPublicacion{'eCodServicio'};
                                                 $rsDetalle = mysql_query($select);
@@ -239,7 +240,7 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr class="item">
                 <td>
-                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?>
+                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_encode($rPublicacion{'tNombre'})?>
                 </td>
                 
                 <td>
@@ -283,6 +284,26 @@ $rsClientes = mysql_query($select);
                 </td>
             </tr>
             <? } ?>
+            <tr>
+                <td colspan="2">
+                    <p style="font-size:8px">
+                       
+                Cl&aacute;usulas de contrataci&oacute;n:
+                           
+<br><br>
+-En caso de requerir factura esta causara el 16% de I.V.A.<br>
+-La entrega es en planta baja y no m&aacute;s de 50 metros a pie de cami&oacute;n<br>
+-Las entregas se realizan en horario de montaje de 11:00 A.M.-5:00 P.M. cualquier cambio puede generar un cargo adicional<br>
+- Al recibir el equipo deber&aacute; entregar una identificaci&oacute;n oficial vigente a nuestro personal, la cual ser&aacute; devuelta al momento de recoger el equipo<br>
+-Esta cotizaci&oacute;n tiene una validez de 20 d&iacute;as <br>
+-Las reservaciones tienen una duraci&oacute;n de 48 horas, si el evento es durante el transcurso de la misma semana de su elaboraci&oacute;n, y dos semanas si la fecha de reserva es mayor a un mes de esta cotizaci&oacute;n.<br>
+<br>
+Aviso de confidencialidad:<br><br>
+
+Esta informaci&oacute;n est&aacute; avalada por la ley de protecci&oacute;n de datos, para mayor informaci&oacute;n consulte nuestro aviso de privacidad en la p&aacute;gina: http://www.antroentucasa.com.mx/aviso-legal.html
+</p>
+                </td>
+            </tr>
         </table>
     </div>
 </body>

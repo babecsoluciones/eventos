@@ -8,47 +8,64 @@ $select = "SELECT be.*, (cc.tNombres + ' ' + cc.tApellidos) as tNombre FROM BitE
 $rsPublicacion = mysql_query($select);
 $rPublicacion = mysql_fetch_array($rsPublicacion);
 
+$bIVA = $rPublicacion{'bIVA'};
+
 //clientes
 $select = "	SELECT 
-				cc.*, 
-				su.tNombre as promotor
-			FROM
-				CatClientes cc
-			
-			LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario
-            ORDER BY cc.eCodCliente ASC";
+															cc.*, 
+											
+															su.tNombre as promotor
+														FROM
+															CatClientes cc
+														
+														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario
+                                                        ORDER BY cc.eCodCliente ASC";
 $rsClientes = mysql_query($select);
 
 ?>
 
         <table class="table table-responsive table-borderless table-top-campaign">
             <tr>
-                <td>
+                <td >
+                  
                                 Evento # <?=sprintf("%07d",$rEvento{'eCodEvento'})?><br>
                                 Fecha: <?=date('d/m/Y H:i',strtotime($rPublicacion{'fhFechaEvento'}))?><br>
-                                Hora de Montaje: <?=$rPublicacion{'tmHoraMontaje'}?>       
+                                Hora de Montaje: <?=$rPublicacion{'tmHoraMontaje'}?>
+                          
                 </td>
             </tr>
+            
             <tr>
-                <td>  
+                <td>
+                   
                                  <?
      while($rPaquete = mysql_fetch_array($rsClientes))
-{ ?>
+{
+         ?>
                   <?=($rPublicacion{'eCodCliente'}==$rPaquete{'eCodCliente'}) ? $rPaquete{'tNombres'}.' '.$rPaquete{'tApellidos'}.' <br>'.$rPaquete{'tCorreo'}.'<br>Tel.'.$rPaquete{'tTelefonoFijo'}.'<br>Cel.'.$rPaquete{'tTelefonoMovil'} : ''?>
                   <?
-} ?>
+}
+    ?>
                             </td>
             </tr>
             <tr>
                             <td>
                                 <?=nl2br(base64_decode(utf8_decode($rPublicacion{'tDireccion'})))?>
                             </td>
+               
             </tr>
+            
+            
+            
             <tr>
                 <td>
                     Descripci&oacute;n
                 </td>
+                
+              
             </tr>
+            
+            
 											<?
                                             $i = 0;
 											$select = "	SELECT DISTINCT
@@ -68,7 +85,9 @@ $rsClientes = mysql_query($select);
 												?>
 											<tr>
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?><br>
+                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?><br>
+                   
+                   
                     <?
                         $select = "SELECT ci.tNombre, rsi.ePiezas FROM CatInventario ci INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario WHERE rsi.eCodServicio = ".$rPublicacion{'eCodServicio'};
                                                 $rsDetalle = mysql_query($select);
@@ -76,7 +95,10 @@ $rsClientes = mysql_query($select);
                                                 { ?>
                         <b>x<?=$rDetalle{'ePiezas'}?></b> - <?=($rDetalle{'tNombre'})?><br>
                                             <? } ?>
+                     
                 </td>
+                
+               
             </tr>
 											<?
 											$i++;
@@ -95,13 +117,16 @@ $rsClientes = mysql_query($select);
                                             
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{ ?>
-											<tr>
+											<tr class="item">
                 <td>
-                    <?=utf8_decode($rPublicacion{'tNombre'})?>
+                    <b>x<?=$rPublicacion{'eCantidad'}?></b> - <?=utf8_decode($rPublicacion{'tNombre'})?>
                 </td>
                 
             </tr>
 											<? } ?>
+            
+            
+            
             
         </table>
    
