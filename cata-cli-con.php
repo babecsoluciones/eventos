@@ -4,6 +4,24 @@ require_once("cls/cls-sistema.php");
 $clSistema = new clSis();
 session_start();
 $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
+
+
+if($_GET['bEliminar']==1)
+{
+    $select = "SELECT * FROM BitEventos WHERE eCodCliente = ".$_GET['eCodCliente'];
+    $rs = mysql_query($select);
+    
+    if(mysql_num_rows($rs)>0)
+    {
+        $update = "UPDATE CatClientes SET eCodEstatus=7 WHERE eCodCliente = ".$_GET['eCodCliente'];
+    }
+    else
+    {
+        $update = "DELETE FROM CatClientes WHERE eCodCliente = ".$_GET['eCodCliente'];
+    }
+    mysql_query($update);
+    echo '<script>window.location="'.$_GET['tCodSeccion'].'";</script>';
+}
 ?>
 <script>
 function detalles(eCodCliente)
@@ -60,8 +78,10 @@ function exportar()
 														FROM
 															CatClientes cc
 														INNER JOIN CatEstatus ce ON cc.eCodEstatus = ce.eCodEstatus
-														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario".
-												($bAll ? "" : " WHERE cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
+														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario
+                                                        WHERE 1=1".
+                                                ($_SESSION['sessionAdmin'][0]['bAll'] ? "" : " AND cc.eCodEstatus<> 7").
+												($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin'][0]['eCodUsuario']).
 														" ORDER BY cc.eCodCliente ASC";
 											$rsPublicaciones = mysql_query($select);
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
@@ -74,6 +94,7 @@ function exportar()
                                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                             <a class="dropdown-item" href="?tCodSeccion=cata-cli-det&eCodCliente='.$rPublicacion{'eCodCliente'}.'"><i class="fa fa-eye"></i> Detalles</a>
                                                                             <a class="dropdown-item" href="?tCodSeccion=cata-cli-reg&eCodCliente='.$rPublicacion{'eCodCliente'}.'"><i class="fa fa-pencil-square-o"></i> Editar</a>
+                                                                             <a class="dropdown-item" href="?tCodSeccion=cata-cli-con&eCodCliente='.$rPublicacion{'eCodCliente'}.'&bEliminar=1"><i class="far fa-trash-alt"></i> Eliminar</a>
                                                                         </div>
                                                                    </div>';
                                                 
