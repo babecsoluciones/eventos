@@ -4,6 +4,15 @@ require_once("cls/cls-sistema.php");
 $clSistema = new clSis();
 session_start();
 
+if($_GET['bEliminar']==1)
+{
+    
+        $update = "DELETE FROM CatServicios WHERE eCodServicio = ".$_GET['eCodServicio'];
+    
+    mysql_query($update);
+    echo '<script>window.location="?tCodSeccion='.$_GET['tCodSeccion'].'";</script>';
+}
+
 ?>
  
 <script>
@@ -37,11 +46,11 @@ function detalles(eCodCliente)
                                         <thead>
                                             
                                             <tr>
-												
+												<th class="text-right">C&oacute;digo</th>
                                                 <th>Nombre</th>
                                                 <th>Descripci&oacute;n</th>
                                                 <th class="text-right">Precio</th>
-                                                <th class="text-right"></th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -54,16 +63,25 @@ function detalles(eCodCliente)
 											$rsPublicaciones = mysql_query($select);
 											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
 											{
+                                                
+                                                $mostrar = $_SESSION['sessionAdmin'][0]['bAll'] ? 'style="display:none;"' : '';
+                                                $menuEmergente = '<div class="dropdown">
+                                                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            '.sprintf("%07d",$rPublicacion{'eCodServicio'}).'
+                                                                            </button>
+                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-ser-det&eCodServicio='.$rPublicacion{'eCodServicio'}.'"><i class="fa fa-eye"></i> Detalles</a>
+                                                                            <a class="dropdown-item" href="?tCodSeccion=cata-ser-reg&eCodServicio='.$rPublicacion{'eCodServicio'}.'"><i class="fa fa-pencil-square-o"></i> Editar</a>
+                                                                             <a class="dropdown-item" '.$mostrar.' href="?tCodSeccion=cata-ser-con&eCodServicio='.$rPublicacion{'eCodServicio'}.'&bEliminar=1"><i class="far fa-trash-alt"></i> Eliminar</a>
+                                                                        </div>
+                                                                   </div>';
+                                                
 												?>
 											<tr>
-                                                
+                                                <td class="text-right"><?=$menuEmergente?></td>
 												<td><?=utf8_decode($rPublicacion{'tNombre'})?></td>
 												<td><?=substr(utf8_decode($rPublicacion{'tDescripcion'}),0,50)?>...</td>
 												<td>$<?=number_format($rPublicacion{'dPrecioVenta'},2)?></td>
-                                                <td class="text-right"> 
-													<button onclick="detalles(<?=$rPublicacion{'eCodServicio'}?>)"><i class="fa fa-eye"></i></button> 
-													<button onclick="window.location='?tCodSeccion=cata-ser-reg&eCodServicio=<?=$rPublicacion{'eCodServicio'}?>'"><i class="fa fa-pencil-square-o"></i></button>
-												</td>
                                             </tr>
 											<?
 											}
